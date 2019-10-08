@@ -19,7 +19,11 @@ export default {
   loading: { color: '#fff' },
   css: [],
   plugins: [],
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/vuetify',
+    '@nuxt/typescript-build',
+  ],
   modules: ['@nuxtjs/axios'],
   axios: {},
   vuetify: {
