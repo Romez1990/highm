@@ -18,7 +18,7 @@ export default {
   },
   loading: { color: '#fff' },
   css: [],
-  plugins: [],
+  plugins: ['@/plugins/composition-api'],
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxtjs/vuetify',
