@@ -1,4 +1,7 @@
 import colors from 'vuetify/es5/util/colors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default {
   mode: 'universal',
@@ -50,4 +53,5 @@ export default {
       }
     },
   },
+  env: process.env,
 };
