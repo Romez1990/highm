@@ -21,7 +21,10 @@ export default {
   },
   loading: { color: '#fff' },
   css: [],
-  plugins: ['@/plugins/composition-api'],
+  plugins: [
+    '~/plugins/composition-api',
+    { src: '~/plugins/vuex-persist', mode: 'client' },
+  ],
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxtjs/vuetify',

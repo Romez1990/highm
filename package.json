@@ -25,7 +25,8 @@
     "@nuxtjs/axios": "^5.8.0",
     "@vue/composition-api": "^0.3.2",
     "dotenv": "^8.2.0",
-    "nuxt": "^2.10.2"
+    "nuxt": "^2.10.2",
+    "vuex-persist": "^2.1.1"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.3.2",
