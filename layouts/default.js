@@ -4,7 +4,7 @@ import movableDialog from '~/mixins/movableDialog';
 export default createComponent({
   mixins: [movableDialog],
   setup(_, { root }) {
-    root.$vuetify.theme.dark = true;
+    root.$vuetify.theme.dark = false;
 
     const dark = ref(false);
     const drawer = ref(true);

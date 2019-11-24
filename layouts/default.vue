@@ -6,11 +6,11 @@
 
       v-spacer
 
-      v-tooltip(bottom)
-        template(v-slot:activator='{ on }')
-          v-btn(v-on='on' @click='calculator = true' icon)
-            v-icon= 'apps'
-        span= 'Calculator'
+      //v-tooltip(bottom)
+      //  template(v-slot:activator='{ on }')
+      //    v-btn(v-on='on' @click='calculator = true' icon)
+      //      v-icon= 'apps'
+      //  span= 'Calculator'
       v-dialog(model='calculator' width='400' persistent hide-overlay)
         v-card
           v-card-title.headline(primary-title)
@@ -30,7 +30,11 @@
 
     v-navigation-drawer(app clipped v-model='drawer')
       v-list(dense nav)
-        v-list-item(v-for='task in tasks' :key='task.number' link)
+        v-list-item(
+          v-for='task in tasks'
+          :key='task.number'
+          :to="{ name: 'task-id', params: { id: task.number } }"
+          router)
           v-list-item-icon= '{{ task.number }}'
           v-list-item-content
             v-list-item-title= '{{ task.title }}'
@@ -45,5 +49,10 @@
         | HighM Romez &copy; {{ new Date().getFullYear() }}
       v-spacer
 </template>
+
+<style lang="stylus">
+html
+  overflow-y auto
+</style>
 
 <script src="./default.js"></script>

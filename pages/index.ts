@@ -5,7 +5,7 @@ export default createComponent({
     onBeforeMount(async () => {
       await root.$nextTick();
       root.$router.replace(
-        root.$store.getters['user/token'] ? '/tasks' : '/login',
+        root.$store.getters['user/token'] ? '/task' : '/login',
       );
     });
   },

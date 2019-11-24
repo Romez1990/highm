@@ -40,7 +40,6 @@ export default {
   modules: ['@nuxtjs/axios'],
   axios: {},
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
     theme: {
       themes: {
         dark: {

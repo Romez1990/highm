@@ -1,7 +1,11 @@
 import { createComponent } from '@vue/composition-api';
 
 export default createComponent({
-  setup() {
-    console.log(123);
+  setup(_, { root }) {
+    const params = root.$router.currentRoute.params;
+
+    return {
+      params,
+    };
   },
 });
