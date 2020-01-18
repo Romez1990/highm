@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import BaseLayout from '../layouts/BaseLayout';
 
 function IndexPage() {
   return (
-    <Fragment>
+    <BaseLayout title="Home page">
       Home page
-    </Fragment>
+    </BaseLayout>
   );
 }
 
