@@ -1,5 +1,7 @@
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 import red from '@material-ui/core/colors/red';
+import { shallowEqual, useSelector } from 'react-redux';
+import { AppState } from '../store/store';
 
 const theme: ThemeOptions = {
   palette: {
@@ -13,9 +15,16 @@ const theme: ThemeOptions = {
     error: {
       main: red.A400,
     },
-    background: {
-    },
+    background: {},
   },
 };
 
+const useTheme = () => useSelector((state: AppState) => ({
+  darkTheme: state.profile.darkTheme,
+}), shallowEqual);
+
 export default theme;
+
+export {
+  useTheme,
+};

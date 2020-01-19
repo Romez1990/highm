@@ -5,6 +5,7 @@ import {
 
 const initialState = {
   user: undefined,
+  darkTheme: false,
 };
 
 function reducer(state: ProfileState = initialState, action: ProfileAction) {
@@ -19,6 +20,11 @@ function reducer(state: ProfileState = initialState, action: ProfileAction) {
       };
     case 'UNSET_PROFILE':
       return initialState;
+    case 'SET_DARK_THEME':
+      return {
+        ...state,
+        darkTheme: action.payload,
+      };
     default:
       return state;
   }

@@ -6,12 +6,18 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import ThemeProvider from '../components/app/ThemeProvider';
 import initStore, { AppState, AppAction } from '../store/store';
-import { getProfile, setProfile } from '../store/profile/action';
+import {
+  getProfile,
+  setProfile,
+  getDarkTheme,
+  setDarkTheme,
+} from '../store/profile/action';
 import Profile from '../types/Profile';
 
 interface Props {
   store: Store;
   profile: Profile;
+  darkTheme: boolean;
 }
 
 class App extends NextApp<Props> {
@@ -24,8 +30,12 @@ class App extends NextApp<Props> {
       profile = await dispatch(getProfile(ctx.req));
     }
 
+    let darkTheme = false;
+    if (!profile)
+      darkTheme = dispatch(getDarkTheme(ctx.req));
+
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-    return { pageProps, profile };
+    return { pageProps, profile, darkTheme };
   }
 
   render() {
@@ -41,7 +51,7 @@ class App extends NextApp<Props> {
   }
 
   componentDidMount() {
-    const { store, profile: newProfile } = this.props;
+    const { store, profile: newProfile, darkTheme } = this.props;
 
     const state: AppState = store.getState();
     const dispatch = store.dispatch as ThunkDispatch<AppState, undefined, AppAction>;
@@ -49,6 +59,11 @@ class App extends NextApp<Props> {
     let profile = state.profile.user;
     if (!profile && newProfile) {
       dispatch(setProfile(newProfile));
+      profile = newProfile;
+    }
+
+    if (!profile) {
+      dispatch(setDarkTheme(darkTheme));
     }
 
     const jssStyles = document.querySelector('#jss-server-side');
