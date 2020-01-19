@@ -9,12 +9,15 @@
     "start": "next start -p $PORT"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "axios-case-converter": "^0.3.1",
     "dotenv": "^8.2.0",
     "next": "^9.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@types/axios-case-converter": "^0.3.1",
     "@types/node": "^13.5.3",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
