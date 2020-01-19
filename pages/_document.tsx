@@ -5,6 +5,8 @@ import {
   DocumentInitialProps,
   RenderPageResult,
 } from 'next/dist/next-server/lib/utils';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { resetServerContext } from 'react-beautiful-dnd';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import { StylesProviderProps } from '@material-ui/styles/StylesProvider';
 import store from '../store';
@@ -16,11 +18,13 @@ class Document extends NextDocument {
   ): Promise<DocumentInitialProps> {
     const originalRenderPage = ctx.renderPage;
     const sheets = new ServerStyleSheets();
-    ctx.renderPage = (): RenderPageResult | Promise<RenderPageResult> =>
-      originalRenderPage({
+    ctx.renderPage = (): RenderPageResult | Promise<RenderPageResult> => {
+      resetServerContext();
+      return originalRenderPage({
         enhanceApp: App => (props): ReactElement<StylesProviderProps> =>
           sheets.collect(<App {...props} />),
       });
+    };
 
     const initialProps = await super.getInitialProps(ctx);
 
