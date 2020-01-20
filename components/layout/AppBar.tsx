@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ThemeChanger from './ThemeChanger';
 import UserMenu from './UserMenu';
 import { AppState } from '../../store/store';
 import { redirectToLogin } from '../../src/redirect';
@@ -56,6 +57,7 @@ function AppBar({ openDrawer }: Props) {
           HighM
         </Typography>
         {user && <UserMenu user={user} />}
+        <ThemeChanger />
       </Toolbar>
     </MuiAppBar>
   );
