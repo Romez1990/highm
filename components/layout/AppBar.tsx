@@ -1,10 +1,15 @@
 import React from 'react';
+import { useRouter } from 'next/router';
+import { useSelector, shallowEqual } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import MuiAppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import UserMenu from './UserMenu';
+import { AppState } from '../../store/store';
+import { redirectToLogin } from '../../src/redirect';
 
 const useStyles = makeStyles(() => ({
   menuButton: {
@@ -21,8 +26,19 @@ interface Props {
   openDrawer(): void;
 }
 
+const useUser = () => useSelector((state: AppState) => ({
+  user: state.profile.user,
+}), shallowEqual);
+
 function AppBar({ openDrawer }: Props) {
   const classes = useStyles();
+  const router = useRouter();
+
+  const { user } = useUser();
+
+  async function loginButtonOnClick() {
+    await redirectToLogin(undefined, router.asPath, false);
+  }
 
   return (
     <MuiAppBar position="static">
@@ -39,6 +55,7 @@ function AppBar({ openDrawer }: Props) {
         <Typography variant="h1" className={classes.title}>
           HighM
         </Typography>
+        {user && <UserMenu user={user} />}
       </Toolbar>
     </MuiAppBar>
   );
