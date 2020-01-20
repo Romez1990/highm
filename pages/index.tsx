@@ -1,11 +1,11 @@
 import React from 'react';
-import BaseLayout from '../layouts/BaseLayout';
+import MainLayout from '../layouts/MainLayout';
 
 function IndexPage() {
   return (
-    <BaseLayout title="Home page">
+    <MainLayout title="Home page">
       Home page
-    </BaseLayout>
+    </MainLayout>
   );
 }
 
