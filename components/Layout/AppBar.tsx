@@ -1,4 +1,5 @@
 import React from 'react';
+import { isSome } from 'fp-ts/lib/Option';
 import {
   makeStyles,
   createStyles,
@@ -9,6 +10,8 @@ import {
   IconButton,
 } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
+import ProfileMenu from './ProfileMenu';
+import { useProfileStore } from '../../store';
 
 interface Props {
   toggleDrawerOpen(): void;
@@ -28,6 +31,8 @@ const useStyles = makeStyles(({ spacing, zIndex }: Theme) =>
 );
 
 function AppBar({ toggleDrawerOpen }: Props): JSX.Element {
+  const { profile } = useProfileStore();
+
   const classes = useStyles();
 
   return (
@@ -44,6 +49,7 @@ function AppBar({ toggleDrawerOpen }: Props): JSX.Element {
         <Typography component="h1" variant="h6" className={classes.title}>
           HighM
         </Typography>
+        {isSome(profile) && <ProfileMenu profile={profile.value} />}
       </Toolbar>
     </MuiAppBar>
   );

@@ -1,0 +1,100 @@
+import React, { Fragment, useState, MouseEvent } from 'react';
+import {
+  createStyles,
+  makeStyles,
+  Button,
+  Menu,
+  MenuItem,
+} from '@material-ui/core';
+import { AccountCircle as AccountCircleIcon } from '@material-ui/icons';
+import Link from '../Link';
+import { Profile } from '../../src/Profile';
+
+interface Props {
+  profile: Profile;
+}
+
+interface Link {
+  href: string;
+  text: string;
+}
+
+const useStyles = makeStyles(
+  createStyles({
+    menuItem: {
+      minWidth: 130,
+    },
+    menuButton: {
+      textTransform: 'none',
+    },
+  }),
+);
+
+function ProfileMenu({ profile }: Props): JSX.Element {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  function handleMenu(event: MouseEvent<HTMLButtonElement>): void {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleClose(): void {
+    setAnchorEl(null);
+  }
+
+  const links: Link[] = [
+    {
+      href: '/profile',
+      text: 'Profile',
+    },
+  ];
+
+  const classes = useStyles();
+
+  return (
+    <Fragment>
+      <Button
+        aria-label="account of current user"
+        aria-controls="menu-appbar"
+        aria-haspopup
+        color="inherit"
+        endIcon={<AccountCircleIcon />}
+        className={classes.menuButton}
+        onClick={handleMenu}
+      >
+        {profile.firstName} {profile.lastName}
+      </Button>
+      <Menu
+        id="menu-appbar"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open}
+        onClose={handleClose}
+      >
+        {links.map(link => (
+          <MenuItem
+            key={link.href}
+            className={classes.menuItem}
+            onClick={handleClose}
+            component={Link}
+            href={link.href}
+            color="inherit"
+            underline="none"
+          >
+            {link.text}
+          </MenuItem>
+        ))}
+      </Menu>
+    </Fragment>
+  );
+}
+
+export default ProfileMenu;
