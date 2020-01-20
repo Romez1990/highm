@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
 import ProfileMenu from './ProfileMenu';
+import ThemeChanger from './ThemeChanger';
 import { useProfileStore } from '../../store';
 
 interface Props {
@@ -50,6 +51,7 @@ function AppBar({ toggleDrawerOpen }: Props): JSX.Element {
           HighM
         </Typography>
         {isSome(profile) && <ProfileMenu profile={profile.value} />}
+        <ThemeChanger />
       </Toolbar>
     </MuiAppBar>
   );
