@@ -1,8 +1,8 @@
 import React from 'react';
-import BaseLayout from '../layouts/BaseLayout';
+import MainLayout from '../layouts/MainLayout';
 
 function MainPage(): JSX.Element {
-  return <BaseLayout title="Main page">Main page</BaseLayout>;
+  return <MainLayout title="Main page">Main page</MainLayout>;
 }
 
 export default MainPage;
