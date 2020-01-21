@@ -47,6 +47,10 @@ function ProfileMenu({ profile }: Props): JSX.Element {
       href: '/profile',
       text: 'Profile',
     },
+    {
+      href: '/logout',
+      text: 'Logout',
+    },
   ];
 
   const classes = useStyles();
