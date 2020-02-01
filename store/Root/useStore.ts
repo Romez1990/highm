@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react';
 import { Store } from './RootStore';
 import StoreError from './StoreError';
+import ProfileStore from '../Profile';
 
 const StoreContext = createContext<Store | undefined>(undefined);
 
@@ -11,4 +12,9 @@ function useStore(): Store {
   return store;
 }
 
-export { StoreContext, useStore };
+function useProfileStore(): ProfileStore {
+  const { profileStore } = useStore();
+  return profileStore;
+}
+
+export { StoreContext, useStore, useProfileStore };
