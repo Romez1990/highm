@@ -41,6 +41,7 @@ App.getInitialProps = async ({
 
   if (!process.browser) {
     await store.profileStore.authenticate(req)();
+    store.profileStore.getDarkTheme(req);
   }
 
   const TypedComponent = Component as ComponentType<object>;
