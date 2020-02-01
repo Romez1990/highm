@@ -1,9 +1,15 @@
-class RootStore {
-  // eslint-disable-next-line no-useless-constructor,@typescript-eslint/no-empty-function
-  public constructor() {}
+import ProfileStore from '../Profile';
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
-  public hydrate(store: RootStore): void {}
+class RootStore {
+  public profileStore: ProfileStore;
+
+  public constructor() {
+    this.profileStore = new ProfileStore();
+  }
+
+  public hydrate(store: RootStore): void {
+    this.profileStore.hydrate(store.profileStore);
+  }
 }
 
 export default new RootStore();
