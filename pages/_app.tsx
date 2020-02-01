@@ -19,6 +19,12 @@ App.getInitialProps = async ({
   Component,
   ctx,
 }: AppContext): Promise<InitialProps> => {
+  const { req } = ctx;
+
+  if (!process.browser) {
+    await store.profileStore.authenticate(req)();
+  }
+
   const pageProps =
     typeof Component.getInitialProps !== 'undefined'
       ? await Component.getInitialProps(ctx)
