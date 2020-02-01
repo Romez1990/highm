@@ -7,7 +7,8 @@ import {
 } from 'next/dist/next-server/lib/utils';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import { StylesProviderProps } from '@material-ui/styles/StylesProvider';
-import theme from '../src/Theme';
+import store from '../store';
+import { lightTheme, darkTheme } from '../src/Theme';
 
 class Document extends NextDocument {
   public static async getInitialProps(
@@ -33,6 +34,8 @@ class Document extends NextDocument {
   }
 
   public render(): JSX.Element {
+    const { darkMode } = store.profileStore;
+    const theme = darkMode ? darkTheme : lightTheme;
     return (
       <Html>
         <Head>
