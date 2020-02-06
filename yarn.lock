@@ -994,6 +994,13 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
+"@types/ramda@^0.27.4":
+  version "0.27.4"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.27.4.tgz#816002c95e54cf3f3d5d7e8e014998450934d992"
+  integrity sha512-uE1OSffeRZoFjVah2RjR4pAyptzqN6T+fEsWr06biuUstR2IBIzKhSGwKxzISAoy4SC+JkJv8y99Hm3cJ/TDOQ==
+  dependencies:
+    ts-toolbelt "^6.3.3"
+
 "@types/react-dom@^16.9.7":
   version "16.9.7"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.7.tgz#60844d48ce252d7b2dccf0c7bb937130e27c0cd2"
@@ -3211,6 +3218,16 @@ fork-ts-checker-webpack-plugin@3.1.1:
     tapable "^1.0.0"
     worker-rpc "^0.1.0"
 
+fp-ts-contrib@^0.1.15:
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/fp-ts-contrib/-/fp-ts-contrib-0.1.15.tgz#3b7225f7143f49b4a7719fa59bb9f04ff45bf634"
+  integrity sha512-aSuDUJAHN3QBlDf8PJ8M62l7mdUNeOWTGFFuIrK+A7tCLejGU43dDj2FM0c5dmz8CV/GXsRU3XPWCzaL5uIyvA==
+
+fp-ts@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.5.4.tgz#f184079aaa78403ea66458517be7787e0d593429"
+  integrity sha512-cZlLeEneRYypc2dOzB9h8+bd9mQhJVyt2g0Dny2gKR7uWNgA4EmLSJyguLYsTU44nJSSG9EjurUalEc0wQqeKw==
+
 fragment-cache@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/fragment-cache/-/fragment-cache-0.2.1.tgz#4290fad27f13e89be7f33799c6bc5a0abfff0d19"
@@ -3603,6 +3620,11 @@ invariant@^2.2.2:
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
   dependencies:
     loose-envify "^1.0.0"
+
+io-ts@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.2.tgz#82b9ef96d95a3fb27a1abf5f29f59b07cc9b8cca"
+  integrity sha512-cXXIL4CR5/sWfKw/Ssc/cbZJGG13J4pJv9/RN6SlWJyh+foAPEUE0I9sWTX1kG24dvhiCM9fpO4F+2AsP+WzaQ==
 
 is-absolute-url@^2.0.0:
   version "2.1.0"
@@ -5436,6 +5458,11 @@ querystring@0.2.0, querystring@^0.2.0:
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
   integrity sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=
 
+ramda@^0.27.0:
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.27.0.tgz#915dc29865c0800bf3f69b8fd6c279898b59de43"
+  integrity sha512-pVzZdDpWwWqEVVLshWUHjNwuVP7SfcmPraYuqocJp1yo2U1R7P+5QAfDhdItkuoGqIBnBYrtPp7rEPqDn9HlZA==
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
@@ -6486,6 +6513,11 @@ ts-pnp@^1.1.2:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.1.5.tgz#840e0739c89fce5f3abd9037bb091dbff16d9dec"
   integrity sha512-ti7OGMOUOzo66wLF3liskw6YQIaSsBgc4GOAlWRnIEj8htCxJUxskanMUoJOD6MDCRAXo36goXJZch+nOS0VMA==
+
+ts-toolbelt@^6.3.3:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.5.1.tgz#1316b8c6522797c0bee289ca5deaa159af846231"
+  integrity sha512-zjnZ/vy1eUA0li3H0JXecl0R3jiP42snpLimsrppt9V3LLbM4NM4jMgjXQ4S67hvehq+r9CxpX4Wj6RnFRzReA==
 
 tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
