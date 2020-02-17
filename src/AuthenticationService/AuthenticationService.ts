@@ -10,6 +10,7 @@ import { TProfile, Profile } from '../Profile';
 
 const AuthenticationService = {
   authenticate,
+  hasPermission,
 };
 
 function authenticate(req: IncomingMessage | undefined): TaskOption<Profile>;
@@ -31,6 +32,36 @@ function authenticate(
               throw err;
             },
             profile => of(some(profile)),
+          ),
+        ),
+    ),
+  );
+}
+
+export declare type Permission =
+  | 'IsAuthenticated'
+  | 'IsStudent'
+  | 'IsTeacher'
+  | 'IsAdmin';
+
+function hasPermission(
+  profile: Option<Profile>,
+  permission: Option<Permission>,
+): boolean {
+  return pipe(
+    permission,
+    foldO(
+      () => true,
+      permission_ =>
+        pipe(
+          profile,
+          foldO(
+            () => false,
+            ({ type: type_ }) =>
+              type_ === 'admin' ||
+              permission_ === 'IsAuthenticated' ||
+              (type_ === 'teacher' && permission_ === 'IsTeacher') ||
+              (type_ === 'student' && permission_ === 'IsStudent'),
           ),
         ),
     ),
