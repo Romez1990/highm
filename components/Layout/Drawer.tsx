@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
   makeStyles,
   createStyles,
@@ -6,7 +6,10 @@ import {
   Drawer as MuiDrawer,
   List,
   ListItem,
+  ListItemIcon,
+  ListItemText,
 } from '@material-ui/core';
+import { Home as HomeIcon, Info as InfoIcon } from '@material-ui/icons';
 import Link from '../Link';
 
 interface StyleProps {
@@ -32,6 +35,7 @@ const useStyles = makeStyles(({ mixins: { toolbar } }: Theme) =>
 interface Link {
   href: string;
   text: string;
+  icon: ReactElement;
 }
 
 function Drawer({ width, open }: Props): JSX.Element {
@@ -39,10 +43,12 @@ function Drawer({ width, open }: Props): JSX.Element {
     {
       href: '/',
       text: 'Main page',
+      icon: <HomeIcon />,
     },
     {
       href: '/about',
       text: 'About',
+      icon: <InfoIcon />,
     },
   ];
 
@@ -69,7 +75,8 @@ function Drawer({ width, open }: Props): JSX.Element {
             color="inherit"
             underline="none"
           >
-            {link.text}
+            <ListItemIcon>{link.icon}</ListItemIcon>
+            <ListItemText>{link.text}</ListItemText>
           </ListItem>
         ))}
       </List>
