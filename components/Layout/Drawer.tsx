@@ -13,6 +13,7 @@ import {
 import {
   Home as HomeIcon,
   Info as InfoIcon,
+  Description as DescriptionIcon,
   Group as GroupIcon,
   HowToReg as HowToRegIcon,
 } from '@material-ui/icons';
@@ -60,6 +61,12 @@ function Drawer({ width, open }: Props): JSX.Element {
       href: '/about',
       text: 'About',
       icon: <InfoIcon />,
+    },
+    {
+      href: '/lessons',
+      text: 'Lessons',
+      icon: <DescriptionIcon />,
+      permission: 'IsStudent',
     },
     {
       href: '/groups',
