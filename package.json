@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@matejmazur/react-katex": "^3.0.2",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.9.13",
@@ -24,6 +25,7 @@
     "fp-ts": "^2.5.4",
     "fp-ts-contrib": "^0.1.15",
     "io-ts": "^2.2.2",
+    "katex": "^0.11.1",
     "material-table": "^1.57.2",
     "mobx": "^5.15.4",
     "mobx-react-lite": "^2.0.6",
@@ -36,6 +38,7 @@
   "devDependencies": {
     "@types/axios-case-converter": "^0.3.1",
     "@types/cookie": "^0.3.3",
+    "@types/katex": "^0.11.0",
     "@types/node": "^13.13.4",
     "@types/ramda": "^0.27.4",
     "@types/react": "^16.9.34",

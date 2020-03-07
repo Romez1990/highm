@@ -14,6 +14,7 @@ import AuthenticationService, {
 } from '../src/AuthenticationService';
 import { RedirectionError, redirectToLogin } from '../src/Redirect';
 import ErrorPage from './_error';
+import 'katex/dist/katex.min.css';
 
 interface InitialProps {
   pageProps: object;
