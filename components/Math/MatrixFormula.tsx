@@ -8,6 +8,7 @@ interface Props {
   block?: boolean;
   name?: string;
   bracket?: Bracket;
+  equalsTo?: string;
 }
 
 function matrixToFormula(matrix: Matrix<number | string>): string {
@@ -34,17 +35,26 @@ const addName = (name: string | undefined) => (matrix: string): string => {
   return `${name} = ${matrix}`;
 };
 
+const addRightExpression = (expression: string | undefined) => (
+  matrix: string,
+): string => {
+  if (typeof expression === 'undefined') return matrix;
+  return `${matrix} = ${expression}`;
+};
+
 function MatrixFormula({
   children: matrix,
   block,
   name,
   bracket = '(',
+  equalsTo,
 }: Props): JSX.Element {
   const formula = pipe(
     matrix,
     matrixToFormula,
     wrapInBrackets(bracket),
     addName(name),
+    addRightExpression(equalsTo),
   );
   return <Formula block={block}>{formula}</Formula>;
 }
