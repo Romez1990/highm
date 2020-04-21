@@ -10,7 +10,11 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core';
-import { Home as HomeIcon, Info as InfoIcon } from '@material-ui/icons';
+import {
+  Home as HomeIcon,
+  Info as InfoIcon,
+  Group as GroupIcon,
+} from '@material-ui/icons';
 import Link from '../Link';
 import AuthenticationService, {
   Permission,
@@ -55,6 +59,12 @@ function Drawer({ width, open }: Props): JSX.Element {
       href: '/about',
       text: 'About',
       icon: <InfoIcon />,
+    },
+    {
+      href: '/groups',
+      text: 'Groups',
+      icon: <GroupIcon />,
+      permission: 'IsTeacher',
     },
   ];
 

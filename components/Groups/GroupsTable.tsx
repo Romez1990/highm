@@ -1,0 +1,89 @@
+import React, { ChangeEvent } from 'react';
+import { Container } from '@material-ui/core';
+import { Delete as DeleteIcon } from '@material-ui/icons';
+import Table from '../Table';
+import { RegexTextField } from '../Fields';
+import {
+  TGroupBasic,
+  GroupBasic,
+  groupNameRegexPartial,
+  groupCompare,
+} from '../../src/Student';
+import { useEditable } from '../../src/Table';
+
+interface Props {
+  groups: GroupBasic[];
+}
+
+function GroupsTable({ groups }: Props): JSX.Element {
+  const [rows, { updateRow, deleteRow, deleteRows }] = useEditable({
+    initData: groups,
+    type: TGroupBasic,
+    url: '/group/',
+    getLookupField: ({ name }): string => name,
+  });
+
+  function isDeletable(rowData: GroupBasic): boolean {
+    return rowData.numberOfStudents === 0;
+  }
+
+  return (
+    <Container maxWidth="sm">
+      <Table
+        title="Groups"
+        columns={[
+          {
+            title: 'Name',
+            field: 'name',
+            defaultSort: 'asc',
+            customSort: groupCompare,
+            editComponent: ({
+              // eslint-disable-next-line react/prop-types
+              columnDef: { title },
+              // eslint-disable-next-line react/prop-types
+              value,
+              // eslint-disable-next-line react/prop-types
+              onChange,
+            }): JSX.Element => (
+              <RegexTextField
+                placeholder={title}
+                autoFocus
+                regex={groupNameRegexPartial}
+                value={value}
+                onChange={(e: ChangeEvent<HTMLInputElement>): void =>
+                  onChange(e.target.value)
+                }
+              />
+            ),
+          },
+          {
+            title: 'Number of students',
+            field: 'numberOfStudents',
+            type: 'numeric',
+            editable: 'never',
+          },
+        ]}
+        data={rows}
+        editable={{
+          isDeletable,
+          onRowUpdate: updateRow,
+          onRowDelete: deleteRow,
+        }}
+        options={{
+          paging: false,
+          selection: true,
+        }}
+        actions={[
+          {
+            icon: (): JSX.Element => <DeleteIcon />,
+            tooltip: 'Delete groups',
+            position: 'toolbarOnSelect',
+            onClick: deleteRows,
+          },
+        ]}
+      />
+    </Container>
+  );
+}
+
+export default GroupsTable;
