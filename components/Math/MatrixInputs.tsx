@@ -41,14 +41,67 @@ function MatrixInputs({
     setFieldValue(name, numberMatrix);
   }
 
-  function changeNumber(
+  function change(
     e: ChangeEvent<HTMLInputElement>,
     rowIndex: number,
     columnIndex: number,
   ): void {
     const { value } = e.target;
-    matrix[rowIndex][columnIndex] = value;
+    const addRight = columnIndex === columnsCount;
+    const addBottom = rowIndex === rowsCount;
+    const lastRight = columnIndex === lastColumnIndex;
+    const lastBottom = rowIndex === lastRowIndex;
+
+    if (addRight || addBottom) {
+      addElement(addRight, addBottom, rowIndex, columnIndex, e);
+    } else if (lastRight || lastBottom) {
+      changeElement(rowIndex, columnIndex, value);
+      removeLastElementIfEmpty(lastRight, lastBottom, rowIndex, columnIndex);
+    } else {
+      changeElement(rowIndex, columnIndex, value);
+    }
     updateMatrix();
+  }
+
+  function changeElement(
+    rowIndex: number,
+    columnIndex: number,
+    value: string,
+  ): void {
+    matrix[rowIndex][columnIndex] = value;
+  }
+
+  function addElement(
+    right: boolean,
+    bottom: boolean,
+    rowIndex: number,
+    columnIndex: number,
+    e: ChangeEvent<HTMLInputElement>,
+  ): void {
+    const { value } = e.target;
+    if (right && !bottom) {
+      addColumn(rowIndex, value);
+    } else if (!right && bottom) {
+      addRow(columnIndex, value);
+    } else {
+      addRowAndColumn(rowIndex, columnIndex, value);
+    }
+    e.target.value = '';
+  }
+
+  function removeLastElementIfEmpty(
+    right: boolean,
+    bottom: boolean,
+    rowIndex: number,
+    columnIndex: number,
+  ): void {
+    if (right && !bottom) {
+      removeLastColumnIfEmpty(rowIndex);
+    } else if (!right && bottom) {
+      removeLastRowIfEmpty(columnIndex);
+    } else {
+      removeLastRowAndLastColumnIfEmpty(rowIndex, columnIndex);
+    }
   }
 
   const lastElements = {
@@ -60,25 +113,8 @@ function MatrixInputs({
     bottom: useRef<HTMLInputElement[]>([]),
   };
 
-  function addElementOnChange(
-    e: ChangeEvent<HTMLInputElement>,
-    rowIndex: number,
-    columnIndex: number,
-  ): void {
-    const right = columnIndex === columnsCount;
-    const bottom = rowIndex === rowsCount;
-    if (right && bottom) {
-      addRowAndColumn(rowIndex, columnIndex, e.target.value);
-    } else if (right) {
-      addColumn(rowIndex, e.target.value);
-    } else if (bottom) {
-      addRow(columnIndex, e.target.value);
-    }
-    e.target.value = '';
-  }
-
   function addRow(columnIndex: number, value: string): void {
-    const row = new Array(matrix[0].length).fill('');
+    const row = new Array(columnsCount).fill('');
     row[columnIndex] = value;
     matrix.push(row);
     updateMatrix();
@@ -99,8 +135,8 @@ function MatrixInputs({
     value: string,
   ): void {
     matrix.forEach(row => row.push(''));
-    const row = new Array(matrix[0].length).fill('');
-    row[matrix[0].length - 1] = value;
+    const row = new Array(columnsCount + 1).fill('');
+    row[columnsCount] = value;
     matrix.push(row);
     updateMatrix();
     // eslint-disable-next-line no-unused-expressions
@@ -109,55 +145,42 @@ function MatrixInputs({
     // This is a bug but it works
   }
 
-  function lastElementOnChange(
-    e: ChangeEvent<HTMLInputElement>,
-    rowIndex: number,
-    columnIndex: number,
-  ): void {
-    const right = columnIndex === lastColumnIndex;
-    const bottom = rowIndex === lastRowIndex;
-    if (right && bottom) {
-      removeRowAndColumn(rowIndex, columnIndex, e.target.value);
-    } else if (right) {
-      removeColumn(rowIndex, e.target.value);
-    } else if (bottom) {
-      removeRow(columnIndex, e.target.value);
-    }
-  }
-
-  function removeRow(
-    columnIndex: number,
-    value: string,
-    emptyRow: boolean = isColumnEmpty(columnIndex, value),
-  ): void {
+  function removeLastRowIfEmpty(columnIndex: number): boolean {
+    const emptyRow = isLastRowEmpty();
     if (emptyRow) {
-      matrix.pop();
-      updateMatrix();
-      // eslint-disable-next-line no-unused-expressions
-      addElements.bottom.current[columnIndex]?.focus();
+      removeLastRow(columnIndex);
     }
+    return emptyRow;
   }
 
-  function removeColumn(
-    rowIndex: number,
-    value: string,
-    emptyColumn: boolean = isColumnEmpty(rowIndex, value),
-  ): void {
+  function removeLastRow(columnIndex: number): void {
+    matrix.pop();
+    updateMatrix();
+    // eslint-disable-next-line no-unused-expressions
+    addElements.bottom.current[columnIndex]?.focus();
+  }
+
+  function removeLastColumnIfEmpty(rowIndex: number): boolean {
+    const emptyColumn = isLastColumnEmpty();
     if (emptyColumn) {
-      matrix.forEach(row => row.pop());
-      updateMatrix();
-      // eslint-disable-next-line no-unused-expressions
-      addElements.right.current[rowIndex]?.focus();
+      removeLastColumn(rowIndex);
     }
+    return emptyColumn;
   }
 
-  function removeRowAndColumn(
+  function removeLastColumn(rowIndex: number): void {
+    matrix.forEach(row => row.pop());
+    updateMatrix();
+    // eslint-disable-next-line no-unused-expressions
+    addElements.right.current[rowIndex]?.focus();
+  }
+
+  function removeLastRowAndLastColumnIfEmpty(
     rowIndex: number,
     columnIndex: number,
-    value: string,
   ): void {
-    const emptyColumn = isColumnEmpty(rowIndex, value);
-    const emptyRow = isRowEmpty(columnIndex, value);
+    const emptyColumn = isLastColumnEmpty();
+    const emptyRow = isLastRowEmpty();
     const oneRow = rowsCount === 1;
     const oneColumn = columnsCount === 1;
     if (emptyColumn && emptyRow && !oneRow && !oneColumn) {
@@ -169,172 +192,54 @@ function MatrixInputs({
       // I don't know why + 1
       // This is a bug but it works
     } else if (emptyColumn && !oneColumn) {
-      removeColumn(rowIndex, value, emptyColumn);
+      removeLastColumn(rowIndex);
     } else if (emptyRow && !oneRow) {
-      removeRow(columnIndex, value, emptyRow);
+      removeLastRow(columnIndex);
     }
   }
 
-  function isColumnEmpty(rowIndex: number, value: string): boolean {
-    return matrix.every((row, i) =>
-      i === rowIndex ? value === '' : row[row.length - 1] === '',
-    );
+  function isLastColumnEmpty(): boolean {
+    return matrix.every(row => row[lastColumnIndex] === '');
   }
 
-  function isRowEmpty(columnIndex: number, value: string): boolean {
+  function isLastRowEmpty(): boolean {
     const lastRow = matrix[lastRowIndex];
-    return lastRow.every((el, i) =>
-      i === columnIndex ? value === '' : el === '',
-    );
+    return lastRow.every(el => el === '');
   }
+
+  const matrixCells: Matrix<string> = [
+    ...matrix.map(row => [...row, '']),
+    new Array(columnsCount + 1).fill(''),
+  ];
 
   const classes = useStyles();
 
   return (
     <Fragment>
-      {matrix.slice(0, lastRowIndex).map((row: string[], rowIndex: number) => (
+      {matrixCells.map((row, rowIndex) => (
         // eslint-disable-next-line react/no-array-index-key
         <div key={rowIndex}>
-          {row
-            .slice(0, lastColumnIndex)
-            .map((number: string, columnIndex: number) => (
-              <NumberField
-                // eslint-disable-next-line react/no-array-index-key
-                key={columnIndex}
-                className={classes.input}
-                variant="outlined"
-                size="small"
-                inputProps={{
-                  style: { textAlign: 'center' },
-                }}
-                value={number}
-                onChange={(e: ChangeEvent<HTMLInputElement>): void =>
-                  changeNumber(e, rowIndex, columnIndex)
-                }
-              />
-            ))}
-          <NumberField
-            className={classes.input}
-            inputRef={(input: HTMLInputElement): void => {
-              lastElements.right.current[rowIndex] = input;
-            }}
-            variant="outlined"
-            size="small"
-            inputProps={{
-              style: { textAlign: 'center' },
-            }}
-            value={matrix[rowIndex][lastColumnIndex]}
-            onChange={(e: ChangeEvent<HTMLInputElement>): void => {
-              changeNumber(e, rowIndex, lastColumnIndex);
-              lastElementOnChange(e, rowIndex, lastColumnIndex);
-            }}
-          />
-          <NumberField
-            className={clsx(classes.input, classes.addInput)}
-            inputRef={(input: HTMLInputElement): void => {
-              addElements.right.current[rowIndex] = input;
-            }}
-            variant="outlined"
-            size="small"
-            inputProps={{
-              style: { textAlign: 'center' },
-            }}
-            onChange={(e: ChangeEvent<HTMLInputElement>): void =>
-              addElementOnChange(e, rowIndex, columnsCount)
-            }
-          />
-        </div>
-      ))}
-      <div>
-        {matrix[lastRowIndex]
-          .slice(0, lastColumnIndex)
-          .map((number: string, columnIndex: number) => (
+          {row.map((number, columnIndex) => (
             <NumberField
               // eslint-disable-next-line react/no-array-index-key
               key={columnIndex}
-              className={classes.input}
-              inputRef={(input: HTMLInputElement): void => {
-                lastElements.bottom.current[columnIndex] = input;
-              }}
+              className={clsx(classes.input, {
+                [classes.addInput]:
+                  columnIndex === columnsCount || rowIndex === rowsCount,
+              })}
               variant="outlined"
               size="small"
               inputProps={{
                 style: { textAlign: 'center' },
               }}
               value={number}
-              onChange={(e: ChangeEvent<HTMLInputElement>): void => {
-                changeNumber(e, lastRowIndex, columnIndex);
-                lastElementOnChange(e, lastRowIndex, columnIndex);
-              }}
+              onChange={(e: ChangeEvent<HTMLInputElement>): void =>
+                change(e, rowIndex, columnIndex)
+              }
             />
           ))}
-        <NumberField
-          className={classes.input}
-          inputRef={(input: HTMLInputElement): void => {
-            lastElements.bottom.current[lastColumnIndex] = input;
-            lastElements.right.current[lastRowIndex] = input;
-          }}
-          variant="outlined"
-          size="small"
-          inputProps={{
-            style: { textAlign: 'center' },
-          }}
-          value={matrix[lastRowIndex][lastColumnIndex]}
-          onChange={(e: ChangeEvent<HTMLInputElement>): void => {
-            changeNumber(e, lastRowIndex, lastColumnIndex);
-            lastElementOnChange(e, lastRowIndex, lastColumnIndex);
-          }}
-        />
-        <NumberField
-          className={clsx(classes.input, classes.addInput)}
-          inputRef={(input: HTMLInputElement): void => {
-            addElements.right.current[lastRowIndex] = input;
-          }}
-          variant="outlined"
-          size="small"
-          inputProps={{
-            style: { textAlign: 'center' },
-          }}
-          onChange={(e: ChangeEvent<HTMLInputElement>): void =>
-            addElementOnChange(e, lastRowIndex, columnsCount)
-          }
-        />
-      </div>
-      <div>
-        {matrix[lastRowIndex].map((_: string, columnIndex: number) => (
-          <NumberField
-            // eslint-disable-next-line react/no-array-index-key
-            key={columnIndex}
-            className={clsx(classes.input, classes.addInput)}
-            inputRef={(input: HTMLInputElement): void => {
-              addElements.bottom.current[columnIndex] = input;
-            }}
-            variant="outlined"
-            size="small"
-            inputProps={{
-              style: { textAlign: 'center' },
-            }}
-            onChange={(e: ChangeEvent<HTMLInputElement>): void =>
-              addElementOnChange(e, rowsCount, columnIndex)
-            }
-          />
-        ))}
-        <NumberField
-          className={clsx(classes.input, classes.addInput)}
-          inputRef={(input: HTMLInputElement): void => {
-            addElements.right.current[rowsCount] = input;
-            addElements.bottom.current[columnsCount] = input;
-          }}
-          variant="outlined"
-          size="small"
-          inputProps={{
-            style: { textAlign: 'center' },
-          }}
-          onChange={(e: ChangeEvent<HTMLInputElement>): void =>
-            addElementOnChange(e, rowsCount, columnsCount)
-          }
-        />
-      </div>
+        </div>
+      ))}
     </Fragment>
   );
 }
