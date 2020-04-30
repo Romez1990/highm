@@ -50,6 +50,8 @@ function LessonForm({
   lesson,
   lessonPageData: { tasks, answers, validationSchema, initialValues },
 }: Props): JSX.Element {
+  // lesson.tasks = Object.fromEntries(Object.entries(lesson.tasks).slice(0, 1));
+
   async function submit(values: Values): Promise<void> {
     const task = pipe(
       HttpService.post(`/lesson/${number}/check/`, TLessonCheckResults, values),
