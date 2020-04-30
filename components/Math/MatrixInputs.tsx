@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useRef, ChangeEvent } from 'react';
 import clsx from 'clsx';
 import { FieldProps } from 'formik';
-import { makeStyles, createStyles } from '@material-ui/core';
+import { makeStyles, createStyles, FormHelperText } from '@material-ui/core';
 import { NumberField } from '../Fields';
 import { Matrix } from '../../src/Utils/math';
 
@@ -15,17 +15,21 @@ const useStyles = makeStyles(
     addInput: {
       opacity: 0.4,
     },
+    helperText: {
+      margin: '0 0 3px 14px',
+    },
   }),
 );
 
 function MatrixInputs({
   field: { name },
-  form: { getFieldMeta, setFieldValue },
+  form: { getFieldMeta, setFieldValue, setFieldTouched },
 }: MatrixInputsProps): JSX.Element {
+  const { value: matrixValue, touched } = getFieldMeta<Matrix<number>>(name);
+
   const [matrix, setMatrix] = useState<Matrix<string>>(() => {
-    const { value } = getFieldMeta<Matrix<number>>(name);
-    if (value.length === 1 && value[0].length === 0) return [['']];
-    return value.map(row => row.map(number => number.toString()));
+    if (matrixValue.length === 1 && matrixValue[0].length === 0) return [['']];
+    return matrixValue.map(row => row.map(number => number.toString()));
   });
 
   const rowsCount = matrix.length;
@@ -204,7 +208,7 @@ function MatrixInputs({
 
   function isLastRowEmpty(): boolean {
     const lastRow = matrix[lastRowIndex];
-    return lastRow.every(el => el === '');
+    return lastRow.every(number => number === '');
   }
 
   const matrixCells: Matrix<string> = [
@@ -212,10 +216,30 @@ function MatrixInputs({
     new Array(columnsCount + 1).fill(''),
   ];
 
+  let timer: number | undefined;
+
+  function focus(): void {
+    clearTimeout(timer);
+  }
+
+  function blur(): void {
+    timer = setTimeout(() => {
+      setFieldTouched(name, true);
+    });
+  }
+
+  const error =
+    touched && matrix.some(row => row.some(number => number === ''));
+
   const classes = useStyles();
 
   return (
     <Fragment>
+      {error && (
+        <FormHelperText className={classes.helperText} error>
+          The whole matrix must be filled
+        </FormHelperText>
+      )}
       {matrixCells.map((row, rowIndex) => (
         // eslint-disable-next-line react/no-array-index-key
         <div key={rowIndex}>
@@ -232,6 +256,14 @@ function MatrixInputs({
               inputProps={{
                 style: { textAlign: 'center' },
               }}
+              error={
+                touched &&
+                number === '' &&
+                columnIndex !== columnsCount &&
+                rowIndex !== rowsCount
+              }
+              onFocus={focus}
+              onBlur={blur}
               value={number}
               onChange={(e: ChangeEvent<HTMLInputElement>): void =>
                 change(e, rowIndex, columnIndex)
