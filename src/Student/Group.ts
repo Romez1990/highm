@@ -1,4 +1,5 @@
-import { type, string, number, TypeOf } from 'io-ts';
+import { type, array, string, number, TypeOf } from 'io-ts';
+import { TStudent } from './Student';
 import RegexError from '../Error/RegexError';
 
 // [\u0410-\u044f] is Russian alphabet
@@ -45,3 +46,9 @@ export const TGroupBasic = type({
   numberOfStudents: number,
 });
 export declare type GroupBasic = TypeOf<typeof TGroupBasic>;
+
+export const TGroup = type({
+  name: string,
+  students: array(TStudent),
+});
+export declare type Group = TypeOf<typeof TGroup>;
