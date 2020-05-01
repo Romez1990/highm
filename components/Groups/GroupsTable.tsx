@@ -1,4 +1,5 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, MouseEvent } from 'react';
+import { useRouter } from 'next/router';
 import { Container } from '@material-ui/core';
 import { Delete as DeleteIcon } from '@material-ui/icons';
 import Table from '../Table';
@@ -25,6 +26,12 @@ function GroupsTable({ groups }: Props): JSX.Element {
 
   function isDeletable(rowData: GroupBasic): boolean {
     return rowData.numberOfStudents === 0;
+  }
+
+  const router = useRouter();
+
+  async function goToGroup(_?: MouseEvent, group?: GroupBasic): Promise<void> {
+    if (typeof group !== 'undefined') await router.push(`/group/${group.name}`);
   }
 
   return (
@@ -73,6 +80,7 @@ function GroupsTable({ groups }: Props): JSX.Element {
           paging: false,
           selection: true,
         }}
+        onRowClick={goToGroup}
         actions={[
           {
             icon: (): JSX.Element => <DeleteIcon />,
