@@ -14,6 +14,7 @@ import {
   Home as HomeIcon,
   Info as InfoIcon,
   Group as GroupIcon,
+  HowToReg as HowToRegIcon,
 } from '@material-ui/icons';
 import Link from '../Link';
 import AuthenticationService, {
@@ -65,6 +66,12 @@ function Drawer({ width, open }: Props): JSX.Element {
       text: 'Groups',
       icon: <GroupIcon />,
       permission: 'IsTeacher',
+    },
+    {
+      href: '/teachers',
+      text: 'Teachers',
+      icon: <HowToRegIcon />,
+      permission: 'IsAdmin',
     },
   ];
 
