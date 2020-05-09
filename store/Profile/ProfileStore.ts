@@ -2,10 +2,13 @@ import { IncomingMessage } from 'http';
 import { observable, action } from 'mobx';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { Option, some, none, fold as foldO } from 'fp-ts/lib/Option';
-import { Task, map, of } from 'fp-ts/lib/Task';
-import { fold } from 'fp-ts/lib/TaskEither';
+import { Task, map as mapT, of } from 'fp-ts/lib/Task';
+import { TaskEither, map, fold } from 'fp-ts/lib/TaskEither';
 import HttpService from '../../src/HttpService';
-import AuthenticationService from '../../src/AuthenticationService';
+import AuthenticationService, {
+  LoginError,
+  LoginParams,
+} from '../../src/AuthenticationService';
 import CookieService from '../../src/CookieService';
 import { TProfile, Profile } from '../../src/Profile';
 
@@ -21,7 +24,18 @@ class ProfileStore {
   public authenticate(req: IncomingMessage | undefined): Task<void> {
     return pipe(
       AuthenticationService.authenticate(req),
-      map(profile => this.setProfile(profile)),
+      mapT(profile => this.setProfile(profile)),
+    );
+  }
+
+  public login(data: LoginParams): TaskEither<LoginError, Profile> {
+    return pipe(
+      AuthenticationService.login(data),
+      map(profile => {
+        this.setProfile(some(profile));
+        this.getDarkTheme();
+        return profile;
+      }),
     );
   }
 
