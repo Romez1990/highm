@@ -1,7 +1,7 @@
-import { IncomingMessage } from 'http';
+import { IncomingMessage, ServerResponse } from 'http';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { Option, some, none, fold as foldO } from 'fp-ts/lib/Option';
-import { of, map } from 'fp-ts/lib/Task';
+import { Task, of, map } from 'fp-ts/lib/Task';
 import { TaskOption } from 'fp-ts-contrib/lib/TaskOption';
 import {
   fold,
@@ -10,7 +10,7 @@ import {
   mapLeft,
   rightTask,
 } from 'fp-ts/lib/TaskEither';
-import { type, string } from 'io-ts';
+import { type, literal, string } from 'io-ts';
 import CookieService from '../CookieService';
 import HttpService, { HttpError, UnauthorizedError } from '../HttpService';
 import { LoginError, AuthenticationAfterLoggingInError } from './Errors';
@@ -20,6 +20,7 @@ const AuthenticationService = {
   authenticate,
   hasPermission,
   login,
+  logout,
 };
 
 function authenticate(req: IncomingMessage | undefined): TaskOption<Profile>;
@@ -114,6 +115,25 @@ function login(data: LoginParams): TaskEither<LoginError, Profile> {
           rightTask,
         );
       },
+    ),
+  );
+}
+
+function logout(
+  req: IncomingMessage | undefined,
+  res: ServerResponse | undefined,
+): Task<void> {
+  const TLogoutResponse = type({
+    detail: literal('Successfully logged out.'),
+  });
+
+  return pipe(
+    HttpService.post('/auth/logout/', TLogoutResponse, undefined, req),
+    fold(
+      err => {
+        throw err;
+      },
+      () => of(CookieService.remove('token', res)),
     ),
   );
 }
