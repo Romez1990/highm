@@ -1,16 +1,25 @@
 import { IncomingMessage } from 'http';
 import { pipe } from 'fp-ts/lib/pipeable';
-import { some, none, fold as foldO } from 'fp-ts/lib/Option';
+import { Option, some, none, fold as foldO } from 'fp-ts/lib/Option';
+import { of, map } from 'fp-ts/lib/Task';
 import { TaskOption } from 'fp-ts-contrib/lib/TaskOption';
-import { of } from 'fp-ts/lib/Task';
-import { fold } from 'fp-ts/lib/TaskEither';
-import HttpService, { UnauthorizedError } from '../HttpService';
+import {
+  fold,
+  TaskEither,
+  chain,
+  mapLeft,
+  rightTask,
+} from 'fp-ts/lib/TaskEither';
+import { type, string } from 'io-ts';
 import CookieService from '../CookieService';
+import HttpService, { HttpError, UnauthorizedError } from '../HttpService';
+import { LoginError, AuthenticationAfterLoggingInError } from './Errors';
 import { TProfile, Profile } from '../Profile';
 
 const AuthenticationService = {
   authenticate,
   hasPermission,
+  login,
 };
 
 function authenticate(req: IncomingMessage | undefined): TaskOption<Profile>;
@@ -64,6 +73,47 @@ function hasPermission(
               (type_ === 'student' && permission_ === 'IsStudent'),
           ),
         ),
+    ),
+  );
+}
+
+export interface LoginParams {
+  email: string;
+  password: string;
+}
+
+function login(data: LoginParams): TaskEither<LoginError, Profile> {
+  const TLoginResponse = type({
+    token: string,
+  });
+
+  return pipe(
+    HttpService.post('/auth/login/', TLoginResponse, data, false),
+    mapLeft(err => {
+      if (!(err instanceof HttpError)) throw err;
+      return LoginError.identify(err);
+    }),
+    chain(
+      ({ token }): TaskEither<LoginError, Profile> => {
+        CookieService.set('token', token);
+        return pipe(
+          authenticate(token),
+          map(profile =>
+            pipe(
+              profile,
+              foldO(
+                () => {
+                  throw new AuthenticationAfterLoggingInError(
+                    'Authentication failed after logging in',
+                  );
+                },
+                profile_ => profile_,
+              ),
+            ),
+          ),
+          rightTask,
+        );
+      },
     ),
   );
 }
