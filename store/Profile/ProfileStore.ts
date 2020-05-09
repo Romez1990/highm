@@ -1,4 +1,4 @@
-import { IncomingMessage } from 'http';
+import { IncomingMessage, ServerResponse } from 'http';
 import { observable, action } from 'mobx';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { Option, some, none, fold as foldO } from 'fp-ts/lib/Option';
@@ -35,6 +35,26 @@ class ProfileStore {
         this.setProfile(some(profile));
         this.getDarkTheme();
         return profile;
+      }),
+    );
+  }
+
+  public logout(
+    req: IncomingMessage | undefined,
+    res: ServerResponse | undefined,
+  ): Task<void> {
+    const { profile } = this;
+    return pipe(
+      profile,
+      foldO(
+        () => of(undefined),
+        () => {
+          this.setProfile(none);
+          return AuthenticationService.logout(req, res);
+        },
+      ),
+      mapT(() => {
+        this.getDarkTheme();
       }),
     );
   }
