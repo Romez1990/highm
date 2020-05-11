@@ -41,8 +41,8 @@ interface Values {
 
 const validationSchema = object().shape({
   name: string()
-    .matches(groupNameRegex, 'Group name does not match rules')
-    .required(),
+    .matches(groupNameRegex, 'Имя группы не соответствует правилам')
+    .required('Это поле является обязательным'),
   students: string(),
 });
 
@@ -92,7 +92,7 @@ function AddGroupForm(): JSX.Element {
       fold(
         err => {
           setErrors({
-            name: 'This group is already exists',
+            name: 'Эта группа уже существует',
           });
           // eslint-disable-next-line no-console
           console.log(err);
@@ -143,7 +143,7 @@ function AddGroupForm(): JSX.Element {
       <Card raised>
         <CardContent>
           <Typography component="h2" variant="h5" align="center">
-            Add group
+            Добавить группу
           </Typography>
           <Formik<Values>
             initialValues={initialValues}
@@ -158,7 +158,7 @@ function AddGroupForm(): JSX.Element {
                   component={RegexTextField}
                   regex={groupNameRegexPartial}
                   variant="outlined"
-                  label="Name"
+                  label="Имя"
                   margin="normal"
                   fullWidth
                 />
@@ -166,7 +166,7 @@ function AddGroupForm(): JSX.Element {
                   name="students"
                   component={TextField}
                   variant="outlined"
-                  label="Students"
+                  label="Студенты"
                   margin="normal"
                   fullWidth
                   multiline
@@ -182,7 +182,7 @@ function AddGroupForm(): JSX.Element {
                   color="primary"
                   disabled={isSubmitting}
                 >
-                  Add
+                  Добавить
                 </Button>
               </Form>
             )}

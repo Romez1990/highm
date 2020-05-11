@@ -40,11 +40,13 @@ interface Values extends RegisterParams {
 }
 
 const validationSchema = object().shape({
-  email: string().email().required(),
+  email: string()
+    .email('Не соответствует адресу')
+    .required('Это поле является обязательным'),
   password: string()
-    .min(8)
-    .matches(/\D/, 'This password is entirely numeric')
-    .required(),
+    .min(8, 'Пароль должен хотя бы 8 символов')
+    .matches(/\D/, 'Этот пароль полностью числовой')
+    .required('Это поле является обязательным'),
 });
 
 function RegistrationForm(): JSX.Element {
@@ -74,7 +76,7 @@ function RegistrationForm(): JSX.Element {
   }: Values): FormikErrors<Values> | undefined {
     if (password !== passwordConfirmation) {
       return {
-        passwordConfirmation: 'Password does not match',
+        passwordConfirmation: 'Пароль не соответсвует',
       };
     }
     return undefined;
@@ -95,12 +97,12 @@ function RegistrationForm(): JSX.Element {
                 if (err instanceof EmailTakenError) {
                   return {
                     email:
-                      'A user is already registered with this email address.',
+                      'Пользователь с таким адресом алетронной почты уже зарегистрирован.',
                   };
                 }
                 if (err instanceof TooCommonPasswordError) {
                   return {
-                    password: 'This password is too common.',
+                    password: 'Слишком простой пароль.',
                   };
                 }
                 throw err;
@@ -123,7 +125,7 @@ function RegistrationForm(): JSX.Element {
     <Card raised>
       <CardContent>
         <Typography component="h2" variant="h5" align="center">
-          Register
+          Регистрация
         </Typography>
         <Formik<Values>
           initialValues={initialValues}
@@ -138,7 +140,7 @@ function RegistrationForm(): JSX.Element {
                 type="email"
                 component={TextField}
                 variant="outlined"
-                label="Email address"
+                label="Адрес электронной почты"
                 margin="normal"
                 fullWidth
               />
@@ -147,7 +149,7 @@ function RegistrationForm(): JSX.Element {
                 type="password"
                 component={TextField}
                 variant="outlined"
-                label="Password"
+                label="Пароль"
                 margin="normal"
                 fullWidth
               />
@@ -156,7 +158,7 @@ function RegistrationForm(): JSX.Element {
                 type="password"
                 component={TextField}
                 variant="outlined"
-                label="Password confirmation"
+                label="Подтверждение пароля"
                 margin="normal"
                 fullWidth
               />
@@ -170,7 +172,7 @@ function RegistrationForm(): JSX.Element {
                 color="primary"
                 disabled={isSubmitting}
               >
-                Register
+                Зарегистрироваться
               </Button>
             </Form>
           )}

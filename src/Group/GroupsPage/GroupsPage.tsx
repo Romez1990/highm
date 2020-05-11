@@ -22,7 +22,7 @@ GroupsPage.getInitialProps = async ({
 
 function GroupsPage({ groups }: Props): JSX.Element {
   return (
-    <MainLayout title="Groups">
+    <MainLayout title="Группы">
       <GroupsTable groups={groups} />
     </MainLayout>
   );

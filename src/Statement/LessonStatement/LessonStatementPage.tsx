@@ -84,7 +84,7 @@ function LessonStatementPage({
     return <ErrorPage title="Group not found" />;
   }
 
-  const title = `Statement for group ${group}, lesson ${lesson}`;
+  const title = `Ведомость группы ${group} по работе №${lesson}`;
 
   return (
     <MainLayout title={title}>

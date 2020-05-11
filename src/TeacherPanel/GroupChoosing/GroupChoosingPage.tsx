@@ -23,7 +23,7 @@ GroupChoosingPage.getInitialProps = async ({
 
 function GroupChoosingPage({ groups }: Props): JSX.Element {
   return (
-    <MainLayout title="Group choosing">
+    <MainLayout title="Выбор группы">
       <GroupChoosingModel groups={groups} />
     </MainLayout>
   );

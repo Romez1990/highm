@@ -242,7 +242,7 @@ function MatrixInputs({
     <Fragment>
       {error && (
         <FormHelperText className={classes.helperText} error>
-          The whole matrix must be filled
+          Вся матрица должна быть заполнена
         </FormHelperText>
       )}
       {matrixCells.map((row, rowIndex) => (

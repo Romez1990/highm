@@ -7,8 +7,8 @@ export interface Answer5Type extends AnswerBase {
 }
 
 const validationSchema5 = object().shape({
-  x1: number().integer().required(),
-  x2: number().integer().required(),
+  x1: number().integer().required('Это поле является обязательным'),
+  x2: number().integer().required('Это поле является обязательным'),
 });
 
 const initialValues5: Answer5Type = {

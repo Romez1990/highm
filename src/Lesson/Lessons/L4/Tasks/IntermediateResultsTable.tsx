@@ -96,7 +96,7 @@ function IntermediateResultsTable({
     <Fragment>
       {touched && error && (
         <FormHelperText className={classes.helperText} error>
-          All cell must be filled
+          Все ячейки должны быть заполнены
         </FormHelperText>
       )}
       <Table className={classes.table} size="small">

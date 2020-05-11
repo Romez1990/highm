@@ -40,7 +40,7 @@ function fetchTeachers(req: IncomingMessage | undefined): Task<Teacher[]> {
 
 function TeachersPage({ teachers }: Props): JSX.Element {
   return (
-    <MainLayout title="Teachers">
+    <MainLayout title="Преподаватели">
       <TeachersTable teachers={teachers} />
     </MainLayout>
   );

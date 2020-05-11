@@ -132,7 +132,7 @@ function LessonStatementTable({
 
   const columns: Column<RowData>[] = [
     {
-      title: 'Name',
+      title: 'Имя',
       field: 'studentName',
       defaultSort: 'asc',
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -140,12 +140,12 @@ function LessonStatementTable({
       width: '100%',
       filtering: false,
     },
-    { title: 'Grade', field: 'grade', type: 'numeric' },
+    { title: 'Оценка', field: 'grade', type: 'numeric' },
   ];
 
   if (rows.some(row => !row.passed)) {
     columns.splice(1, 0, {
-      title: 'Passed',
+      title: 'Сдано',
       field: 'passed',
       type: 'boolean',
     });
@@ -153,7 +153,7 @@ function LessonStatementTable({
 
   if (rows.some(row => !row.registered)) {
     columns.splice(1, 0, {
-      title: 'Registered',
+      title: 'Зарегистрирован',
       field: 'registered',
       type: 'boolean',
     });

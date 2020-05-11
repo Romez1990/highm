@@ -57,7 +57,7 @@ function Drawer({ width, open }: Props): JSX.Element {
   const links: Link[] = [
     {
       href: '/',
-      text: 'Main page',
+      text: 'Главная страница',
       icon: <HomeIcon />,
       isActive({ pathname }): boolean {
         return pathname === '/';
@@ -65,7 +65,7 @@ function Drawer({ width, open }: Props): JSX.Element {
     },
     {
       href: '/lessons',
-      text: 'Lessons',
+      text: 'Практические работы',
       icon: <DescriptionIcon />,
       permission: 'IsStudent',
       isActive({ pathname }): boolean {
@@ -74,7 +74,7 @@ function Drawer({ width, open }: Props): JSX.Element {
     },
     {
       href: '/teacher-panel/groups',
-      text: 'Teacher panel',
+      text: 'Панель преподавателя',
       icon: <AssignmentIcon />,
       permission: 'IsTeacher',
       isActive({ pathname }): boolean {
@@ -83,7 +83,7 @@ function Drawer({ width, open }: Props): JSX.Element {
     },
     {
       href: '/groups',
-      text: 'Groups',
+      text: 'Группы',
       icon: <GroupIcon />,
       permission: 'IsTeacher',
       isActive({ pathname }): boolean {
@@ -92,7 +92,7 @@ function Drawer({ width, open }: Props): JSX.Element {
     },
     {
       href: '/teachers',
-      text: 'Teachers',
+      text: 'Преподаватели',
       icon: <HowToRegIcon />,
       permission: 'IsAdmin',
       isActive({ pathname }): boolean {
@@ -101,7 +101,7 @@ function Drawer({ width, open }: Props): JSX.Element {
     },
     {
       href: '/about',
-      text: 'About',
+      text: 'О проекте',
       icon: <InfoIcon />,
       isActive({ pathname }): boolean {
         return pathname === '/about';

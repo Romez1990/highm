@@ -268,7 +268,7 @@ function MainPage(): JSX.Element {
   const classes = useStyles();
 
   return (
-    <MainLayout title="Main page">
+    <MainLayout title="Главная страница">
       <Container maxWidth="sm">
         {panels
           .filter(panel => panel.displaysFor.includes(type))

@@ -17,13 +17,16 @@ interface Props {
 function LessonsList({ lessons }: Props): JSX.Element {
   return (
     <Container maxWidth="sm">
-      <List component={Card} subheader={<ListSubheader>Lessons</ListSubheader>}>
+      <List
+        component={Card}
+        subheader={<ListSubheader>Практические работы</ListSubheader>}
+      >
         {lessons.map((lesson, index) => {
           const lessonNumber = index + 1;
           const link = !lesson.passed
             ? `/lesson/${lessonNumber}`
             : `/lesson/${lessonNumber}/result`;
-          const passedText = lesson.passed ? ' [passed]' : '';
+          const passedText = lesson.passed ? ' [сдано]' : '';
           return (
             <ListItem
               key={lesson.title}
@@ -34,7 +37,7 @@ function LessonsList({ lessons }: Props): JSX.Element {
               underline="none"
             >
               <ListItemText
-                primary={`Lesson ${lessonNumber}${passedText}`}
+                primary={`Практическая работа №${lessonNumber}${passedText}`}
                 secondary={lesson.title}
               />
             </ListItem>

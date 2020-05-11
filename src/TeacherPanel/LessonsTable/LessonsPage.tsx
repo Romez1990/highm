@@ -53,7 +53,7 @@ function fetchLessons(
 }
 
 function LessonsPage({ group, lessons }: Props): JSX.Element {
-  const title = `Lessons of group ${group}`;
+  const title = `Практические работы группы ${group}`;
 
   return (
     <MainLayout title={title}>

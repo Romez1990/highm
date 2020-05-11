@@ -24,21 +24,21 @@ ProfilePage.getInitialProps = async (): Promise<Props> => {
 
 function ProfilePage({ profile }: Props): JSX.Element {
   function displayType(type: ProfileType): string {
-    if (type === 'admin') return 'Administrator';
-    if (type === 'teacher') return 'Teacher';
-    if (type === 'student') return 'Student';
+    if (type === 'admin') return 'Администратор';
+    if (type === 'teacher') return 'Преподователь';
+    if (type === 'student') return 'Студент';
     return absurd(type);
   }
 
   return (
-    <MainLayout title="Profile">
+    <MainLayout title="Профиль">
       <Container maxWidth="sm">
         <Card>
           <CardContent>
             <Typography>
               {displayType(profile.type)} {profile.firstName} {profile.lastName}
             </Typography>
-            <Typography>Email: {profile.email}</Typography>
+            <Typography>Электронная почта: {profile.email}</Typography>
           </CardContent>
         </Card>
       </Container>

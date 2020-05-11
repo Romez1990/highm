@@ -6,7 +6,7 @@ export interface Answer3Type extends AnswerBase {
 }
 
 const validationSchema3 = object().shape({
-  determinant: number().integer().required(),
+  determinant: number().integer().required('Это поле является обязательным'),
 });
 
 const initialValues3: Answer3Type = {

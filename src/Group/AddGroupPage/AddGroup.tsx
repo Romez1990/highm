@@ -7,7 +7,7 @@ AddGroup.permission = 'IsTeacher' as Permission;
 
 function AddGroup(): JSX.Element {
   return (
-    <MainLayout title="Add group">
+    <MainLayout title="Добавить группу">
       <AddGroupForm />
     </MainLayout>
   );

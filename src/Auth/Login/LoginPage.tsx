@@ -45,7 +45,7 @@ function getRedirectUrl(query: ParsedUrlQuery): string {
 
 function LoginPage({ redirectUrl }: Props): JSX.Element {
   return (
-    <FormLayout title="Login">
+    <FormLayout title="Вход">
       <LoginForm redirectUrl={redirectUrl} />
     </FormLayout>
   );

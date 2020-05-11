@@ -32,7 +32,7 @@ function EmailVerificationForm({ verificationKey }: Props): JSX.Element {
   return (
     <form onSubmit={submit}>
       <Button type="submit" variant="contained" color="primary">
-        Verify email
+        Подтвердить электронную почту
       </Button>
     </form>
   );

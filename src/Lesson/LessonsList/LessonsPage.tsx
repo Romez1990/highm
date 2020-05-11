@@ -40,7 +40,7 @@ function fetchLessons(req: IncomingMessage | undefined): Task<LessonBasic[]> {
 
 function LessonsPage({ lessons }: Props): JSX.Element {
   return (
-    <MainLayout title="Lessons">
+    <MainLayout title="Практические работы">
       <LessonsList lessons={lessons} />
     </MainLayout>
   );

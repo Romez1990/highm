@@ -46,11 +46,11 @@ function ProfileMenu({ profile }: Props): JSX.Element {
   const links: Link[] = [
     {
       href: '/profile',
-      text: 'Profile',
+      text: 'Профиль',
     },
     {
       href: '/logout',
-      text: 'Logout',
+      text: 'Выйти',
     },
   ];
 
@@ -58,7 +58,7 @@ function ProfileMenu({ profile }: Props): JSX.Element {
 
   return (
     <Fragment>
-      <Tooltip title="Profile">
+      <Tooltip title="Профиль">
         <Button
           aria-label="account of current user"
           aria-controls="menu-appbar"

@@ -41,8 +41,8 @@ function RegistrationCodesTable({
           <TableHead>
             <TableRow>
               <TableCell>№</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Registration code</TableCell>
+              <TableCell>Имя</TableCell>
+              <TableCell>Регистрационный код</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

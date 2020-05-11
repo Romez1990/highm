@@ -35,7 +35,7 @@ function createLessonPageComponent(
       throw new Error('Must be redirected to results');
 
     return (
-      <MainLayout title={`Lesson ${number_} – ${lesson.title}`}>
+      <MainLayout title={`Практическая работа ${number_} – ${lesson.title}`}>
         <LessonPage
           number={number_}
           lesson={lesson}

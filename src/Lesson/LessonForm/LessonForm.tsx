@@ -86,7 +86,7 @@ function LessonForm({
             variant="h3"
             className={classes.tasksTitle}
           >
-            Tasks:
+            Задания:
           </Typography>
           {Object.values(lesson.tasks).map((task, taskIndex) => {
             const taskNumber = taskIndex + 1;
@@ -101,7 +101,7 @@ function LessonForm({
                     variant="h6"
                     className={classes.taskTitle}
                   >
-                    Task {taskNumber}
+                    Задание {taskNumber}
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
@@ -117,7 +117,7 @@ function LessonForm({
             );
           })}
           {Object.entries(errors).length !== 0 && (
-            <FormHelperText error>All answers must be filled</FormHelperText>
+            <FormHelperText error>Не все ответы заполнены</FormHelperText>
           )}
           <Button
             type="submit"
@@ -126,7 +126,7 @@ function LessonForm({
             color="primary"
             disabled={isSubmitting}
           >
-            Submit
+            Проверить
           </Button>
         </Form>
       )}

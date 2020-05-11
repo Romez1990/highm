@@ -116,7 +116,7 @@ function RegistrationPageWrapper({
   }
 
   return (
-    <FormLayout title="RegistrationPage">
+    <FormLayout title="Регистрация">
       <RegistrationStoreProvider>
         <RegistrationPage />
       </RegistrationStoreProvider>

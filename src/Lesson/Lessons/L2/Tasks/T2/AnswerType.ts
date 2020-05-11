@@ -8,9 +8,9 @@ export interface Answer2Type extends AnswerBase {
 }
 
 const validationSchema2 = object().shape({
-  x: number().integer().required(),
-  y: number().integer().required(),
-  z: number().integer().required(),
+  x: number().integer().required('Это поле является обязательным'),
+  y: number().integer().required('Это поле является обязательным'),
+  z: number().integer().required('Это поле является обязательным'),
 });
 
 const initialValues2: Answer2Type = {

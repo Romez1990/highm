@@ -14,7 +14,7 @@ function ThemeChanger(): JSX.Element {
   }
 
   return (
-    <Tooltip title={profileStore.darkMode ? 'Dark mode' : 'Light mode'}>
+    <Tooltip title={profileStore.darkMode ? 'Тёмный режим' : 'Светлый режим'}>
       <IconButton color="inherit" onClick={changeTheme}>
         {profileStore.darkMode ? <Brightness4Icon /> : <Brightness7Icon />}
       </IconButton>

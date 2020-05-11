@@ -32,7 +32,7 @@ function GroupPage({ group: groupOption }: Props): JSX.Element {
   const group = groupOption.value;
 
   return (
-    <MainLayout title={`Group ${group.name}`}>
+    <MainLayout title={`Группа ${group.name}`}>
       <GroupTable group={group} />
     </MainLayout>
   );

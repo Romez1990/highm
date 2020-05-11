@@ -40,10 +40,10 @@ function GroupsTable({ groups }: Props): JSX.Element {
   return (
     <Container maxWidth="sm">
       <Table
-        title="Groups"
+        title="Группы"
         columns={[
           {
-            title: 'Name',
+            title: 'Имя',
             field: 'name',
             defaultSort: 'asc',
             customSort: groupCompare,
@@ -67,7 +67,7 @@ function GroupsTable({ groups }: Props): JSX.Element {
             ),
           },
           {
-            title: 'Number of students',
+            title: 'Количество студентов',
             field: 'numberOfStudents',
             type: 'numeric',
             editable: 'never',
@@ -87,13 +87,13 @@ function GroupsTable({ groups }: Props): JSX.Element {
         actions={[
           {
             icon: DeleteIcon,
-            tooltip: 'Delete',
+            tooltip: 'Удалить',
             position: 'toolbarOnSelect',
             onClick: deleteRows,
           },
           {
             icon: AddBoxIcon,
-            tooltip: 'Add',
+            tooltip: 'Добавить',
             position: 'toolbar',
             onClick: goToAddGroup,
           },

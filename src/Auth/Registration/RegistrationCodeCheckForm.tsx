@@ -43,9 +43,11 @@ interface Values extends RegistrationCodeCheckParams {
 const codeRegexPartial = /^(?:c|c\d{1,6})?$/;
 
 const validationSchema = object().shape({
-  registrationCode: string().length(7).required(),
-  firstName: string().required(),
-  lastName: string().required(),
+  registrationCode: string()
+    .length(7, 'Код должен быть длиной 7 символос')
+    .required('Это поле является обязательным'),
+  firstName: string().required('Это поле является обязательным'),
+  lastName: string().required('Это поле является обязательным'),
 });
 
 function RegistrationCodeCheckForm(): JSX.Element {
@@ -88,13 +90,13 @@ function RegistrationCodeCheckForm(): JSX.Element {
             (err): FormikErrors<Values> => {
               if (err instanceof WrongRegistrationCodeError) {
                 return {
-                  registrationCode: 'Wrong registration code.',
+                  registrationCode: 'Неверный регистрационный код.',
                 };
               }
               if (err instanceof NamesMismatchError) {
                 return {
                   nonFieldError:
-                    'Name does not match name from registration code.',
+                    'Имя не совпадает с именем из регистрационного кода.',
                 };
               }
               throw err;
@@ -118,7 +120,7 @@ function RegistrationCodeCheckForm(): JSX.Element {
     <Card raised>
       <CardContent>
         <Typography component="h2" variant="h5" align="center">
-          Register
+          Регистрация
         </Typography>
         <Formik<Values>
           initialValues={initialValues}
@@ -132,7 +134,7 @@ function RegistrationCodeCheckForm(): JSX.Element {
                 component={RegexTextField}
                 regex={codeRegexPartial}
                 variant="outlined"
-                label="Registration code"
+                label="Регистрационный код"
                 margin="normal"
                 fullWidth
                 inputRef={registrationCodeInputRef}
@@ -141,7 +143,7 @@ function RegistrationCodeCheckForm(): JSX.Element {
                 name="firstName"
                 component={TextField}
                 variant="outlined"
-                label="First name"
+                label="Имя"
                 margin="normal"
                 fullWidth
               />
@@ -149,7 +151,7 @@ function RegistrationCodeCheckForm(): JSX.Element {
                 name="lastName"
                 component={TextField}
                 variant="outlined"
-                label="Last name"
+                label="Фамилия"
                 margin="normal"
                 fullWidth
               />
@@ -163,7 +165,7 @@ function RegistrationCodeCheckForm(): JSX.Element {
                 color="primary"
                 disabled={isSubmitting}
               >
-                Next
+                Далее
               </Button>
             </Form>
           )}

@@ -16,10 +16,10 @@ class PrintGroupStatementTable extends PureComponent<Props> {
         <table className="statement-table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Name</th>
+              <th>№</th>
+              <th>Имя</th>
               <th colSpan={numberOfLessons} align="center">
-                Lessons
+                Практические работы
               </th>
             </tr>
             <tr>

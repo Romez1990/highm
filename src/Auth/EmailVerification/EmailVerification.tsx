@@ -8,7 +8,7 @@ interface Props {
 
 function EmailVerification({ verificationKey }: Props): JSX.Element {
   return isNone(verificationKey) ? (
-    <div>Link is not valid</div>
+    <div>Ссылка неверна</div>
   ) : (
     <EmailVerificationForm verificationKey={verificationKey.value} />
   );

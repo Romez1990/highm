@@ -43,11 +43,11 @@ interface Values {
 }
 
 const validationSchema = object().shape({
-  email: string().email().required(),
+  email: string().email().required('Это поле является обязательным'),
   password: string()
-    .min(8)
-    .matches(/^\S*$/, 'Password cannot be blank')
-    .required(),
+    .min(8, 'Пароль должен быть хотя бы 8 символов')
+    .matches(/^\S*$/, 'Пароль не должен быть пустым')
+    .required('Это поле является обязательным'),
 });
 
 function LoginForm({ redirectUrl }: Props): JSX.Element {
@@ -79,14 +79,14 @@ function LoginForm({ redirectUrl }: Props): JSX.Element {
           if (err instanceof WrongCredentialsError) {
             return of(
               setErrors({
-                nonFieldError: 'wrong email or password',
+                nonFieldError: 'Неверный адрес электронной почты или пароль',
               }),
             );
           }
           if (err instanceof EmailNotVerifiedError) {
             return of(
               setErrors({
-                nonFieldError: 'email is not verified',
+                nonFieldError: 'Электронная почта не подтверждена',
               }),
             );
           }
@@ -104,7 +104,7 @@ function LoginForm({ redirectUrl }: Props): JSX.Element {
     <Card raised>
       <CardContent>
         <Typography component="h2" variant="h5" align="center">
-          Sign in
+          Вход
         </Typography>
         <Formik<Values>
           initialValues={initialValues}
@@ -117,7 +117,7 @@ function LoginForm({ redirectUrl }: Props): JSX.Element {
                 name="email"
                 component={TextField}
                 variant="outlined"
-                label="Email address"
+                label="Адрес электронной почты"
                 margin="normal"
                 fullWidth
                 inputRef={emailInputRef}
@@ -127,7 +127,7 @@ function LoginForm({ redirectUrl }: Props): JSX.Element {
                 component={TextField}
                 type="password"
                 variant="outlined"
-                label="Password"
+                label="Пароль"
                 margin="normal"
                 fullWidth
               />
@@ -141,7 +141,7 @@ function LoginForm({ redirectUrl }: Props): JSX.Element {
                 color="primary"
                 disabled={isSubmitting}
               >
-                Login
+                Войти
               </Button>
             </Form>
           )}

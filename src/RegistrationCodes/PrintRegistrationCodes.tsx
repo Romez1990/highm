@@ -15,8 +15,8 @@ class PrintRegistrationCodes extends PureComponent<Props> {
           <thead>
             <tr>
               <th>№</th>
-              <th>Name</th>
-              <th>Registration code</th>
+              <th>Имя</th>
+              <th>Регистрационный код</th>
             </tr>
           </thead>
           <tbody>

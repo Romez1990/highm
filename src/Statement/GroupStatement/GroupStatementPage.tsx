@@ -52,7 +52,7 @@ function fetchGroupStatement(
 }
 
 function GroupStatementPage({ statement, group }: Props): JSX.Element {
-  const title = `Statement of group ${group}`;
+  const title = `Ведомость на группу ${group}`;
 
   return (
     <MainLayout title={title}>

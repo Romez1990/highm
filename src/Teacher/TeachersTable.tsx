@@ -48,12 +48,12 @@ function TeachersTable({ teachers }: Props): JSX.Element {
   return (
     <Container maxWidth="md">
       <Table<Teacher>
-        title="Teacher"
+        title="Преподаватели"
         columns={[
-          { title: 'Last name', field: 'lastName', defaultSort: 'asc' },
-          { title: 'First name', field: 'firstName' },
+          { title: 'Фамилия', field: 'lastName', defaultSort: 'asc' },
+          { title: 'Имя', field: 'firstName' },
           {
-            title: 'Registered',
+            title: 'Зарегистрирован',
             field: 'registered',
             type: 'boolean',
             editable: 'never',
@@ -72,13 +72,13 @@ function TeachersTable({ teachers }: Props): JSX.Element {
         actions={[
           {
             icon: DeleteIcon,
-            tooltip: 'Delete',
+            tooltip: 'Удалить',
             position: 'toolbarOnSelect',
             onClick: deleteRows,
           },
           {
             icon: AssignmentIcon,
-            tooltip: 'Registration codes',
+            tooltip: 'Регистрационные коды',
             position: 'toolbar',
             onClick: openRegistrationCodes,
           },

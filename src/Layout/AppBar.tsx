@@ -60,7 +60,7 @@ function AppBar({ drawerOpen, toggleDrawerOpen }: Props): JSX.Element {
       color={lightTheme ? 'primary' : 'inherit'}
     >
       <Toolbar>
-        <Tooltip title={drawerOpen ? 'Hide drawer' : 'Show drawer'}>
+        <Tooltip title={drawerOpen ? 'Скрыть меню' : 'Показать меню'}>
           <IconButton
             edge="start"
             color="inherit"
@@ -83,7 +83,7 @@ function AppBar({ drawerOpen, toggleDrawerOpen }: Props): JSX.Element {
               color="inherit"
               underline="none"
             >
-              Register
+              Зарегистрироваться
             </Button>
             <Button
               href={loginPath}
@@ -91,7 +91,7 @@ function AppBar({ drawerOpen, toggleDrawerOpen }: Props): JSX.Element {
               color="inherit"
               underline="none"
             >
-              Login
+              Войти
             </Button>
           </Fragment>
         )}

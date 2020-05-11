@@ -62,7 +62,7 @@ function checkKey(key: string): Task<boolean> {
 
 function EmailVerificationPage({ verificationKey }: Props): JSX.Element {
   return (
-    <FormLayout title="Confirm email">
+    <FormLayout title="Подтверждение электронной почты">
       <EmailVerification verificationKey={verificationKey} />
     </FormLayout>
   );

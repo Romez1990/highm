@@ -93,7 +93,7 @@ function GroupStatementTable({
           <Typography className={classes.titleText} component="h2" variant="h6">
             {title}
           </Typography>
-          <Tooltip title="Print statement">
+          <Tooltip title="Распечатать ведомость">
             <IconButton className={classes.titleButton} onClick={print}>
               <PrintIcon />
             </IconButton>
@@ -102,10 +102,10 @@ function GroupStatementTable({
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell style={{ width: 1 }}>#</TableCell>
-              <TableCell>Name</TableCell>
+              <TableCell style={{ width: 1 }}>№</TableCell>
+              <TableCell>Имя</TableCell>
               <TableCell colSpan={numberOfLessons} align="center">
-                Lessons
+                Практические работы
               </TableCell>
             </TableRow>
             <TableRow>
@@ -114,7 +114,7 @@ function GroupStatementTable({
               {range(1, numberOfLessons).map(number => (
                 <TableCell key={number} align="center">
                   <Link href={`/teacher-panel/group/${group}/lesson/${number}`}>
-                    l. {number}
+                    пр. {number}
                   </Link>
                 </TableCell>
               ))}

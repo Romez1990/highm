@@ -57,12 +57,12 @@ function GroupTable({ group }: Props): JSX.Element {
   return (
     <Container maxWidth="md">
       <Table<Student>
-        title={`Group ${group.name}`}
+        title={`Группа ${group.name}`}
         columns={[
-          { title: 'Last name', field: 'lastName', defaultSort: 'asc' },
-          { title: 'First name', field: 'firstName' },
+          { title: 'Фамилия', field: 'lastName', defaultSort: 'asc' },
+          { title: 'Имя', field: 'firstName' },
           {
-            title: 'Registered',
+            title: 'Зарегистрирован',
             field: 'registered',
             type: 'boolean',
             editable: 'never',
@@ -84,13 +84,13 @@ function GroupTable({ group }: Props): JSX.Element {
         actions={[
           {
             icon: DeleteIcon,
-            tooltip: 'Delete',
+            tooltip: 'Удалить',
             position: 'toolbarOnSelect',
             onClick: deleteRows,
           },
           {
             icon: AssignmentIcon,
-            tooltip: 'Registration codes',
+            tooltip: 'Регистрационные коды',
             position: 'toolbar',
             onClick: openRegistrationCodes,
           },

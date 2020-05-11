@@ -10,7 +10,7 @@ ErrorPageWrapper.getInitialProps = async ({
 };
 
 function ErrorPageWrapper(): JSX.Element {
-  return <ErrorPage title="Error" text="Oops, something went wrong" />;
+  return <ErrorPage title="Ошибка" text="Упс, что-то пошло не так" />;
 }
 
 export default ErrorPageWrapper;

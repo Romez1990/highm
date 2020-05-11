@@ -4,7 +4,7 @@ import { MainLayout } from '../Layout';
 
 function AboutPage(): JSX.Element {
   return (
-    <MainLayout title="About page">
+    <MainLayout title="О проекте">
       <Container>
         <Card>
           <CardContent>

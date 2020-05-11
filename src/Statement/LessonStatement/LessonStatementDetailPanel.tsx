@@ -73,14 +73,14 @@ function LessonStatementDetailPanel({
 
   return (
     <div className={classes.root}>
-      <Typography>Serial number: {lessonResult.n}</Typography>
-      <Typography>Grade: {lessonResult.grade}</Typography>
-      <Typography>{lessonResult.points} points</Typography>
+      <Typography>Порядковый номер: {lessonResult.n}</Typography>
+      <Typography>Оценка: {lessonResult.grade}</Typography>
+      <Typography>{lessonResult.points} баллов</Typography>
       {lessonResultAnswers.taskResults.map((answer, index) => {
         const number = index + 1;
         return (
           <Typography>
-            Task {number}: {answer.points}/{answer.maxPoints} points
+            Задача {number}: {answer.points}/{answer.maxPoints} баллов
           </Typography>
         );
       })}

@@ -40,7 +40,7 @@ function LessonHeader({ lesson, number }: Props): JSX.Element {
         variant="h4"
         align="center"
       >
-        Lesson {number}
+        Практическая работа №{number}
       </Typography>
       <Typography
         className={classes.title}
@@ -51,7 +51,7 @@ function LessonHeader({ lesson, number }: Props): JSX.Element {
         {lesson.title}
       </Typography>
       <Typography component="h3" variant="h3" className={classes.goalsTitle}>
-        Lesson goals:
+        Цели работы:
       </Typography>
       <ul>
         {lesson.goals.map((goal, index) => {
@@ -72,7 +72,7 @@ function LessonHeader({ lesson, number }: Props): JSX.Element {
         target="_blank"
         underline="none"
       >
-        View theoretical information
+        Показать теоретические сведения
       </Link>
     </Fragment>
   );

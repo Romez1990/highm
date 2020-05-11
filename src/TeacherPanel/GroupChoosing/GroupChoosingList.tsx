@@ -40,7 +40,7 @@ function GroupChoosingList({ groups }: Props): JSX.Element {
           variant="h6"
           align="center"
         >
-          Choose a group you want to work with
+          Выберете группу, с которой вы хотите работать
         </Typography>
         <List>
           {groups.map(group => {
@@ -55,7 +55,7 @@ function GroupChoosingList({ groups }: Props): JSX.Element {
                 button
               >
                 <ListItemText>
-                  {group.name} ({group.numberOfStudents} members)
+                  {group.name} ({group.numberOfStudents} участников)
                 </ListItemText>
               </ListItem>
             );

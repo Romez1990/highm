@@ -46,11 +46,11 @@ function LessonResultPage({ number, lessonResult }: Props): JSX.Element {
           variant="h6"
           align="center"
         >
-          Result of lesson {number}
+          Результаты практической работы №{number}
         </Typography>
-        <Typography>Grade: {lessonResult.grade}</Typography>
+        <Typography>Оценка: {lessonResult.grade}</Typography>
         <Typography>
-          {lessonResult.points}/{lessonResult.maxPoints} points
+          {lessonResult.points}/{lessonResult.maxPoints} баллов
         </Typography>
         {lessonResult.taskResults.map((taskResult, index) => {
           const taskNumber = index + 1;
@@ -58,7 +58,7 @@ function LessonResultPage({ number, lessonResult }: Props): JSX.Element {
           return (
             // eslint-disable-next-line react/no-array-index-key
             <Typography key={index}>
-              Task {taskNumber}: {points} points
+              Задача {taskNumber}: {points} баллов
             </Typography>
           );
         })}
@@ -69,7 +69,7 @@ function LessonResultPage({ number, lessonResult }: Props): JSX.Element {
             underline="none"
           >
             <Button variant="contained" color="primary">
-              Try again
+              Попробовать ещё раз
             </Button>
           </Link>
         )}
