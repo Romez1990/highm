@@ -1,19 +1,24 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { Option, some, none, fold as foldO } from 'fp-ts/lib/Option';
-import { Task, of, map } from 'fp-ts/lib/Task';
+import { Task, of, map as mapT } from 'fp-ts/lib/Task';
 import { TaskOption } from 'fp-ts-contrib/lib/TaskOption';
 import {
   fold,
   TaskEither,
   chain,
+  map,
   mapLeft,
   rightTask,
 } from 'fp-ts/lib/TaskEither';
 import { type, literal, string } from 'io-ts';
 import CookieService from '../CookieService';
 import HttpService, { HttpError, UnauthorizedError } from '../HttpService';
-import { LoginError, AuthenticationAfterLoggingInError } from './Errors';
+import {
+  LoginError,
+  AuthenticationAfterLoggingInError,
+  RegistrationError,
+} from './Errors';
 import { TProfile, Profile } from '../Profile';
 
 const AuthenticationService = {
@@ -21,6 +26,8 @@ const AuthenticationService = {
   hasPermission,
   login,
   logout,
+  registrationCodeCheck,
+  register,
 };
 
 function authenticate(req: IncomingMessage | undefined): TaskOption<Profile>;
@@ -99,7 +106,7 @@ function login(data: LoginParams): TaskEither<LoginError, Profile> {
         CookieService.set('token', token);
         return pipe(
           authenticate(token),
-          map(profile =>
+          mapT(profile =>
             pipe(
               profile,
               foldO(
@@ -135,6 +142,49 @@ function logout(
       },
       () => of(CookieService.remove('token', res)),
     ),
+  );
+}
+
+export interface RegistrationCodeCheckParams {
+  registrationCode: string;
+  firstName: string;
+  lastName: string;
+}
+
+function registrationCodeCheck(
+  data: RegistrationCodeCheckParams,
+): TaskEither<RegistrationError[], void> {
+  const TResponse = type({
+    detail: literal('Registration code is valid.'),
+  });
+
+  return pipe(
+    HttpService.post('/auth/registration-code-check/', TResponse, data, false),
+    mapLeft(err => {
+      if (!(err instanceof HttpError)) throw err;
+      return RegistrationError.identify(err);
+    }),
+    map(() => undefined),
+  );
+}
+
+export interface RegisterParams extends RegistrationCodeCheckParams {
+  email: string;
+  password: string;
+}
+
+function register(data: RegisterParams): TaskEither<RegistrationError[], void> {
+  const TResponse = type({
+    detail: literal('Verification e-mail sent.'),
+  });
+
+  return pipe(
+    HttpService.post('/auth/register/', TResponse, data),
+    mapLeft(err => {
+      if (!(err instanceof HttpError)) throw err;
+      return RegistrationError.identify(err);
+    }),
+    map(() => undefined),
   );
 }
 
