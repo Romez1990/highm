@@ -4,8 +4,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "dev": "node script patch-formik && next",
+    "build": "node script patch-formik && next build",
     "start": "next start -p $PORT",
     "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx --fix ."
   },
