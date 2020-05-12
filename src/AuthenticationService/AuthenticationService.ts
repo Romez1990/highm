@@ -18,6 +18,7 @@ import {
   LoginError,
   AuthenticationAfterLoggingInError,
   RegistrationError,
+  EmailVerificationError,
 } from './Errors';
 import { TProfile, Profile } from '../Profile';
 
@@ -28,6 +29,8 @@ const AuthenticationService = {
   logout,
   registrationCodeCheck,
   register,
+  emailVerificationKeyCheck,
+  verifyEmail,
 };
 
 function authenticate(req: IncomingMessage | undefined): TaskOption<Profile>;
@@ -183,6 +186,43 @@ function register(data: RegisterParams): TaskEither<RegistrationError[], void> {
     mapLeft(err => {
       if (!(err instanceof HttpError)) throw err;
       return RegistrationError.identify(err);
+    }),
+    map(() => undefined),
+  );
+}
+
+function emailVerificationKeyCheck(
+  key: string,
+): TaskEither<EmailVerificationError, void> {
+  const TResponse = type({
+    detail: literal('Verification key is valid.'),
+  });
+
+  return pipe(
+    HttpService.post(
+      '/auth/email-verification-key-check/',
+      TResponse,
+      { key },
+      false,
+    ),
+    mapLeft(err => {
+      if (!(err instanceof HttpError)) throw err;
+      return EmailVerificationError.identify(err);
+    }),
+    map(() => undefined),
+  );
+}
+
+function verifyEmail(key: string): TaskEither<EmailVerificationError, void> {
+  const TResponse = type({
+    detail: literal('Email verified.'),
+  });
+
+  return pipe(
+    HttpService.post('/auth/verify-email/', TResponse, { key }, false),
+    mapLeft(err => {
+      if (!(err instanceof HttpError)) throw err;
+      return EmailVerificationError.identify(err);
     }),
     map(() => undefined),
   );
