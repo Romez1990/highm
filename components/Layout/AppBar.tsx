@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { isSome } from 'fp-ts/lib/Option';
 import {
@@ -61,14 +61,24 @@ function AppBar({ toggleDrawerOpen }: Props): JSX.Element {
         {isSome(profile) ? (
           <ProfileMenu profile={profile.value} />
         ) : (
-          <Button
-            href={loginPath}
-            component={Link}
-            color="inherit"
-            underline="none"
-          >
-            Login
-          </Button>
+          <Fragment>
+            <Button
+              href="/register"
+              component={Link}
+              color="inherit"
+              underline="none"
+            >
+              Register
+            </Button>
+            <Button
+              href={loginPath}
+              component={Link}
+              color="inherit"
+              underline="none"
+            >
+              Login
+            </Button>
+          </Fragment>
         )}
         <ThemeChanger />
       </Toolbar>
