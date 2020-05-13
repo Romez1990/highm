@@ -1,5 +1,12 @@
 import React from 'react';
 import { pipe } from 'fp-ts/lib/pipeable';
+import {
+  map,
+  mapWithIndex,
+  filter,
+  reduceWithIndex,
+  zip,
+} from 'fp-ts/lib/Array';
 import Formula from './Formula';
 import { Matrix } from '../../src/Utils/math';
 
@@ -14,21 +21,28 @@ function zipWithVariables(
 ): Matrix<[number, string]> {
   const variables = ['x', 'y', 'z'];
 
-  return coefficient.map(row =>
-    row.map((number: number, index: number) => [number, variables[index]]),
+  return pipe(
+    coefficient,
+    map(row => {
+      if (row.length > variables.length)
+        throw new Error('Too much coefficients');
+      return zip(row, variables);
+    }),
   );
 }
 
 function dropZeros(terms: Matrix<[number, string]>): Matrix<[number, string]> {
-  return terms.map(row => row.filter(([coefficient]) => coefficient !== 0));
+  return pipe(terms, map(filter(([coefficient]) => coefficient !== 0)));
 }
 
 function concatTerms(terms: Matrix<[number, string]>): string[] {
-  return terms.map(row =>
-    row.reduce(
-      (accumulator, [coefficient, variable], index) =>
-        `${accumulator}${coefficientToEquation(coefficient, index)}${variable}`,
-      '',
+  return pipe(
+    terms,
+    map(
+      reduceWithIndex('', (index, accumulator, [coefficient, variable]) => {
+        const a = coefficientToEquation(coefficient, index);
+        return `${accumulator}${a}${variable}`;
+      }),
     ),
   );
 }
@@ -58,8 +72,9 @@ function numberToEquation(number: number): string {
 const concatWithConstantTerms = (constantTerms: number[]) => (
   leftTerms: string[],
 ): string[] => {
-  return leftTerms.map(
-    (row: string, index: number) => `${row}=${constantTerms[index]}`,
+  return pipe(
+    leftTerms,
+    mapWithIndex((index, row) => `${row}=${constantTerms[index]}`),
   );
 };
 
