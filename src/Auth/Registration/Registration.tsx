@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { useRegistrationStore } from '../../store/Registration';
+import { useRegistrationStore } from '../../Store/Registration';
 import RegistrationCodeCheckForm from './RegistrationCodeCheckForm';
 import RegistrationCodeInvalid from './RegistrationCodeInvalid';
 import RegisterForm from './RegisterForm';
@@ -9,7 +9,7 @@ interface Props {
   redirectUrl: string;
 }
 
-function RegistrationPage({ redirectUrl }: Props): JSX.Element {
+function Registration({ redirectUrl }: Props): JSX.Element {
   const { registrationCodeValid } = useRegistrationStore();
 
   if (typeof registrationCodeValid === 'undefined') {
@@ -23,4 +23,4 @@ function RegistrationPage({ redirectUrl }: Props): JSX.Element {
   return <RegisterForm redirectUrl={redirectUrl} />;
 }
 
-export default observer(RegistrationPage);
+export default observer(Registration);

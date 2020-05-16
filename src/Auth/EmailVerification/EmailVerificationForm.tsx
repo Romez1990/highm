@@ -3,7 +3,7 @@ import { pipe } from 'fp-ts/lib/pipeable';
 import { fold } from 'fp-ts/lib/TaskEither';
 import { useRouter } from 'next/router';
 import { Button } from '@material-ui/core';
-import AuthenticationService from '../../src/AuthenticationService';
+import AuthenticationService from '../../AuthenticationService';
 
 interface Props {
   verificationKey: string;

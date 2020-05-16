@@ -17,13 +17,13 @@ import {
   FormHelperText,
 } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
-import { useRegistrationStore, RegisterParams } from '../../store/Registration';
+import { useRegistrationStore, RegisterParams } from '../../Store/Registration';
 import {
   EmailTakenError,
   TooCommonPasswordError,
-} from '../../src/AuthenticationService';
-import { foldErrors } from '../../src/Error';
-import { redirectTo } from '../../src/Redirect';
+} from '../../AuthenticationService';
+import { foldErrors } from '../../Error';
+import { redirectTo } from '../../Redirect';
 
 interface Props {
   redirectUrl: string;

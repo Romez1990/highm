@@ -16,13 +16,13 @@ import {
   FormHelperText,
 } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
-import { useProfileStore } from '../../store';
-import { redirectTo } from '../../src/Redirect';
+import { useProfileStore } from '../../Store';
+import { redirectTo } from '../../Redirect';
 import {
   WrongCredentialsError,
   EmailNotVerifiedError,
-} from '../../src/AuthenticationService';
-import setTimeout from '../../src/Utils/setTimeout';
+} from '../../AuthenticationService';
+import setTimeout from '../../Utils/setTimeout';
 
 interface Props {
   redirectUrl: string;
