@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { FieldProps } from 'formik';
 import { makeStyles, createStyles, FormHelperText } from '@material-ui/core';
 import { NumberField } from '../Fields';
-import { Matrix } from '../../src/Utils/math';
+import { Matrix } from '../Utils/math';
 
 export declare type MatrixInputsProps = FieldProps;
 
