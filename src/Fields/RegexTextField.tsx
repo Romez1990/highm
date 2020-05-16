@@ -2,7 +2,7 @@ import React from 'react';
 import MuiTextField, {
   TextFieldProps as MuiTextFieldProps,
 } from '@material-ui/core/TextField';
-import { useRegexValidation } from '../../src/RegexTextField';
+import { useRegexValidation } from '../RegexTextField';
 
 export declare type RegexTextFieldProps = MuiTextFieldProps & {
   regex: RegExp;
