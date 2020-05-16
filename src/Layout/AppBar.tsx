@@ -15,8 +15,8 @@ import { Menu as MenuIcon } from '@material-ui/icons';
 import ProfileMenu from './ProfileMenu';
 import ThemeChanger from './ThemeChanger';
 import Link from '../Link';
-import { useProfileStore } from '../../store';
-import { resolveLoginPath } from '../../src/Redirect';
+import { useProfileStore } from '../Store';
+import { resolveLoginPath } from '../Redirect';
 
 interface Props {
   toggleDrawerOpen(): void;
