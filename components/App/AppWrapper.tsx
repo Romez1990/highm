@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { Fragment, ReactNode } from 'react';
 import StoreProvider from './StoreProvider';
 import ThemeProvider from './ThemeProvider';
+import HttpsRedirect from './HttpsRedirect';
 
 interface AppWrapperProps {
   children: ReactNode;
@@ -8,9 +9,12 @@ interface AppWrapperProps {
 
 function AppWrapper({ children }: AppWrapperProps): JSX.Element {
   return (
-    <StoreProvider>
-      <ThemeProvider>{children}</ThemeProvider>
-    </StoreProvider>
+    <Fragment>
+      <StoreProvider>
+        <ThemeProvider>{children}</ThemeProvider>
+      </StoreProvider>
+      <HttpsRedirect />
+    </Fragment>
   );
 }
 
