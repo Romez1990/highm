@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import store, { StoreContext } from '../../store';
+import store, { StoreContext } from '../Store';
 
 interface Props {
   children: ReactNode;
