@@ -6,7 +6,7 @@ interface Props {
   verificationKey: Option<string>;
 }
 
-function EmailVerificationPage({ verificationKey }: Props): JSX.Element {
+function EmailVerification({ verificationKey }: Props): JSX.Element {
   return isNone(verificationKey) ? (
     <div>Link is not valid</div>
   ) : (
@@ -14,4 +14,4 @@ function EmailVerificationPage({ verificationKey }: Props): JSX.Element {
   );
 }
 
-export default EmailVerificationPage;
+export default EmailVerification;
