@@ -4,8 +4,8 @@ import {
   ThemeProvider as MuiThemeProvider,
   CssBaseline,
 } from '@material-ui/core';
-import { useProfileStore } from '../../store';
-import { lightTheme, darkTheme } from '../../src/Theme';
+import { useProfileStore } from '../Store';
+import { lightTheme, darkTheme } from '../Theme';
 
 interface Props {
   children: ReactNode;
