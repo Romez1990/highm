@@ -1,10 +1,8 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import { Delete as DeleteIcon } from '@material-ui/icons';
-import Table from '../Table';
-import { TTeacher, Teacher, UnregisteredTeacherNew } from '../../src/Teacher';
-import { useEditable } from '../../src/Table';
-import { Student } from '../../src/Student';
+import Table, { useEditable } from '../Table';
+import { TTeacher, Teacher, UnregisteredTeacherNew } from './Teacher';
 
 interface Props {
   teachers: Teacher[];
@@ -24,7 +22,7 @@ function TeachersTable({ teachers }: Props): JSX.Element {
 
   return (
     <Container maxWidth="md">
-      <Table<Student>
+      <Table<Teacher>
         title="Teacher"
         columns={[
           { title: 'Last name', field: 'lastName', defaultSort: 'asc' },
