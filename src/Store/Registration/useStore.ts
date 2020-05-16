@@ -9,7 +9,7 @@ const RegistrationStoreContext = createContext<RegistrationStore | undefined>(
 function useRegistrationStore(): RegistrationStore {
   const store = useContext(RegistrationStoreContext);
   if (typeof store === 'undefined')
-    throw new StoreError('Registration store is not provided');
+    throw new StoreError('Registration Store is not provided');
   return store;
 }
 

@@ -4,13 +4,13 @@ import { pipe } from 'fp-ts/lib/pipeable';
 import { Option, some, none, fold as foldO } from 'fp-ts/lib/Option';
 import { Task, map as mapT, of } from 'fp-ts/lib/Task';
 import { TaskEither, map, fold } from 'fp-ts/lib/TaskEither';
-import HttpService from '../../src/HttpService';
+import HttpService from '../../HttpService';
 import AuthenticationService, {
   LoginError,
   LoginParams,
-} from '../../src/AuthenticationService';
-import CookieService from '../../src/CookieService';
-import { TProfile, Profile } from '../../src/Profile';
+} from '../../AuthenticationService';
+import CookieService from '../../CookieService';
+import { TProfile, Profile } from '../../Profile';
 
 class ProfileStore {
   @observable

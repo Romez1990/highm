@@ -4,7 +4,7 @@ import { TaskEither, map } from 'fp-ts/lib/TaskEither';
 import AuthenticationService, {
   RegistrationError,
   RegistrationCodeCheckParams,
-} from '../../src/AuthenticationService';
+} from '../../AuthenticationService';
 import RegistrationBeforeCheckingError from './RegistrationBeforeCheckingError';
 
 export interface RegisterParams {
