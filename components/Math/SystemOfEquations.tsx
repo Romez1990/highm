@@ -83,7 +83,7 @@ function concatEquations(equations: string[]): string {
 }
 
 function equationsToSystem(equation: string): string {
-  return `\\left\\{\\begin{aligned}${equation}\\end{aligned}\\right.`;
+  return `\\begin{cases}${equation}\\end{cases}`;
 }
 
 function SystemOfEquations({
