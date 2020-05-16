@@ -104,14 +104,14 @@ function App({
 }: Props): JSX.Element {
   useEffect(flow(load, removeStyles), []);
 
-  const [first, setFirst] = useState(true);
+  const [firstRender, setFirstRender] = useState(true);
 
-  if (first) {
+  if (firstRender) {
     store.hydrate(preloadedState);
   }
 
   function load(): void {
-    setFirst(false);
+    setFirstRender(false);
   }
 
   function removeStyles(): void {
