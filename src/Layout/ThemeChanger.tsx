@@ -4,7 +4,7 @@ import {
   Brightness4 as Brightness4Icon,
   Brightness7 as Brightness7Icon,
 } from '@material-ui/icons';
-import { useProfileStore } from '../../store';
+import { useProfileStore } from '../Store';
 
 function ThemeChanger(): JSX.Element {
   const profileStore = useProfileStore();
