@@ -1,7 +1,7 @@
 import React from 'react';
 import { pipe } from 'fp-ts/lib/pipeable';
 import Formula from './Formula';
-import { Matrix } from '../../src/Utils/math';
+import { Matrix } from '../Utils/math';
 
 interface Props {
   children: Matrix<number | string>;

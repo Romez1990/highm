@@ -8,7 +8,7 @@ import {
   zip,
 } from 'fp-ts/lib/Array';
 import Formula from './Formula';
-import { Matrix } from '../../src/Utils/math';
+import { Matrix } from '../Utils/math';
 
 interface Props {
   coefficient: Matrix<number>;
