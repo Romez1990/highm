@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import registrationStore, {
   RegistrationStoreContext,
-} from '../../store/Registration';
+} from '../../Store/Registration';
 
 interface Props {
   children: ReactNode;

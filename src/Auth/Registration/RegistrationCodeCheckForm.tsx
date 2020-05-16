@@ -17,14 +17,14 @@ import {
 } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import { map } from 'fp-ts/lib/Array';
-import { RegexTextField } from '../FormikMaterialUI';
+import { RegexTextField } from '../../FormikMaterialUI';
 import {
   WrongRegistrationCodeError,
   NamesMismatchError,
   RegistrationCodeCheckParams,
-} from '../../src/AuthenticationService';
-import { useRegistrationStore } from '../../store/Registration';
-import { foldErrors } from '../../src/Error';
+} from '../../AuthenticationService';
+import { useRegistrationStore } from '../../Store/Registration';
+import { foldErrors } from '../../Error';
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
