@@ -1,3 +1,4 @@
+import { IncomingMessage, ServerResponse } from 'http';
 import React, { useEffect, useState } from 'react';
 import { AppContext } from 'next/app';
 import {
@@ -5,7 +6,7 @@ import {
   NextPageContext,
 } from 'next/dist/next-server/lib/utils';
 import { flow } from 'fp-ts/lib/function';
-import { fromNullable, isNone } from 'fp-ts/lib/Option';
+import { Option, fromNullable, isNone } from 'fp-ts/lib/Option';
 import StoreProvider from '../components/App/StoreProvider';
 import ThemeProvider from '../components/App/ThemeProvider';
 import store, { Store } from '../store';
@@ -14,6 +15,7 @@ import AuthenticationService, {
 } from '../src/AuthenticationService';
 import { RedirectionError, redirectToLogin } from '../src/Redirect';
 import ErrorPage from './_error';
+import { Profile } from '../src/Profile';
 import 'katex/dist/katex.min.css';
 
 interface InitialProps {
@@ -26,48 +28,25 @@ interface Props extends InitialProps {
   Component: NextComponentType;
 }
 
-export declare type ComponentType<P> = NextComponentType<
-  NextPageContext,
-  P,
-  P
-> & {
+type Context = Omit<AppContext, 'Component'> & {
+  Component: ComponentType;
+};
+
+export declare type ComponentType = NextComponentType & {
   permission?: Permission;
 };
 
 App.getInitialProps = async ({
   Component,
   ctx,
-}: AppContext): Promise<InitialProps> => {
+}: Context): Promise<InitialProps> => {
   const { req, res } = ctx;
 
-  if (!process.browser) {
-    await store.profileStore.authenticate(req)();
-    store.profileStore.getDarkTheme(req);
-  }
-
-  const TypedComponent = Component as ComponentType<object>;
-
-  const { permission } = TypedComponent;
+  await initStore(req);
   const { profile } = store.profileStore;
-  const hasPermission = AuthenticationService.hasPermission(
-    profile,
-    fromNullable(permission),
-  );
-
-  const isProfileNone = isNone(profile);
-
-  if (!hasPermission && isProfileNone) {
-    if (process.browser || typeof req === 'undefined')
-      throw new RedirectionError(
-        'Redirecting from the browser is unacceptable',
-      );
-    await redirectToLogin(res, req.url);
-  }
-
-  const pageProps =
-    hasPermission && typeof Component.getInitialProps !== 'undefined'
-      ? await Component.getInitialProps(ctx)
-      : {};
+  const hasPermission = hasProfilePermission(Component, profile);
+  await redirectToLoginIfNecessary(req, res, hasPermission, profile);
+  const pageProps = await getPageProps(Component, ctx, hasPermission);
 
   return {
     pageProps,
@@ -75,6 +54,47 @@ App.getInitialProps = async ({
     hasPermission,
   };
 };
+
+async function initStore(req: IncomingMessage | undefined): Promise<void> {
+  if (!process.browser) {
+    await store.profileStore.authenticate(req)();
+    store.profileStore.getDarkTheme(req);
+  }
+}
+
+function hasProfilePermission(
+  Component: ComponentType,
+  profile: Option<Profile>,
+): boolean {
+  const { permission } = Component;
+  return AuthenticationService.hasPermission(profile, fromNullable(permission));
+}
+
+async function redirectToLoginIfNecessary(
+  req: IncomingMessage | undefined,
+  res: ServerResponse | undefined,
+  hasPermission: boolean,
+  profile: Option<Profile>,
+): Promise<void> {
+  const isProfileNone = isNone(profile);
+  if (!hasPermission && isProfileNone) {
+    if (process.browser || typeof req === 'undefined')
+      throw new RedirectionError(
+        'Redirecting from the browser is unacceptable',
+      );
+    await redirectToLogin(res, req.url);
+  }
+}
+
+function getPageProps(
+  Component: ComponentType,
+  ctx: NextPageContext,
+  shouldLoadPage: boolean,
+): object | Promise<object> {
+  return shouldLoadPage && typeof Component.getInitialProps !== 'undefined'
+    ? Component.getInitialProps(ctx)
+    : {};
+}
 
 function App({
   Component: Page,
