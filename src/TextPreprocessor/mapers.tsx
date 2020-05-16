@@ -1,5 +1,5 @@
 import React, { ComponentType } from 'react';
-import Formula from '../../components/Math/Formula';
+import Formula from '../Math/Formula';
 import Tag from './Tag';
 
 interface MaperProps {
