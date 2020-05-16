@@ -3,7 +3,7 @@ import {
   TextField as FormikTextField,
   TextFieldProps as FormikTextFieldProps,
 } from 'formik-material-ui';
-import { useRegexValidation } from '../../src/RegexTextField';
+import { useRegexValidation } from '../RegexTextField';
 
 export declare type RegexTextFieldProps = FormikTextFieldProps & {
   regex: RegExp;
