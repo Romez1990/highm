@@ -1,6 +1,6 @@
 import { type, array, string, number, TypeOf } from 'io-ts';
-import { TStudent } from './Student';
-import RegexError from '../Error/RegexError';
+import { TStudent } from '../Student';
+import { RegexError } from '../Error';
 
 // [\u0410-\u044f] is Russian alphabet
 export const groupNameRegexPartial = /^(?:[1-4]|(?:[1-4][\u0410-\u044f]{1,4})|(?:[1-4][\u0410-\u044f]{2,4}-)|[1-4][\u0410-\u044f]{2,4}-\d{1,2}\u0430?|[1-4][\u0410-\u044f]{2,4}-\d{1,2}\u0430?\.|[1-4][\u0410-\u044f]{2,4}-\d{1,2}\u0430?\.\d{1,2})?$/;
