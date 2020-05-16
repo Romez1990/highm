@@ -1,4 +1,4 @@
-import { AppError } from '../../src/Error';
+import { AppError } from '../../Error';
 
 class RegistrationBeforeCheckingError extends AppError {}
 
