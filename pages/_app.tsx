@@ -7,8 +7,7 @@ import {
 } from 'next/dist/next-server/lib/utils';
 import { flow } from 'fp-ts/lib/function';
 import { Option, fromNullable, isNone } from 'fp-ts/lib/Option';
-import StoreProvider from '../components/App/StoreProvider';
-import ThemeProvider from '../components/App/ThemeProvider';
+import { AppWrapper } from '../components/App';
 import store, { Store } from '../store';
 import AuthenticationService, {
   Permission,
@@ -122,20 +121,16 @@ function App({
 
   if (!hasPermission) {
     return (
-      <StoreProvider>
-        <ThemeProvider>
-          <ErrorPage statusCode={404} />
-        </ThemeProvider>
-      </StoreProvider>
+      <AppWrapper>
+        <ErrorPage statusCode={404} />
+      </AppWrapper>
     );
   }
 
   return (
-    <StoreProvider>
-      <ThemeProvider>
-        <Page {...pageProps} />
-      </ThemeProvider>
-    </StoreProvider>
+    <AppWrapper>
+      <Page {...pageProps} />
+    </AppWrapper>
   );
 }
 
