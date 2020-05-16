@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import clsx from 'clsx';
-import AppBar from '../components/Layout/AppBar';
-import Drawer from '../components/Layout/Drawer';
+import AppBar from './AppBar';
+import Drawer from './Drawer';
 import BaseLayout, { LayoutProps } from './BaseLayout';
 
 interface StyleProps {

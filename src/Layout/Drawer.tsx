@@ -18,10 +18,8 @@ import {
   HowToReg as HowToRegIcon,
 } from '@material-ui/icons';
 import Link from '../Link';
-import AuthenticationService, {
-  Permission,
-} from '../../src/AuthenticationService';
-import { useProfileStore } from '../../store';
+import AuthenticationService, { Permission } from '../AuthenticationService';
+import { useProfileStore } from '../Store';
 
 interface StyleProps {
   width: number;

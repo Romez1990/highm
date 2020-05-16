@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { AccountCircle as AccountCircleIcon } from '@material-ui/icons';
 import Link from '../Link';
-import { Profile } from '../../src/Profile';
+import { Profile } from '../Profile';
 
 interface Props {
   profile: Profile;
