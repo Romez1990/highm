@@ -13,7 +13,6 @@ import AuthenticationService, { Permission } from '../AuthenticationService';
 import { RedirectionError, redirectToLogin } from '../Redirect';
 import ErrorPage from '../../pages/_error';
 import { Profile } from '../Profile';
-import 'katex/dist/katex.min.css';
 
 interface InitialProps {
   pageProps: object;
