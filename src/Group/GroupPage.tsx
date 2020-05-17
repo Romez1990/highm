@@ -48,7 +48,7 @@ function fetchGroup(
 
 function GroupPage({ group: groupOption }: Props): JSX.Element {
   if (isNone(groupOption)) {
-    return <ErrorPage statusCode={404} title="Group not found" />;
+    return <ErrorPage title="Group not found" />;
   }
 
   const group = groupOption.value;
