@@ -1,1 +1,1 @@
-export { ErrorPage as default } from '../src/ErrorPage';
+export { ErrorPageWrapper as default } from '../src/ErrorPage';
