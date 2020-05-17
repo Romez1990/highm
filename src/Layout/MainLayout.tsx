@@ -12,8 +12,14 @@ interface StyleProps {
 const useStyles = makeStyles(
   ({ spacing, transitions, mixins: { toolbar } }: Theme) =>
     createStyles({
+      root: {
+        height: '100vh',
+        display: 'flex',
+        flexFlow: 'column',
+      },
       toolbar,
       content: {
+        flexGrow: 1,
         paddingTop: spacing(2),
         transition: transitions.create('margin', {
           easing: transitions.easing.sharp,
@@ -31,10 +37,10 @@ const useStyles = makeStyles(
 );
 
 function MainLayout({ title, children }: LayoutProps): JSX.Element {
-  const [open, setOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(true);
 
   function toggleDrawerOpen(): void {
-    setOpen(!open);
+    setDrawerOpen(!drawerOpen);
   }
 
   const drawerWidth = 240;
@@ -43,16 +49,18 @@ function MainLayout({ title, children }: LayoutProps): JSX.Element {
 
   return (
     <BaseLayout title={title}>
-      <AppBar toggleDrawerOpen={toggleDrawerOpen} />
-      <Drawer width={drawerWidth} open={open} />
-      <div className={classes.toolbar} />
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        {children}
-      </main>
+      <div className={classes.root}>
+        <AppBar toggleDrawerOpen={toggleDrawerOpen} />
+        <Drawer width={drawerWidth} open={drawerOpen} />
+        <div className={classes.toolbar} />
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: drawerOpen,
+          })}
+        >
+          {children}
+        </main>
+      </div>
     </BaseLayout>
   );
 }
