@@ -11,7 +11,7 @@ import AppWrapper from './AppWrapper';
 import store, { Store } from '../Store';
 import AuthenticationService, { Permission } from '../AuthenticationService';
 import { RedirectionError, redirectToLogin } from '../Redirect';
-import ErrorPage from '../../pages/_error';
+import { ErrorPage } from '../ErrorPage';
 import { Profile } from '../Profile';
 
 interface InitialProps {
@@ -119,7 +119,7 @@ function App({
   if (!hasPermission) {
     return (
       <AppWrapper>
-        <ErrorPage statusCode={404} />
+        <ErrorPage title="Страница не найдена" />
       </AppWrapper>
     );
   }
