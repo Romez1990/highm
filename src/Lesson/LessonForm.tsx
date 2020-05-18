@@ -12,6 +12,7 @@ import {
   ExpansionPanelSummary,
   ExpansionPanelDetails,
   Button,
+  FormHelperText,
 } from '@material-ui/core';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import HttpService from '../HttpService';
@@ -77,7 +78,7 @@ function LessonForm({
       validationSchema={validationSchema}
       onSubmit={submit}
     >
-      {({ isSubmitting }): JSX.Element => (
+      {({ errors, isSubmitting }): JSX.Element => (
         <Form>
           <Typography
             component="h3"
@@ -114,6 +115,9 @@ function LessonForm({
               </ExpansionPanel>
             );
           })}
+          {Object.entries(errors).length !== 0 && (
+            <FormHelperText error>All answers must be filled</FormHelperText>
+          )}
           <Button
             type="submit"
             className={classes.submitButton}
