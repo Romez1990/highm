@@ -43,3 +43,18 @@ export function userCompare(a: User, b: User): number {
   if (a.lastName > b.lastName) return -1;
   return a.firstName.localeCompare(b.firstName);
 }
+
+export function getRegistrationURL(user: {
+  registrationCode: string;
+  firstName: string;
+  lastName: string;
+}): { path: string; fullUrl: string } {
+  const params = new URLSearchParams({
+    'registration-code': user.registrationCode,
+    'first-name': user.firstName,
+    'last-name': user.lastName,
+  }).toString();
+  const path = `/register?${decodeURI(params)}`;
+  const fullUrl = `${window.location.origin}${path}`;
+  return { path, fullUrl };
+}
