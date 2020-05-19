@@ -7,6 +7,18 @@ export const groupNameRegexPartial = /^(?:[1-4]|(?:[1-4][\u0410-\u044f]{1,4})|(?
 
 export const groupNameRegex = /^(?<grade>[1-4])(?<specialty>[\u0410-\u044f]{2,4})-(?<number>\d{1,2})(?<a>\u0430?)\.(?<admissionYear>\d{2})$/;
 
+export const TGroupBasic = type({
+  name: string,
+  numberOfStudents: number,
+});
+export declare type GroupBasic = TypeOf<typeof TGroupBasic>;
+
+export const TGroup = type({
+  name: string,
+  students: array(TStudent),
+});
+export declare type Group = TypeOf<typeof TGroup>;
+
 export function groupCompare(a: GroupBasic, b: GroupBasic): number {
   const aMatch = a.name.match(groupNameRegex);
   const bMatch = b.name.match(groupNameRegex);
@@ -40,15 +52,3 @@ export function groupCompare(a: GroupBasic, b: GroupBasic): number {
   if (aGrade < bGrade || aNumber < bNumber || (!aA && bA)) return -1;
   return 0;
 }
-
-export const TGroupBasic = type({
-  name: string,
-  numberOfStudents: number,
-});
-export declare type GroupBasic = TypeOf<typeof TGroupBasic>;
-
-export const TGroup = type({
-  name: string,
-  students: array(TStudent),
-});
-export declare type Group = TypeOf<typeof TGroup>;
