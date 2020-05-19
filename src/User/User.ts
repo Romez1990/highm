@@ -26,7 +26,7 @@ export declare type RegisteredUser = TypeOf<typeof TRegisteredUser>;
 export const TUnregisteredUser = intersection([
   TUserBase,
   type({
-    code: string,
+    registrationCode: string,
     registered: literal(false),
   }),
 ]);

@@ -23,7 +23,7 @@ function GroupTable({ group }: Props): JSX.Element {
     type: TStudent,
     url: '/student/',
     getLookupField: (student): string =>
-      student.registered ? student.id.toString() : student.code,
+      student.registered ? student.id.toString() : student.registrationCode,
   });
 
   async function addRow(newData: UnregisteredStudentNew): Promise<void> {

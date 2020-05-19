@@ -51,12 +51,12 @@ const validationSchema = object().shape({
 });
 
 function RegistrationForm({ redirectUrl }: Props): JSX.Element {
-  const codeInputRef = useRef<HTMLInputElement>();
+  const registrationCodeInputRef = useRef<HTMLInputElement>();
   const router = useRouter();
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
-    codeInputRef.current?.focus();
+    registrationCodeInputRef.current?.focus();
     const timeout = setTimeout(() => router.prefetch(redirectUrl), 4000);
     return (): void => clearTimeout(timeout);
   }, []);

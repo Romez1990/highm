@@ -17,7 +17,7 @@ function TeachersTable({ teachers }: Props): JSX.Element {
     type: TTeacher,
     url: '/teacher/',
     getLookupField: (teacher): string =>
-      teacher.registered ? teacher.id.toString() : teacher.code,
+      teacher.registered ? teacher.id.toString() : teacher.registrationCode,
   });
 
   return (
