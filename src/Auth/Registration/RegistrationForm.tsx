@@ -50,7 +50,7 @@ const validationSchema = object().shape({
     .required(),
 });
 
-function RegisterForm({ redirectUrl }: Props): JSX.Element {
+function RegistrationForm({ redirectUrl }: Props): JSX.Element {
   const codeInputRef = useRef<HTMLInputElement>();
   const router = useRouter();
 
@@ -181,4 +181,4 @@ function RegisterForm({ redirectUrl }: Props): JSX.Element {
   );
 }
 
-export default RegisterForm;
+export default RegistrationForm;
