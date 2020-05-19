@@ -24,6 +24,7 @@ import {
   RegistrationCodeCheckParams,
 } from '../../AuthenticationService';
 import { useRegistrationStore } from '../../Store/Registration';
+import { getRegistrationURL } from '../../User';
 import { foldErrors } from '../../Error';
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
@@ -73,20 +74,9 @@ function RegistrationCodeCheckForm(): JSX.Element {
       chain(() =>
         rightTask(
           async (): Promise<void> => {
-            await router.push(
-              {
-                pathname: router.pathname,
-                query: {
-                  'registration-code': values.registrationCode,
-                  'first-name': values.firstName,
-                  'last-name': values.lastName,
-                },
-              },
-              undefined,
-              {
-                shallow: true,
-              },
-            );
+            await router.push(getRegistrationURL(values).path, undefined, {
+              shallow: true,
+            });
           },
         ),
       ),
