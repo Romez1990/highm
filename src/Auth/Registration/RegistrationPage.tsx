@@ -122,7 +122,7 @@ function RegisterationPage({
     setFirst(false);
   }, []);
 
-  if (first) {
+  if (first && process.browser) {
     registrationStore.hydrate(preloadedState);
   }
 
