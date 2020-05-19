@@ -2,13 +2,13 @@ import React from 'react';
 import { Container } from '@material-ui/core';
 import { Delete as DeleteIcon } from '@material-ui/icons';
 import Table, { useEditable } from '../Table';
-import { Group } from './Group';
 import {
   TStudent,
   Student,
   UnregisteredStudentNew,
   UnregisteredStudentNewWithGroup,
 } from '../Student';
+import { Group } from './Group';
 
 interface Props {
   group: Group;
