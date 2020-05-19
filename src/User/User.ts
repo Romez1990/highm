@@ -30,7 +30,7 @@ export const TUnregisteredUser = intersection([
     registered: literal(false),
   }),
 ]);
-export declare type TUnregisteredUser = TypeOf<typeof TUnregisteredUser>;
+export declare type UnregisteredUser = TypeOf<typeof TUnregisteredUser>;
 
 export const TUnregisteredUserNew = TUserBase;
 export declare type UnregisteredUserNew = TypeOf<typeof TUnregisteredUserNew>;
