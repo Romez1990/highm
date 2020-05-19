@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
-import { Delete as DeleteIcon } from '@material-ui/icons';
+import {
+  Delete as DeleteIcon,
+  Assignment as AssignmentIcon,
+} from '@material-ui/icons';
 import Table, { useEditable } from '../Table';
+import RegistrationCodesDialog from './RegistrationCodesDialog';
+import { userCompare } from '../User';
 import {
   TStudent,
   Student,
   UnregisteredStudentNew,
   UnregisteredStudentNewWithGroup,
+  UnregisteredStudent,
 } from '../Student';
 import { Group } from './Group';
 
@@ -32,6 +38,21 @@ function GroupTable({ group }: Props): JSX.Element {
       groupName: group.name,
     });
   }
+
+  const [registrationCodesOpen, setRegistrationCodesOpen] = useState(false);
+
+  function openRegistrationCodes(): void {
+    setRegistrationCodesOpen(true);
+  }
+
+  function closeRegistrationCodes(): void {
+    setRegistrationCodesOpen(false);
+  }
+
+  const unregisteredStudents = (): UnregisteredStudent[] =>
+    rows
+      .filter(student => !student.registered)
+      .sort(userCompare) as UnregisteredStudent[];
 
   return (
     <Container maxWidth="md">
@@ -67,7 +88,18 @@ function GroupTable({ group }: Props): JSX.Element {
             position: 'toolbarOnSelect',
             onClick: deleteRows,
           },
+          {
+            icon: (): JSX.Element => <AssignmentIcon />,
+            tooltip: 'Registration codes',
+            position: 'toolbar',
+            onClick: openRegistrationCodes,
+          },
         ]}
+      />
+      <RegistrationCodesDialog
+        open={registrationCodesOpen}
+        close={closeRegistrationCodes}
+        users={unregisteredStudents}
       />
     </Container>
   );
