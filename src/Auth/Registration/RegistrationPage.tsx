@@ -15,7 +15,7 @@ import { Task, of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
 import { FormLayout } from '../../Layout';
 import RegistrationStoreProvider from './RegistrationStoreProvider';
-import RegistrationPage from './Registration';
+import Registration from './Registration';
 import store from '../../Store';
 import registrationStore, { RegistrationStore } from '../../Store/Registration';
 import { redirectTo } from '../../Redirect';
@@ -30,7 +30,7 @@ interface Props {
   redirectUrl: string;
 }
 
-RegisterationPage.getInitialProps = async ({
+RegistrationPage.getInitialProps = async ({
   res,
   query,
 }: NextPageContext): Promise<Props> => {
@@ -112,27 +112,27 @@ function parseQuery(
   );
 }
 
-function RegisterationPage({
+function RegistrationPage({
   registrationStore: preloadedState,
   redirectUrl,
 }: Props): JSX.Element {
-  const [first, setFirst] = useState(true);
+  const [firstRender, setFirstRender] = useState(true);
 
   useEffect((): void => {
-    setFirst(false);
+    setFirstRender(false);
   }, []);
 
-  if (first && process.browser) {
+  if (firstRender && process.browser) {
     registrationStore.hydrate(preloadedState);
   }
 
   return (
     <FormLayout title="Registration">
       <RegistrationStoreProvider>
-        <RegistrationPage redirectUrl={redirectUrl} />
+        <Registration redirectUrl={redirectUrl} />
       </RegistrationStoreProvider>
     </FormLayout>
   );
 }
 
-export default RegisterationPage;
+export default RegistrationPage;
