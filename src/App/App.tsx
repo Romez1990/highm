@@ -102,7 +102,7 @@ function App({
 
   const [firstRender, setFirstRender] = useState(true);
 
-  if (firstRender) {
+  if (firstRender && process.browser) {
     store.hydrate(preloadedState);
   }
 
