@@ -26,13 +26,14 @@ interface Props {
 const useStyles = makeStyles(({ spacing, palette: { grey } }: Theme) =>
   createStyles({
     title: {
-      margin: 0,
-      padding: spacing(2),
+      display: 'flex',
     },
-    closeButton: {
-      position: 'absolute',
-      right: spacing(1),
-      top: spacing(1),
+    titleText: {
+      flexGrow: 1,
+    },
+    titleButton: {
+      margin: -spacing(1),
+      marginLeft: 0,
       color: grey[500],
     },
   }),
@@ -53,8 +54,10 @@ function RegistrationCodesDialog({ open, close, users }: Props): JSX.Element {
     <Fragment>
       <Dialog open={open} onClose={close}>
         <DialogTitle className={classes.title} disableTypography>
-          <Typography variant="h6">Registration codes</Typography>
-          <IconButton className={classes.closeButton} onClick={print}>
+          <Typography className={classes.titleText} variant="h6">
+            Registration codes
+          </Typography>
+          <IconButton className={classes.titleButton} onClick={print}>
             <PrintIcon />
           </IconButton>
         </DialogTitle>
