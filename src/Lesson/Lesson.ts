@@ -9,13 +9,20 @@ import {
 } from 'io-ts';
 import { TTaskBase } from './Task';
 
-export const TLessonBasic = type({
+export const TLessonBasicBase = type({
   title: string,
 });
+
+export const TLessonBasic = intersection([
+  TLessonBasicBase,
+  type({
+    passed: boolean,
+  }),
+]);
 export declare type LessonBasic = TypeOf<typeof TLessonBasic>;
 
 export const TLessonBase = intersection([
-  TLessonBasic,
+  TLessonBasicBase,
   type({
     goals: array(string),
     tasks: record(string, TTaskBase),
