@@ -95,7 +95,7 @@ function Drawer({ width, open }: Props): JSX.Element {
       }}
     >
       <div className={classes.toolbar} />
-      <List>
+      <List component="nav">
         {links.map(link => {
           if (
             !AuthenticationService.hasPermission(
