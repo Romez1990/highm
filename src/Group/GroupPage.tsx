@@ -7,7 +7,7 @@ import { Option, some, none, isNone } from 'fp-ts/lib/Option';
 import { TaskOption } from 'fp-ts-contrib/lib/TaskOption';
 import { of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
-import { ErrorPage } from '../Error';
+import { ErrorPage } from '../ErrorPage';
 import { MainLayout } from '../Layout';
 import GroupTable from './GroupTable';
 import HttpService, { NotFoundError } from '../HttpService';
