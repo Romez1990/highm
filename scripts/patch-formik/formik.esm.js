@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Children, createContext, useContext, useRef, useEffect, useReducer, useCallback, useMemo, useImperativeHandle, createElement, useLayoutEffect, forwardRef, Component } from 'react';
 import isEqual from 'react-fast-compare';
 import deepmerge from 'deepmerge';
