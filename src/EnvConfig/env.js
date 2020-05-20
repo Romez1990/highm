@@ -9,6 +9,18 @@ function env(name) {
   return value;
 }
 
+function envBool(name) {
+  const value = env(name);
+  if (value === 'true') {
+    return true;
+  }
+  if (value === 'false') {
+    return false;
+  }
+  throw new EnvError(`${name} must be true of false`);
+}
+
 module.exports = {
   env,
+  envBool,
 };
