@@ -23,17 +23,21 @@ function LessonsList({ lessons }: Props): JSX.Element {
       >
         {lessons.map((lesson, index) => {
           const lessonNumber = index + 1;
+          const link = !lesson.passed
+            ? `/lesson/${lessonNumber}`
+            : `/lesson/${lessonNumber}/results`;
+          const passedText = lesson.passed ? ' [passed]' : '';
           return (
             <ListItem
               key={lesson.title}
               button
               color="inherit"
               component={Link}
-              href={`/lesson/${lessonNumber}`}
+              href={link}
               underline="none"
             >
               <ListItemText
-                primary={`Lesson ${lessonNumber}`}
+                primary={`Lesson ${lessonNumber}${passedText}`}
                 secondary={lesson.title}
               />
             </ListItem>
