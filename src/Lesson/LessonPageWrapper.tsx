@@ -72,7 +72,8 @@ function fetchLesson(
         if (!(err instanceof HttpError)) throw err;
         const error = LessonError.identify(err);
         if (error instanceof LessonPassedError) {
-          return (): Promise<void> => redirectTo(`/lesson/${number}/results`);
+          return (): Promise<void> =>
+            redirectTo(`/lesson/${number}/results`, res);
         }
         throw error;
       },
