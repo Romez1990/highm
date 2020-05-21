@@ -1,6 +1,6 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { pipe } from 'fp-ts/lib/pipeable';
-import { of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
 import { Formik, Form } from 'formik';
 import {
@@ -53,6 +53,8 @@ function LessonForm({
 }: Props): JSX.Element {
   // lesson.tasks = Object.fromEntries(Object.entries(lesson.tasks).slice(0, 1));
 
+  const router = useRouter();
+
   async function submit(values: Values): Promise<void> {
     const task = pipe(
       HttpService.post(`/lesson/${number}/check/`, TLessonCheckResults, values),
@@ -60,10 +62,8 @@ function LessonForm({
         err => {
           throw err;
         },
-        result => {
-          // eslint-disable-next-line no-console
-          console.log(result);
-          return of(undefined);
+        () => async (): Promise<void> => {
+          await router.replace(`${router.pathname}/results`);
         },
       ),
     );
