@@ -2,6 +2,7 @@ import {
   type,
   array,
   record,
+  number,
   string,
   boolean,
   intersection,
@@ -34,3 +35,15 @@ export const TLessonCheckResults = type({
   results: record(string, boolean),
 });
 export declare type LessonCheckResults = TypeOf<typeof TLessonCheckResults>;
+
+export const TTaskResult = type({
+  taskNumber: number,
+  right: boolean,
+});
+export declare type TaskResult = TypeOf<typeof TTaskResult>;
+
+export const TLessonResults = type({
+  grade: number,
+  taskResults: array(TTaskResult),
+});
+export declare type LessonResults = TypeOf<typeof TLessonResults>;
