@@ -13,7 +13,7 @@ class LessonPassedError extends LessonError {
     });
 
     return pipe(
-      check(TResponse, err.requestError.response?.data),
+      check(TResponse, err.response),
       fold(
         () => none,
         () => some(new LessonPassedError('This lesson has been passed')),

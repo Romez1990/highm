@@ -15,7 +15,7 @@ class WrongCredentialsError extends LoginError {
     });
 
     return pipe(
-      check(TResponseType, err.requestError.response?.data),
+      check(TResponseType, err.response),
       fold(
         () => none,
         () =>

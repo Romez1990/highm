@@ -13,7 +13,7 @@ class TooCommonPasswordError extends RegistrationError {
     });
 
     return pipe(
-      check(TResponse, err.requestError.response?.data),
+      check(TResponse, err.response),
       fold(
         () => none,
         () => some(new TooCommonPasswordError('This password is too common')),

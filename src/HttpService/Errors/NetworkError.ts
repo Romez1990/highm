@@ -10,11 +10,17 @@ interface NetworkErrorSubclass {
 }
 
 abstract class NetworkError extends AppError {
-  protected constructor(
-    message: string,
-    public readonly requestError: RequestError,
-  ) {
+  public requestError?: RequestError;
+
+  protected constructor(message: string, requestError: RequestError) {
     super(message);
+    // eslint-disable-next-line no-param-reassign
+    delete requestError.stack;
+    if (process.env.NODE_ENV === 'production') {
+      this.requestError = requestError;
+    } else {
+      delete this.requestError;
+    }
   }
 
   public static identify(err: RequestError): NetworkError {

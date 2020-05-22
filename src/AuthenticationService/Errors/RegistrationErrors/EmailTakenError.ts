@@ -15,7 +15,7 @@ class EmailTakenError extends RegistrationError {
     });
 
     return pipe(
-      check(TResponse, err.requestError.response?.data),
+      check(TResponse, err.response),
       fold(
         () => none,
         () =>
