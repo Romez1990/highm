@@ -12,7 +12,7 @@ class EmailVerificationError extends AuthenticationServiceError {
     });
 
     return pipe(
-      check(TResponseType, err.requestError.response?.data),
+      check(TResponseType, err.response),
       fold(
         () => {
           throw err;
