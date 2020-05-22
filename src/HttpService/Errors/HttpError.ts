@@ -9,8 +9,13 @@ interface HttpErrorSubclassConstructor {
 }
 
 abstract class HttpError extends NetworkError {
+  public readonly response?: unknown;
+
   protected constructor(public readonly statusCode: number, err: RequestError) {
     super(`Request failed with status code ${statusCode}`, err);
+    if (statusCode < 500) {
+      this.response = err.response?.data;
+    }
   }
 
   public static identifySubError(err: RequestError): Option<HttpError> {
