@@ -1,12 +1,15 @@
 import React from 'react';
-import { createStyles, makeStyles, Grid, Container } from '@material-ui/core';
+import { createStyles, makeStyles, Container } from '@material-ui/core';
 import MainLayout from './MainLayout';
 import { LayoutProps } from './BaseLayout';
 
 const useStyles = makeStyles(
   createStyles({
-    wrapper: {
-      minHeight: '100vh',
+    container: {
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justify: 'center',
     },
   }),
 );
@@ -15,16 +18,9 @@ function FormLayout({ title, children }: LayoutProps): JSX.Element {
   const classes = useStyles();
   return (
     <MainLayout title={title}>
-      <Grid
-        className={classes.wrapper}
-        container
-        alignItems="center"
-        justify="center"
-      >
-        <Grid item>
-          <Container maxWidth="xs">{children}</Container>
-        </Grid>
-      </Grid>
+      <Container className={classes.container} maxWidth="xs">
+        {children}
+      </Container>
     </MainLayout>
   );
 }
