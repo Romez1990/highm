@@ -10,6 +10,7 @@ import AuthenticationService, {
   LoginParams,
 } from '../../AuthenticationService';
 import CookieService from '../../CookieService';
+import { dev } from '../../Env';
 import { TProfile, Profile } from '../../Profile';
 
 class ProfileStore {
@@ -68,7 +69,7 @@ class ProfileStore {
   }
 
   public getDarkTheme(req?: IncomingMessage): void {
-    const defaultValue = process.env.NODE_ENV === 'development';
+    const defaultValue = dev;
     this.setDarkTheme(
       pipe(
         this.profile,

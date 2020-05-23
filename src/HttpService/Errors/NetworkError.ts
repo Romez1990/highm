@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { map } from 'fp-ts/lib/Array';
+import { prod } from '../../Env';
 import { AppError, identifyError, ErrorIdentifier } from '../../Error';
 
 export declare type RequestError = AxiosError<unknown>;
@@ -16,7 +17,7 @@ abstract class NetworkError extends AppError {
     super(message);
     // eslint-disable-next-line no-param-reassign
     delete requestError.stack;
-    if (process.env.NODE_ENV === 'production') {
+    if (prod) {
       this.requestError = requestError;
     } else {
       delete this.requestError;
