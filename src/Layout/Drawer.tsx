@@ -17,6 +17,8 @@ import {
   Group as GroupIcon,
   HowToReg as HowToRegIcon,
 } from '@material-ui/icons';
+import { useRouter } from 'next/router';
+import { NextRouter } from 'next/dist/next-server/lib/router/router';
 import Link from '../Link';
 import AuthenticationService, { Permission } from '../AuthenticationService';
 import { useProfileStore } from '../Store';
@@ -46,6 +48,7 @@ interface Link {
   text: string;
   icon: ReactElement;
   permission?: Permission;
+  isActive(router: NextRouter): boolean;
 }
 
 function Drawer({ width, open }: Props): JSX.Element {
@@ -54,33 +57,50 @@ function Drawer({ width, open }: Props): JSX.Element {
       href: '/',
       text: 'Main page',
       icon: <HomeIcon />,
+      isActive({ pathname }): boolean {
+        return pathname === '/';
+      },
     },
     {
       href: '/about',
       text: 'About',
       icon: <InfoIcon />,
+      isActive({ pathname }): boolean {
+        return pathname === '/about';
+      },
     },
     {
       href: '/lessons',
       text: 'Lessons',
       icon: <DescriptionIcon />,
       permission: 'IsStudent',
+      isActive({ pathname }): boolean {
+        return pathname === '/lessons' || pathname.startsWith('/lesson/');
+      },
     },
     {
       href: '/groups',
       text: 'Groups',
       icon: <GroupIcon />,
       permission: 'IsTeacher',
+      isActive({ pathname }): boolean {
+        return pathname === '/groups' || pathname.startsWith('/group/');
+      },
     },
     {
       href: '/teachers',
       text: 'Teachers',
       icon: <HowToRegIcon />,
       permission: 'IsAdmin',
+      isActive({ pathname }): boolean {
+        return pathname === '/teachers';
+      },
     },
   ];
 
   const { profile } = useProfileStore();
+
+  const router = useRouter();
 
   const classes = useStyles({ width });
 
@@ -112,6 +132,7 @@ function Drawer({ width, open }: Props): JSX.Element {
               href={link.href}
               color="inherit"
               underline="none"
+              selected={link.isActive(router)}
             >
               <ListItemIcon>{link.icon}</ListItemIcon>
               <ListItemText>{link.text}</ListItemText>
