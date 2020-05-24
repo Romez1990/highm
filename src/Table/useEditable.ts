@@ -4,6 +4,7 @@ import { of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
 import { Type } from 'io-ts';
 import HttpService from '../HttpService';
+import { run } from '../Utils/fp-ts/task';
 import ActionError from './ActionError';
 
 interface Params<RowData extends object> {
@@ -32,24 +33,24 @@ function useEditable<
   const [rows, setRows] = useState(initData);
 
   async function addRow(newData: RowDataAdd): Promise<void> {
-    const task = pipe(
-      HttpService.post(url, type, newData),
-      fold(
-        err => {
-          throw err;
-        },
-        newData_ =>
-          of(
-            setRows(oldRows => {
-              const newRows = [...oldRows];
-              newRows.push(newData_);
-              return newRows;
-            }),
-          ),
-      ),
-    );
     try {
-      await task();
+      await pipe(
+        HttpService.post(url, type, newData),
+        fold(
+          err => {
+            throw err;
+          },
+          newData_ =>
+            of(
+              setRows(oldRows => {
+                const newRows = [...oldRows];
+                newRows.push(newData_);
+                return newRows;
+              }),
+            ),
+        ),
+        run,
+      );
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);
@@ -60,25 +61,25 @@ function useEditable<
   async function updateRow(newData: RowData, oldData?: RowData): Promise<void> {
     if (typeof oldData === 'undefined') return;
     const pk = getLookupField(oldData);
-    const task = pipe(
-      HttpService.put(`${url}${pk}/`, type, newData),
-      fold(
-        err => {
-          throw err;
-        },
-        newData_ =>
-          of(
-            setRows(oldRows => {
-              const newRows = [...oldRows];
-              const index = newRows.indexOf(oldData);
-              newRows[index] = newData_;
-              return newRows;
-            }),
-          ),
-      ),
-    );
     try {
-      await task();
+      await pipe(
+        HttpService.put(`${url}${pk}/`, type, newData),
+        fold(
+          err => {
+            throw err;
+          },
+          newData_ =>
+            of(
+              setRows(oldRows => {
+                const newRows = [...oldRows];
+                const index = newRows.indexOf(oldData);
+                newRows[index] = newData_;
+                return newRows;
+              }),
+            ),
+        ),
+        run,
+      );
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);
@@ -89,25 +90,25 @@ function useEditable<
   async function deleteRow(oldData: RowData): Promise<void> {
     if (typeof oldData === 'undefined') return;
     const pk = getLookupField(oldData);
-    const task = pipe(
-      HttpService.delete(`${url}${pk}/`),
-      fold(
-        err => {
-          throw err;
-        },
-        () =>
-          of(
-            setRows(oldRows => {
-              const newRows = [...oldRows];
-              const index = newRows.indexOf(oldData);
-              newRows.splice(index, 1);
-              return newRows;
-            }),
-          ),
-      ),
-    );
     try {
-      await task();
+      await pipe(
+        HttpService.delete(`${url}${pk}/`),
+        fold(
+          err => {
+            throw err;
+          },
+          () =>
+            of(
+              setRows(oldRows => {
+                const newRows = [...oldRows];
+                const index = newRows.indexOf(oldData);
+                newRows.splice(index, 1);
+                return newRows;
+              }),
+            ),
+        ),
+        run,
+      );
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);

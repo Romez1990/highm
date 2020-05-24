@@ -22,7 +22,7 @@ import {
   WrongCredentialsError,
   EmailNotVerifiedError,
 } from '../../AuthenticationService';
-import setTimeout from '../../Utils/setTimeout';
+import { run } from '../../Utils/fp-ts/task';
 
 interface Props {
   redirectUrl: string;
@@ -69,7 +69,7 @@ function LoginForm({ redirectUrl }: Props): JSX.Element {
     values: Values,
     { setErrors }: FormikHelpers<Values>,
   ): Promise<void> {
-    const task = pipe(
+    return pipe(
       profileStore.login(values),
       fold(
         err => {
@@ -91,8 +91,8 @@ function LoginForm({ redirectUrl }: Props): JSX.Element {
         },
         () => (): Promise<void> => redirectTo(redirectUrl),
       ),
+      run,
     );
-    return task();
   }
 
   const classes = useStyles();

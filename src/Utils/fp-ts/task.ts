@@ -2,6 +2,10 @@ import { pipe } from 'fp-ts/lib/pipeable';
 import { map } from 'fp-ts/lib/Array';
 import { Task } from 'fp-ts/lib/Task';
 
+function run<T>(task: Task<T>): Promise<T> {
+  return task();
+}
+
 function parallel<A>(tasks: [Task<A>]): Task<[A]>;
 function parallel<A, B>(tasks: [Task<A>, Task<B>]): Task<[A, B]>;
 function parallel<A, B, C>(tasks: [Task<A>, Task<B>, Task<C>]): Task<[A, B, C]>;
@@ -68,4 +72,4 @@ function parallel<T>(tasks: Task<T>[]): Task<T[]> {
     );
 }
 
-export { parallel };
+export { run, parallel };

@@ -4,6 +4,7 @@ import { fold } from 'fp-ts/lib/TaskEither';
 import { useRouter } from 'next/router';
 import { Button } from '@material-ui/core';
 import AuthenticationService from '../../AuthenticationService';
+import { run } from '../../Utils/fp-ts/task';
 
 interface Props {
   verificationKey: string;
@@ -14,7 +15,7 @@ function EmailVerificationForm({ verificationKey }: Props): JSX.Element {
 
   function submit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
-    const task = pipe(
+    return pipe(
       AuthenticationService.verifyEmail(verificationKey),
       fold(
         err => {
@@ -24,8 +25,8 @@ function EmailVerificationForm({ verificationKey }: Props): JSX.Element {
           await router.push('/login');
         },
       ),
+      run,
     );
-    return task();
   }
 
   return (

@@ -17,6 +17,7 @@ import {
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import HttpService from '../HttpService';
 import TextPreprocessor from '../TextPreprocessor';
+import { run } from '../Utils/fp-ts/task';
 import { LessonPageData, Values } from './LessonPageData';
 import { TLessonCheckResults, LessonBase } from './Lesson';
 
@@ -56,7 +57,7 @@ function LessonForm({
   const router = useRouter();
 
   async function submit(values: Values): Promise<void> {
-    const task = pipe(
+    return pipe(
       HttpService.post(`/lesson/${number}/check/`, TLessonCheckResults, values),
       fold(
         err => {
@@ -66,8 +67,8 @@ function LessonForm({
           await router.replace(`${router.pathname}/results`);
         },
       ),
+      run,
     );
-    await task();
   }
 
   const classes = useStyles();
