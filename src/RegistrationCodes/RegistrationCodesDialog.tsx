@@ -23,7 +23,7 @@ interface Props {
   users(): UnregisteredUser[];
 }
 
-const useStyles = makeStyles(({ spacing, palette: { grey } }: Theme) =>
+const useStyles = makeStyles(({ spacing, palette: { type, grey } }: Theme) =>
   createStyles({
     title: {
       display: 'flex',
@@ -34,7 +34,7 @@ const useStyles = makeStyles(({ spacing, palette: { grey } }: Theme) =>
     titleButton: {
       margin: -spacing(1),
       marginLeft: 0,
-      color: grey[500],
+      color: type === 'dark' ? grey[400] : grey[600],
     },
   }),
 );
