@@ -5,6 +5,7 @@ import {
   Button,
   Menu,
   MenuItem,
+  Tooltip,
 } from '@material-ui/core';
 import { AccountCircle as AccountCircleIcon } from '@material-ui/icons';
 import Link from '../Link';
@@ -57,17 +58,19 @@ function ProfileMenu({ profile }: Props): JSX.Element {
 
   return (
     <Fragment>
-      <Button
-        aria-label="account of current user"
-        aria-controls="menu-appbar"
-        aria-haspopup
-        color="inherit"
-        endIcon={<AccountCircleIcon />}
-        className={classes.menuButton}
-        onClick={handleMenu}
-      >
-        {profile.firstName} {profile.lastName}
-      </Button>
+      <Tooltip title="Profile">
+        <Button
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup
+          color="inherit"
+          endIcon={<AccountCircleIcon />}
+          className={classes.menuButton}
+          onClick={handleMenu}
+        >
+          {profile.firstName} {profile.lastName}
+        </Button>
+      </Tooltip>
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}
