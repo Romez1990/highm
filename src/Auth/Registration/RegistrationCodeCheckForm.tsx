@@ -26,6 +26,7 @@ import {
 import { useRegistrationStore } from '../../Store/Registration';
 import { getRegistrationURL } from '../../User';
 import { foldErrors } from '../../Error';
+import { run } from '../../Utils/fp-ts/task';
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
@@ -69,7 +70,7 @@ function RegistrationCodeCheckForm(): JSX.Element {
     values: Values,
     { setErrors }: FormikHelpers<Values>,
   ): Promise<void> {
-    const task = pipe(
+    return pipe(
       registrationStore.registrationCodeCheck(values),
       chain(() =>
         rightTask(
@@ -107,8 +108,8 @@ function RegistrationCodeCheckForm(): JSX.Element {
         () => of(undefined),
         () => of(undefined),
       ),
+      run,
     );
-    return task();
   }
 
   const classes = useStyles();
