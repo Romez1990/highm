@@ -24,6 +24,7 @@ import {
 } from '../../AuthenticationService';
 import { foldErrors } from '../../Error';
 import { redirectTo } from '../../Redirect';
+import { run } from '../../Utils/fp-ts/task';
 
 interface Props {
   redirectUrl: string;
@@ -85,7 +86,7 @@ function RegistrationForm({ redirectUrl }: Props): JSX.Element {
     values: Values,
     { setErrors }: FormikHelpers<Values>,
   ): Promise<void> {
-    const task = pipe(
+    return pipe(
       registrationStore.register(values),
       fold(
         errs => {
@@ -114,8 +115,8 @@ function RegistrationForm({ redirectUrl }: Props): JSX.Element {
         },
         () => (): Promise<void> => redirectTo(redirectUrl),
       ),
+      run,
     );
-    return task();
   }
 
   const classes = useStyles();
