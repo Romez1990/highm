@@ -24,7 +24,7 @@ import {
 } from '../../AuthenticationService';
 import { foldErrors } from '../../Error';
 import { redirectTo } from '../../Redirect';
-import { run } from '../../Utils/fp-ts/task';
+import { runWithErrorThrowing } from '../../Utils/fp-ts/task';
 
 interface Props {
   redirectUrl: string;
@@ -115,7 +115,7 @@ function RegistrationForm({ redirectUrl }: Props): JSX.Element {
         },
         () => (): Promise<void> => redirectTo(redirectUrl),
       ),
-      run,
+      runWithErrorThrowing,
     );
   }
 

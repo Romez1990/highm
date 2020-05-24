@@ -6,6 +6,17 @@ function run<T>(task: Task<T>): Promise<T> {
   return task();
 }
 
+async function runWithErrorThrowing<T>(task: Task<T>): Promise<T> {
+  try {
+    return await run(task);
+  } catch (err) {
+    setTimeout(() => {
+      throw err;
+    });
+    throw err;
+  }
+}
+
 function parallel<A>(tasks: [Task<A>]): Task<[A]>;
 function parallel<A, B>(tasks: [Task<A>, Task<B>]): Task<[A, B]>;
 function parallel<A, B, C>(tasks: [Task<A>, Task<B>, Task<C>]): Task<[A, B, C]>;
@@ -72,4 +83,4 @@ function parallel<T>(tasks: Task<T>[]): Task<T[]> {
     );
 }
 
-export { run, parallel };
+export { run, runWithErrorThrowing, parallel };

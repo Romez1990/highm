@@ -26,7 +26,7 @@ import {
 import { useRegistrationStore } from '../../Store/Registration';
 import { getRegistrationURL } from '../../User';
 import { foldErrors } from '../../Error';
-import { run } from '../../Utils/fp-ts/task';
+import { runWithErrorThrowing } from '../../Utils/fp-ts/task';
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
@@ -108,7 +108,7 @@ function RegistrationCodeCheckForm(): JSX.Element {
         () => of(undefined),
         () => of(undefined),
       ),
-      run,
+      runWithErrorThrowing,
     );
   }
 
