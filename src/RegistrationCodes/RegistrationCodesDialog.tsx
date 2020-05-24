@@ -8,6 +8,7 @@ import {
   DialogContent,
   Typography,
   IconButton,
+  Tooltip,
 } from '@material-ui/core';
 import { Print as PrintIcon } from '@material-ui/icons';
 import { useReactToPrint } from 'react-to-print';
@@ -57,9 +58,11 @@ function RegistrationCodesDialog({ open, close, users }: Props): JSX.Element {
           <Typography className={classes.titleText} variant="h6">
             Registration codes
           </Typography>
-          <IconButton className={classes.titleButton} onClick={print}>
-            <PrintIcon />
-          </IconButton>
+          <Tooltip title="Print registration codes">
+            <IconButton className={classes.titleButton} onClick={print}>
+              <PrintIcon />
+            </IconButton>
+          </Tooltip>
         </DialogTitle>
         <DialogContent>
           <RegistrationCodesTable
