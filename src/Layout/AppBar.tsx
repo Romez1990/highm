@@ -10,6 +10,7 @@ import {
   Typography,
   Button,
   IconButton,
+  Tooltip,
 } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
 import ProfileMenu from './ProfileMenu';
@@ -19,6 +20,8 @@ import { useProfileStore } from '../Store';
 import { resolveLoginPath } from '../Redirect';
 
 interface Props {
+  drawerOpen: boolean;
+
   toggleDrawerOpen(): void;
 }
 
@@ -35,7 +38,7 @@ const useStyles = makeStyles(({ spacing, zIndex }: Theme) =>
   }),
 );
 
-function AppBar({ toggleDrawerOpen }: Props): JSX.Element {
+function AppBar({ drawerOpen, toggleDrawerOpen }: Props): JSX.Element {
   const { profile } = useProfileStore();
 
   const router = useRouter();
@@ -47,14 +50,16 @@ function AppBar({ toggleDrawerOpen }: Props): JSX.Element {
   return (
     <MuiAppBar position="fixed" className={classes.appBar}>
       <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          onClick={toggleDrawerOpen}
-          aria-label="menu"
-        >
-          <MenuIcon />
-        </IconButton>
+        <Tooltip title={drawerOpen ? 'Hide drawer' : 'Show drawer'}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            onClick={toggleDrawerOpen}
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+        </Tooltip>
         <Typography component="h1" variant="h6" className={classes.title}>
           HighM
         </Typography>

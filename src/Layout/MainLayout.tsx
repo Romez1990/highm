@@ -50,7 +50,7 @@ function MainLayout({ title, children }: LayoutProps): JSX.Element {
   return (
     <BaseLayout title={title}>
       <div className={classes.root}>
-        <AppBar toggleDrawerOpen={toggleDrawerOpen} />
+        <AppBar drawerOpen={drawerOpen} toggleDrawerOpen={toggleDrawerOpen} />
         <Drawer width={drawerWidth} open={drawerOpen} />
         <div className={classes.toolbar} />
         <main
