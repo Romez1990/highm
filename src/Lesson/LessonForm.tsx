@@ -17,7 +17,7 @@ import {
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import HttpService from '../HttpService';
 import TextPreprocessor from '../TextPreprocessor';
-import { run } from '../Utils/fp-ts/task';
+import { runWithErrorThrowing } from '../Utils/fp-ts/task';
 import { LessonPageData, Values } from './LessonPageData';
 import { TLessonCheckResults, LessonBase } from './Lesson';
 
@@ -67,7 +67,7 @@ function LessonForm({
           await router.replace(`${router.pathname}/results`);
         },
       ),
-      run,
+      runWithErrorThrowing,
     );
   }
 
