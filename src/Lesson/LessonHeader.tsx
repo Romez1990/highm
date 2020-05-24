@@ -43,11 +43,17 @@ function LessonHeader({ lesson, number }: Props): JSX.Element {
         Lesson goals:
       </Typography>
       <ul>
-        {lesson.goals.map(goal => (
-          <li key={goal}>
-            <Typography variant="body1">{goal}</Typography>
-          </li>
-        ))}
+        {lesson.goals.map((goal, index) => {
+          const ending = index !== lesson.goals.length - 1 ? ';' : '.';
+          return (
+            <li key={goal}>
+              <Typography variant="body1">
+                {goal}
+                {ending}
+              </Typography>
+            </li>
+          );
+        })}
       </ul>
     </Fragment>
   );
