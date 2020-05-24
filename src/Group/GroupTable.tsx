@@ -5,7 +5,7 @@ import {
   Assignment as AssignmentIcon,
 } from '@material-ui/icons';
 import Table, { useEditable } from '../Table';
-import RegistrationCodesDialog from './RegistrationCodesDialog';
+import { RegistrationCodesDialog } from '../RegistrationCodes';
 import { userCompare } from '../User';
 import {
   TStudent,
