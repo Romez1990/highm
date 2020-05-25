@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
-import { Delete as DeleteIcon } from '@material-ui/icons';
+import {
+  Delete as DeleteIcon,
+  Assignment as AssignmentIcon,
+} from '@material-ui/icons';
 import Table, { useEditable } from '../Table';
-import { TTeacher, Teacher, UnregisteredTeacherNew } from './Teacher';
+import {
+  TTeacher,
+  Teacher,
+  UnregisteredTeacher,
+  UnregisteredTeacherNew,
+} from './Teacher';
+import { RegistrationCodesDialog } from '../RegistrationCodes';
+import { userCompare } from '../User';
 
 interface Props {
   teachers: Teacher[];
@@ -19,6 +29,21 @@ function TeachersTable({ teachers }: Props): JSX.Element {
     getLookupField: (teacher): string =>
       teacher.registered ? teacher.id.toString() : teacher.registrationCode,
   });
+
+  const [registrationCodesOpen, setRegistrationCodesOpen] = useState(false);
+
+  function openRegistrationCodes(): void {
+    setRegistrationCodesOpen(true);
+  }
+
+  function closeRegistrationCodes(): void {
+    setRegistrationCodesOpen(false);
+  }
+
+  const unregisteredTeachers = (): UnregisteredTeacher[] =>
+    rows
+      .filter(teacher => !teacher.registered)
+      .sort(userCompare) as UnregisteredTeacher[];
 
   return (
     <Container maxWidth="md">
@@ -51,7 +76,18 @@ function TeachersTable({ teachers }: Props): JSX.Element {
             position: 'toolbarOnSelect',
             onClick: deleteRows,
           },
+          {
+            icon: (): JSX.Element => <AssignmentIcon />,
+            tooltip: 'Registration codes',
+            position: 'toolbar',
+            onClick: openRegistrationCodes,
+          },
         ]}
+      />
+      <RegistrationCodesDialog
+        open={registrationCodesOpen}
+        close={closeRegistrationCodes}
+        users={unregisteredTeachers}
       />
     </Container>
   );
