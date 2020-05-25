@@ -83,7 +83,7 @@ function GroupsTable({ groups }: Props): JSX.Element {
         actions={[
           {
             icon: (): JSX.Element => <DeleteIcon />,
-            tooltip: 'Delete groups',
+            tooltip: 'Delete',
             position: 'toolbarOnSelect',
             onClick: deleteRows,
           },
