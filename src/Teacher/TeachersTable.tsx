@@ -47,7 +47,7 @@ function TeachersTable({ teachers }: Props): JSX.Element {
         actions={[
           {
             icon: (): JSX.Element => <DeleteIcon />,
-            tooltip: 'Delete teachers',
+            tooltip: 'Delete',
             position: 'toolbarOnSelect',
             onClick: deleteRows,
           },
