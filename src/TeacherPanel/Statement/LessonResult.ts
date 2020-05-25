@@ -1,5 +1,5 @@
-import { intersection, type, number, TypeOf } from 'io-ts';
-import { TLessonResultBase } from '../../Lesson';
+import { intersection, type, number, TypeOf, array } from 'io-ts';
+import { TLessonResultBase, TTaskResult } from '../../Lesson';
 
 export const TLessonResult = intersection([
   TLessonResultBase,
@@ -10,6 +10,11 @@ export const TLessonResult = intersection([
   }),
 ]);
 export declare type LessonResult = TypeOf<typeof TLessonResult>;
+
+export const TLessonResultAnswers = type({
+  taskResults: array(TTaskResult),
+});
+export declare type LessonResultAnswers = TypeOf<typeof TLessonResultAnswers>;
 
 export declare type TableLessonResult = Pick<LessonResult, 'n' | 'grade'> & {
   resultId: number;
