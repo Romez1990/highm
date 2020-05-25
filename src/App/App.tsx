@@ -12,6 +12,7 @@ import store, { Store } from '../Store';
 import AuthenticationService, { Permission } from '../AuthenticationService';
 import { RedirectionError, redirectToLogin } from '../Redirect';
 import { Page404 } from '../ErrorPage';
+import { run } from '../Utils/fp-ts/task';
 import { Profile } from '../Profile';
 
 interface InitialProps {
@@ -53,7 +54,7 @@ App.getInitialProps = async ({
 
 async function initStore(req: IncomingMessage | undefined): Promise<void> {
   if (!process.browser) {
-    await store.profileStore.authenticate(req)();
+    await run(store.profileStore.authenticate(req));
     store.profileStore.getDarkTheme(req);
   }
 }
