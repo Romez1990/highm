@@ -84,7 +84,7 @@ function GroupTable({ group }: Props): JSX.Element {
         actions={[
           {
             icon: (): JSX.Element => <DeleteIcon />,
-            tooltip: 'Delete students',
+            tooltip: 'Delete',
             position: 'toolbarOnSelect',
             onClick: deleteRows,
           },
