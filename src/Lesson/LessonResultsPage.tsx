@@ -43,7 +43,7 @@ function LessonResultsPage({ number, lessonResults }: Props): JSX.Element {
         {lessonResults.taskResults.map(taskResult => {
           const correct = taskResult.correct ? 'Correct' : 'Wrong';
           return (
-            <Typography>
+            <Typography key={taskResult.taskNumber}>
               Task {taskResult.taskNumber}: {correct}
             </Typography>
           );
