@@ -243,33 +243,36 @@ function MatrixInputs({
       {matrixCells.map((row, rowIndex) => (
         // eslint-disable-next-line react/no-array-index-key
         <div key={rowIndex}>
-          {row.map((number, columnIndex) => (
-            <NumberField
-              // eslint-disable-next-line react/no-array-index-key
-              key={columnIndex}
-              className={clsx(classes.input, {
-                [classes.addInput]:
-                  columnIndex === columnsCount || rowIndex === rowsCount,
-              })}
-              variant="outlined"
-              size="small"
-              inputProps={{
-                style: { textAlign: 'center' },
-              }}
-              error={
-                touched &&
-                number === '' &&
-                columnIndex !== columnsCount &&
-                rowIndex !== rowsCount
-              }
-              onFocus={focus}
-              onBlur={blur}
-              value={number}
-              onChange={(e: ChangeEvent<HTMLInputElement>): void =>
-                change(e, rowIndex, columnIndex)
-              }
-            />
-          ))}
+          {row.map((number, columnIndex) => {
+            const edgeElement =
+              columnIndex === columnsCount || rowIndex === rowsCount;
+            const elementError =
+              touched &&
+              number === '' &&
+              columnIndex !== columnsCount &&
+              rowIndex !== rowsCount;
+            return (
+              <NumberField
+                // eslint-disable-next-line react/no-array-index-key
+                key={columnIndex}
+                className={clsx(classes.input, {
+                  [classes.addInput]: edgeElement,
+                })}
+                variant="outlined"
+                size="small"
+                inputProps={{
+                  style: { textAlign: 'center' },
+                }}
+                error={elementError}
+                onFocus={focus}
+                onBlur={blur}
+                value={number}
+                onChange={(e: ChangeEvent<HTMLInputElement>): void =>
+                  change(e, rowIndex, columnIndex)
+                }
+              />
+            );
+          })}
         </div>
       ))}
     </Fragment>
