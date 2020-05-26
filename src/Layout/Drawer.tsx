@@ -14,6 +14,7 @@ import {
   Home as HomeIcon,
   Info as InfoIcon,
   Description as DescriptionIcon,
+  Assignment as AssignmentIcon,
   Group as GroupIcon,
   HowToReg as HowToRegIcon,
 } from '@material-ui/icons';
@@ -77,6 +78,15 @@ function Drawer({ width, open }: Props): JSX.Element {
       permission: 'IsStudent',
       isActive({ pathname }): boolean {
         return pathname.startsWith('/lesson');
+      },
+    },
+    {
+      href: '/teacher-panel/groups',
+      text: 'Teacher panel',
+      icon: <AssignmentIcon />,
+      permission: 'IsTeacher',
+      isActive({ pathname }): boolean {
+        return pathname.startsWith('/teacher-panel/group');
       },
     },
     {
