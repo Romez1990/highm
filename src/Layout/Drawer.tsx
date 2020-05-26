@@ -75,7 +75,7 @@ function Drawer({ width, open }: Props): JSX.Element {
       icon: <DescriptionIcon />,
       permission: 'IsStudent',
       isActive({ pathname }): boolean {
-        return pathname === '/lessons' || pathname.startsWith('/lesson/');
+        return pathname.startsWith('/lesson');
       },
     },
     {
@@ -84,7 +84,7 @@ function Drawer({ width, open }: Props): JSX.Element {
       icon: <GroupIcon />,
       permission: 'IsTeacher',
       isActive({ pathname }): boolean {
-        return pathname === '/groups' || pathname.startsWith('/group/');
+        return pathname.startsWith('/group');
       },
     },
     {
