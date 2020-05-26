@@ -1,11 +1,16 @@
+import { intersection, type, number, TypeOf } from 'io-ts';
 import * as Y from 'yup';
+import { matrix } from '../../../../../Utils/io-ts';
 import { matrix as Ymatrix } from '../../../../../Utils/validationSchema';
-import { Matrix } from '../../../../../Utils/math';
-import { AnswerBase } from '../../../../Answer';
+import { TAnswerBase } from '../../../../Answer';
 
-export interface Answer4Type extends AnswerBase {
-  result: Matrix<number>;
-}
+export const TAnswer4Type = intersection([
+  TAnswerBase,
+  type({
+    result: matrix(number),
+  }),
+]);
+export declare type Answer4Type = TypeOf<typeof TAnswer4Type>;
 
 const validationSchema4 = Y.object().shape({
   result: Ymatrix(Y.number().integer().required()),

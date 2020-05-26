@@ -1,12 +1,17 @@
+import { intersection, type, string, number, TypeOf } from 'io-ts';
 import * as Y from 'yup';
+import { matrix } from '../../../../../Utils/io-ts';
 import { matrix as Ymatrix } from '../../../../../Utils/validationSchema';
-import { Matrix } from '../../../../../Utils/math';
-import { AnswerBase } from '../../../../Answer';
+import { TAnswerBase } from '../../../../Answer';
 
-export interface Answer1Type extends AnswerBase {
-  whichOfProducts: string;
-  product: Matrix<number>;
-}
+export const TAnswer1Type = intersection([
+  TAnswerBase,
+  type({
+    whichOfProducts: string,
+    product: matrix(number),
+  }),
+]);
+export declare type Answer1Type = TypeOf<typeof TAnswer1Type>;
 
 const validationSchema1 = Y.object().shape({
   whichOfProducts: Y.string().oneOf(['AB', 'BA']).required(),

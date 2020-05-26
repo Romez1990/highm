@@ -1,11 +1,16 @@
+import { intersection, type, number, TypeOf } from 'io-ts';
 import * as Y from 'yup';
-import { AnswerBase } from '../../../../Answer';
+import { TAnswerBase } from '../../../../Answer';
 
-export interface Answer1Type extends AnswerBase {
-  x: number | '';
-  y: number | '';
-  z: number | '';
-}
+export const TAnswer1Type = intersection([
+  TAnswerBase,
+  type({
+    x: number,
+    y: number,
+    z: number,
+  }),
+]);
+export declare type Answer1Type = TypeOf<typeof TAnswer1Type>;
 
 const validationSchema1 = Y.object().shape({
   x: Y.number().integer().required(),
@@ -14,9 +19,9 @@ const validationSchema1 = Y.object().shape({
 });
 
 const initialValues1: Answer1Type = {
-  x: '',
-  y: '',
-  z: '',
+  x: ('' as unknown) as number,
+  y: ('' as unknown) as number,
+  z: ('' as unknown) as number,
 };
 
 export { validationSchema1, initialValues1 };
