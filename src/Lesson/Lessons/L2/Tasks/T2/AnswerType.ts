@@ -1,4 +1,4 @@
-import { object, number } from 'yup';
+import * as Y from 'yup';
 import { AnswerBase } from '../../../../Answer';
 
 export interface Answer2Type extends AnswerBase {
@@ -7,10 +7,10 @@ export interface Answer2Type extends AnswerBase {
   z: number | '';
 }
 
-const validationSchema2 = object().shape({
-  x: number().integer().required(),
-  y: number().integer().required(),
-  z: number().integer().required(),
+const validationSchema2 = Y.object().shape({
+  x: Y.number().integer().required(),
+  y: Y.number().integer().required(),
+  z: Y.number().integer().required(),
 });
 
 const initialValues2: Answer2Type = {

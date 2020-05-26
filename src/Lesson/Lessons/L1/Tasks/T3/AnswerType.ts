@@ -1,12 +1,12 @@
-import { object, number } from 'yup';
+import * as Y from 'yup';
 import { AnswerBase } from '../../../../Answer';
 
 export interface Answer3Type extends AnswerBase {
   determinant: number | '';
 }
 
-const validationSchema3 = object().shape({
-  determinant: number().integer().required(),
+const validationSchema3 = Y.object().shape({
+  determinant: Y.number().integer().required(),
 });
 
 const initialValues3: Answer3Type = {

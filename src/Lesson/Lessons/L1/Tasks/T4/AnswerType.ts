@@ -1,5 +1,5 @@
-import { object, number } from 'yup';
-import { matrix } from '../../../../../Utils/validationSchema';
+import * as Y from 'yup';
+import { matrix as Ymatrix } from '../../../../../Utils/validationSchema';
 import { Matrix } from '../../../../../Utils/math';
 import { AnswerBase } from '../../../../Answer';
 
@@ -7,8 +7,8 @@ export interface Answer4Type extends AnswerBase {
   result: Matrix<number>;
 }
 
-const validationSchema4 = object().shape({
-  result: matrix(number().integer().required()),
+const validationSchema4 = Y.object().shape({
+  result: Ymatrix(Y.number().integer().required()),
 });
 
 const initialValues4: Answer4Type = {

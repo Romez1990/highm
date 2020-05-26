@@ -1,5 +1,5 @@
-import { object, number } from 'yup';
-import { matrix } from '../../../../../Utils/validationSchema';
+import * as Y from 'yup';
+import { matrix as Ymatrix } from '../../../../../Utils/validationSchema';
 import { Matrix } from '../../../../../Utils/math';
 import { AnswerBase } from '../../../../Answer';
 
@@ -8,9 +8,9 @@ export interface Answer2Type extends AnswerBase {
   trace: number | '';
 }
 
-const validationSchema2 = object().shape({
-  product: matrix(number().integer().required()),
-  trace: number().integer().required(),
+const validationSchema2 = Y.object().shape({
+  product: Ymatrix(Y.number().integer().required()),
+  trace: Y.number().integer().required(),
 });
 
 const initialValues2: Answer2Type = {

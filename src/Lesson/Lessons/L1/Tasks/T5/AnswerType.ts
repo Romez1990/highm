@@ -1,4 +1,4 @@
-import { object, number } from 'yup';
+import * as Y from 'yup';
 import { AnswerBase } from '../../../../Answer';
 
 export interface Answer5Type extends AnswerBase {
@@ -6,9 +6,9 @@ export interface Answer5Type extends AnswerBase {
   x2: number | '';
 }
 
-const validationSchema5 = object().shape({
-  x1: number().integer().required(),
-  x2: number().integer().required(),
+const validationSchema5 = Y.object().shape({
+  x1: Y.number().integer().required(),
+  x2: Y.number().integer().required(),
 });
 
 const initialValues5: Answer5Type = {
