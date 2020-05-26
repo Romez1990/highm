@@ -38,7 +38,7 @@ export declare type LessonCheckResults = TypeOf<typeof TLessonCheckResults>;
 
 export const TTaskResult = type({
   taskNumber: number,
-  right: boolean,
+  correct: boolean,
 });
 export declare type TaskResult = TypeOf<typeof TTaskResult>;
 
