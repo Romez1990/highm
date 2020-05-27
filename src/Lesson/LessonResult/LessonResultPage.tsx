@@ -29,7 +29,7 @@ function LessonResultPage({ number, lessonResult }: Props): JSX.Element {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="xs">
       <Card className={classes.card}>
         <Typography
           className={classes.title}
@@ -40,11 +40,16 @@ function LessonResultPage({ number, lessonResult }: Props): JSX.Element {
           Result of lesson {number}
         </Typography>
         <Typography>Grade: {lessonResult.grade}</Typography>
-        {lessonResult.taskResults.map(taskResult => {
-          const correct = taskResult.correct ? 'Correct' : 'Wrong';
+        <Typography>
+          {lessonResult.points}/{lessonResult.maxPoints} points
+        </Typography>
+        {lessonResult.taskResults.map((taskResult, index) => {
+          const taskNumber = index + 1;
+          const points = `${taskResult.points}/${taskResult.maxPoints}`;
           return (
-            <Typography key={taskResult.taskNumber}>
-              Task {taskResult.taskNumber}: {correct}
+            // eslint-disable-next-line react/no-array-index-key
+            <Typography key={index}>
+              Task {taskNumber}: {points} points
             </Typography>
           );
         })}
