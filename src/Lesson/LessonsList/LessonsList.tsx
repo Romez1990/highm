@@ -25,7 +25,7 @@ function LessonsList({ lessons }: Props): JSX.Element {
           const lessonNumber = index + 1;
           const link = !lesson.passed
             ? `/lesson/${lessonNumber}`
-            : `/lesson/${lessonNumber}/results`;
+            : `/lesson/${lessonNumber}/result`;
           const passedText = lesson.passed ? ' [passed]' : '';
           return (
             <ListItem
