@@ -15,11 +15,11 @@ import {
   FormHelperText,
 } from '@material-ui/core';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
-import HttpService from '../HttpService';
-import TextPreprocessor from '../TextPreprocessor';
-import { runWithErrorThrowing } from '../Utils/fp-ts/task';
+import HttpService from '../../HttpService';
+import TextPreprocessor from '../../TextPreprocessor';
+import { runWithErrorThrowing } from '../../Utils/fp-ts/task';
 import { LessonPageData, Values } from './LessonPageData';
-import { TLessonCheckResults, LessonBase } from './Lesson';
+import { TLessonCheckResults, LessonBase } from '../Lesson';
 
 interface Props {
   number: number;

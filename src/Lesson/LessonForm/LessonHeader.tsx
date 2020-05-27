@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { makeStyles, createStyles, Theme, Typography } from '@material-ui/core';
-import { LessonBase } from './Lesson';
+import { LessonBase } from '../Lesson';
 
 interface Props {
   number: number;
