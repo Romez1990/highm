@@ -8,7 +8,7 @@ import { run } from '../Utils/fp-ts/task';
 import ActionError from './ActionError';
 
 interface Params<RowData extends object> {
-  initData: RowData[];
+  initData: RowData[] | (() => RowData[]);
   type: Type<RowData>;
   url: string;
   getLookupField(data: RowData): string;
