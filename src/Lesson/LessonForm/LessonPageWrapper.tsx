@@ -73,7 +73,7 @@ function fetchLesson(
         const error = LessonError.identify(err);
         if (error instanceof LessonPassedError) {
           return (): Promise<void> =>
-            redirectTo(`/lesson/${number}/results`, res);
+            redirectTo(`/lesson/${number}/result`, res);
         }
         throw error;
       },

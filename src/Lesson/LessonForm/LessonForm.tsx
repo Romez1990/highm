@@ -64,7 +64,7 @@ function LessonForm({
           throw err;
         },
         () => async (): Promise<void> => {
-          await router.replace(`${router.pathname}/results`);
+          await router.replace(`${router.pathname}/result`);
         },
       ),
       runWithErrorThrowing,
