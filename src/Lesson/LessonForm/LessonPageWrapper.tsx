@@ -4,15 +4,15 @@ import { NextPageContext } from 'next';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { Task, of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
-import HttpService, { HttpError } from '../HttpService';
-import { Permission } from '../AuthenticationService';
-import { LessonBase } from './Lesson';
-import { MainLayout } from '../Layout';
+import HttpService, { HttpError } from '../../HttpService';
+import { Permission } from '../../AuthenticationService';
+import { LessonBase } from '../Lesson';
+import { MainLayout } from '../../Layout';
 import LessonPage from './LessonPage';
 import { TLessonTypeC, LessonPageData } from './LessonPageData';
-import { LessonError } from './Errors';
-import LessonPassedError from './Errors/LessonErrors/LessonPassedError';
-import { redirectTo } from '../Redirect';
+import { LessonError } from '../Errors';
+import LessonPassedError from '../Errors/LessonErrors/LessonPassedError';
+import { redirectTo } from '../../Redirect';
 
 export interface LessonPageProps {
   number: number;

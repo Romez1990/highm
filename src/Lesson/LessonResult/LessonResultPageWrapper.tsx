@@ -5,20 +5,20 @@ import { NextPageContext } from 'next';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { Task, of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
-import { MainLayout } from '../Layout';
-import LessonResultsPage from './LessonResultsPage';
-import HttpService from '../HttpService';
-import { Permission } from '../AuthenticationService';
-import { TLessonResults, LessonResults } from './Lesson';
+import { MainLayout } from '../../Layout';
+import LessonResultPage from './LessonResultPage';
+import HttpService from '../../HttpService';
+import { Permission } from '../../AuthenticationService';
+import { TLessonResults, LessonResults } from '../Lesson';
 
 interface Props {
   number: number;
   lessonResults?: LessonResults;
 }
 
-LessonResultsPageWrapper.permission = 'IsStudent' as Permission;
+LessonResultPageWrapper.permission = 'IsStudent' as Permission;
 
-LessonResultsPageWrapper.getInitialProps = async ({
+LessonResultPageWrapper.getInitialProps = async ({
   req,
   res,
   query,
@@ -53,7 +53,7 @@ function fetchLessonResults(
   );
 }
 
-function LessonResultsPageWrapper({
+function LessonResultPageWrapper({
   number,
   lessonResults,
 }: Props): JSX.Element {
@@ -62,9 +62,9 @@ function LessonResultsPageWrapper({
 
   return (
     <MainLayout title={`Lesson ${number} results`}>
-      <LessonResultsPage number={number} lessonResults={lessonResults} />
+      <LessonResultPage number={number} lessonResults={lessonResults} />
     </MainLayout>
   );
 }
 
-export default LessonResultsPageWrapper;
+export default LessonResultPageWrapper;
