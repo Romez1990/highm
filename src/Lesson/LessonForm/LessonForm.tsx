@@ -19,7 +19,7 @@ import HttpService from '../../HttpService';
 import TextPreprocessor from '../../TextPreprocessor';
 import { runWithErrorThrowing } from '../../Utils/fp-ts/task';
 import { LessonPageData, Values } from './LessonPageData';
-import { TLessonCheckResults, LessonBase } from '../Lesson';
+import { TLessonResults, LessonBase } from '../Lesson';
 
 interface Props {
   number: number;
@@ -58,7 +58,7 @@ function LessonForm({
 
   async function submit(values: Values): Promise<void> {
     return pipe(
-      HttpService.post(`/lesson/${number}/check/`, TLessonCheckResults, values),
+      HttpService.post(`/lesson/${number}/check/`, TLessonResults, values),
       fold(
         err => {
           throw err;
