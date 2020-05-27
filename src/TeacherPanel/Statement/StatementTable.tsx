@@ -6,8 +6,9 @@ import { isNone } from 'fp-ts/lib/Option';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
-import { Column } from 'material-table';
+import { Column, DetailPanel } from 'material-table';
 import Table from '../../Table';
+import StatementDetailPanel from './StatementDetailPanel';
 import { Student } from '../../Student';
 import { run } from '../../Utils/fp-ts/task';
 import { LessonResult, TableLessonResult } from './LessonResult';
@@ -163,6 +164,22 @@ function StatementTable({
             tooltip: 'Delete',
             onClick: deleteResults,
           },
+        ]}
+        onRowClick={(event, rowData, togglePanel): void => {
+          if (typeof togglePanel === 'undefined') {
+            throw new Error('Toggle panel is undefined');
+          }
+          if (typeof rowData === 'undefined' || !rowData.passed) return;
+          togglePanel();
+        }}
+        detailPanel={[
+          (rowData): DetailPanel<RowData> => ({
+            disabled: !rowData.passed,
+            render: (): JSX.Element | null => {
+              if (!rowData.passed) return null;
+              return <StatementDetailPanel lessonResult={rowData} />;
+            },
+          }),
         ]}
       />
     </Container>
