@@ -31,19 +31,16 @@ export const TLessonBase = intersection([
 ]);
 export declare type LessonBase = TypeOf<typeof TLessonBase>;
 
-export const TLessonCheckResults = type({
-  results: record(string, boolean),
-});
-export declare type LessonCheckResults = TypeOf<typeof TLessonCheckResults>;
-
 export const TTaskResult = type({
-  taskNumber: number,
-  correct: boolean,
+  points: number,
+  maxPoints: number,
 });
 export declare type TaskResult = TypeOf<typeof TTaskResult>;
 
 export const TLessonResultsBase = type({
   grade: number,
+  points: number,
+  maxPoints: number,
 });
 
 export const TLessonResults = intersection([
