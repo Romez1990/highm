@@ -61,7 +61,7 @@ function LessonResultPageWrapper({
     throw new Error('Must be redirected to lesson');
 
   return (
-    <MainLayout title={`Lesson ${number} results`}>
+    <MainLayout title={`Lesson ${number} result`}>
       <LessonResultPage number={number} lessonResults={lessonResults} />
     </MainLayout>
   );
