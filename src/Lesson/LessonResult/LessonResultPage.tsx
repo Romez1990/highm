@@ -7,7 +7,7 @@ import {
   Card,
   Typography,
 } from '@material-ui/core';
-import { LessonResults } from './Lesson';
+import { LessonResults } from '../Lesson';
 
 interface Props {
   number: number;
@@ -25,7 +25,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
   }),
 );
 
-function LessonResultsPage({ number, lessonResults }: Props): JSX.Element {
+function LessonResultPage({ number, lessonResults }: Props): JSX.Element {
   const classes = useStyles();
 
   return (
@@ -53,4 +53,4 @@ function LessonResultsPage({ number, lessonResults }: Props): JSX.Element {
   );
 }
 
-export default LessonResultsPage;
+export default LessonResultPage;

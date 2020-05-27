@@ -7,8 +7,8 @@ import {
   ListItem,
   ListItemText,
 } from '@material-ui/core';
-import Link from '../Link';
-import { LessonBasic } from './Lesson';
+import Link from '../../Link';
+import { LessonBasic } from '../Lesson';
 
 interface Props {
   lessons: LessonBasic[];

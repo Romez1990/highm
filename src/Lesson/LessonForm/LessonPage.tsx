@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import { LessonBase } from './Lesson';
+import { LessonBase } from '../Lesson';
 import { LessonPageData } from './LessonPageData';
 import LessonHeader from './LessonHeader';
 import LessonForm from './LessonForm';

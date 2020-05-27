@@ -5,11 +5,11 @@ import { pipe } from 'fp-ts/lib/pipeable';
 import { Task, of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
 import { array } from 'io-ts';
-import { MainLayout } from '../Layout';
+import { MainLayout } from '../../Layout';
 import LessonsList from './LessonsList';
-import { Permission } from '../AuthenticationService';
-import HttpService from '../HttpService';
-import { TLessonBasic, LessonBasic } from './Lesson';
+import { Permission } from '../../AuthenticationService';
+import HttpService from '../../HttpService';
+import { TLessonBasic, LessonBasic } from '../Lesson';
 
 interface Props {
   lessons: LessonBasic[];

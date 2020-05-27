@@ -1,7 +1,7 @@
 import { type, intersection, Mixed } from 'io-ts';
 import { object } from 'yup';
 import { TLessonBase } from '../../Lesson';
-import { TLessonTypeC, LessonPageData } from '../../LessonPageData';
+import { TLessonTypeC, LessonPageData } from '../../LessonForm/LessonPageData';
 import Task1 from './Tasks/T1/Task';
 import Answer1 from './Tasks/T1/Answer';
 import { TTask1Type } from './Tasks/T1/TaskType';
