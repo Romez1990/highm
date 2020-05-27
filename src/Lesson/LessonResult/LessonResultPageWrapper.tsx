@@ -43,7 +43,7 @@ function fetchLessonResults(
   number: number,
 ): Task<LessonResults | undefined> {
   return pipe(
-    HttpService.get(`/lesson/${number}/results/`, TLessonResults, req),
+    HttpService.get(`/lesson/${number}/result/`, TLessonResults, req),
     fold(
       err => {
         throw err;
