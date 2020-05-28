@@ -9,6 +9,7 @@ import { MainLayout } from '../../Layout';
 import LessonResultPage from './LessonResultPage';
 import HttpService from '../../HttpService';
 import { Permission } from '../../AuthenticationService';
+import getLesson from '../getLesson';
 import { TLessonResult, LessonResult } from '../Lesson';
 
 interface Props {
@@ -23,19 +24,13 @@ LessonResultPageWrapper.getInitialProps = async ({
   res,
   query,
 }: NextPageContext): Promise<Props> => {
-  const number = getNumber(query);
+  const number = getLesson(query);
   const lessonResult = await fetchLessonResult(req, res, number)();
   return {
     number,
     lessonResult,
   };
 };
-
-function getNumber(query: ParsedUrlQuery): number {
-  const { number } = query;
-  if (typeof number !== 'string') throw new Error('Param must be string');
-  return parseInt(number, 10);
-}
 
 function fetchLessonResult(
   req: IncomingMessage | undefined,
