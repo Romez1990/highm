@@ -8,21 +8,25 @@ import { fold } from 'fp-ts/lib/TaskEither';
 import HttpService, { NotFoundError } from '../HttpService';
 import { TGroup, Group } from './Group';
 
-function fetchGroup(
-  { name }: ParsedUrlQuery,
-  req?: IncomingMessage,
-): TaskOption<Group> {
-  if (typeof name !== 'string') return of(none);
+function getGroup(query: ParsedUrlQuery): string {
+  const { group } = query;
+  if (typeof group !== 'string') {
+    throw new Error('Group must me string');
+  }
+  return group;
+}
+
+function fetchGroup(group: string, req?: IncomingMessage): TaskOption<Group> {
   return pipe(
-    HttpService.get(`/group/${encodeURIComponent(name)}/`, TGroup, req),
+    HttpService.get(`/group/${encodeURIComponent(group)}/`, TGroup, req),
     fold(
       err => {
         if (!(err instanceof NotFoundError)) throw err;
         return of(none);
       },
-      group => of(some(group)),
+      group_ => of(some(group_)),
     ),
   );
 }
 
-export default fetchGroup;
+export { getGroup, fetchGroup };

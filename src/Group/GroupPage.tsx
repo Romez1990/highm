@@ -5,7 +5,7 @@ import { ErrorPage } from '../ErrorPage';
 import { MainLayout } from '../Layout';
 import GroupTable from './GroupTable';
 import { Permission } from '../AuthenticationService';
-import fetchGroup from './fetchGroup';
+import { getGroup, fetchGroup } from './fetchGroup';
 import { Group } from './Group';
 
 interface Props {
@@ -18,8 +18,9 @@ GroupPage.getInitialProps = async ({
   req,
   query,
 }: NextPageContext): Promise<Props> => {
+  const group = getGroup(query);
   return {
-    group: await fetchGroup(query, req)(),
+    group: await fetchGroup(group, req)(),
   };
 };
 
