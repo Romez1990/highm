@@ -7,11 +7,11 @@ import {
   Card,
   Typography,
 } from '@material-ui/core';
-import { LessonResults } from '../Lesson';
+import { LessonResult } from '../Lesson';
 
 interface Props {
   number: number;
-  lessonResults: LessonResults;
+  lessonResult: LessonResult;
 }
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
@@ -25,7 +25,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
   }),
 );
 
-function LessonResultPage({ number, lessonResults }: Props): JSX.Element {
+function LessonResultPage({ number, lessonResult }: Props): JSX.Element {
   const classes = useStyles();
 
   return (
@@ -39,8 +39,8 @@ function LessonResultPage({ number, lessonResults }: Props): JSX.Element {
         >
           Result of lesson {number}
         </Typography>
-        <Typography>Grade: {lessonResults.grade}</Typography>
-        {lessonResults.taskResults.map(taskResult => {
+        <Typography>Grade: {lessonResult.grade}</Typography>
+        {lessonResult.taskResults.map(taskResult => {
           const correct = taskResult.correct ? 'Correct' : 'Wrong';
           return (
             <Typography key={taskResult.taskNumber}>

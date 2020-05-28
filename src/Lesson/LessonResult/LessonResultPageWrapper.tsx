@@ -9,11 +9,11 @@ import { MainLayout } from '../../Layout';
 import LessonResultPage from './LessonResultPage';
 import HttpService from '../../HttpService';
 import { Permission } from '../../AuthenticationService';
-import { TLessonResults, LessonResults } from '../Lesson';
+import { TLessonResult, LessonResult } from '../Lesson';
 
 interface Props {
   number: number;
-  lessonResults?: LessonResults;
+  lessonResult?: LessonResult;
 }
 
 LessonResultPageWrapper.permission = 'IsStudent' as Permission;
@@ -24,10 +24,10 @@ LessonResultPageWrapper.getInitialProps = async ({
   query,
 }: NextPageContext): Promise<Props> => {
   const number = getNumber(query);
-  const lessonResults = await fetchLessonResults(req, res, number)();
+  const lessonResult = await fetchLessonResult(req, res, number)();
   return {
     number,
-    lessonResults,
+    lessonResult,
   };
 };
 
@@ -37,13 +37,13 @@ function getNumber(query: ParsedUrlQuery): number {
   return parseInt(number, 10);
 }
 
-function fetchLessonResults(
+function fetchLessonResult(
   req: IncomingMessage | undefined,
   res: ServerResponse | undefined,
   number: number,
-): Task<LessonResults | undefined> {
+): Task<LessonResult | undefined> {
   return pipe(
-    HttpService.get(`/lesson/${number}/result/`, TLessonResults, req),
+    HttpService.get(`/lesson/${number}/result/`, TLessonResult, req),
     fold(
       err => {
         throw err;
@@ -53,16 +53,13 @@ function fetchLessonResults(
   );
 }
 
-function LessonResultPageWrapper({
-  number,
-  lessonResults,
-}: Props): JSX.Element {
-  if (typeof lessonResults === 'undefined')
+function LessonResultPageWrapper({ number, lessonResult }: Props): JSX.Element {
+  if (typeof lessonResult === 'undefined')
     throw new Error('Must be redirected to lesson');
 
   return (
     <MainLayout title={`Lesson ${number} result`}>
-      <LessonResultPage number={number} lessonResults={lessonResults} />
+      <LessonResultPage number={number} lessonResult={lessonResult} />
     </MainLayout>
   );
 }
