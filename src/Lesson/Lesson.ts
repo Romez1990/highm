@@ -37,16 +37,16 @@ export const TTaskResult = type({
 });
 export declare type TaskResult = TypeOf<typeof TTaskResult>;
 
-export const TLessonResultsBase = type({
+export const TLessonResultBase = type({
   grade: number,
   points: number,
   maxPoints: number,
 });
 
-export const TLessonResults = intersection([
-  TLessonResultsBase,
+export const TLessonResult = intersection([
+  TLessonResultBase,
   type({
     taskResults: array(TTaskResult),
   }),
 ]);
-export declare type LessonResults = TypeOf<typeof TLessonResults>;
+export declare type LessonResult = TypeOf<typeof TLessonResult>;
