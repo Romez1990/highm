@@ -134,6 +134,8 @@ function StatementTable({
       title: 'Name',
       field: 'studentName',
       defaultSort: 'asc',
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       width: '100%',
     },
     { title: 'Passed', field: 'passed', type: 'boolean' },
