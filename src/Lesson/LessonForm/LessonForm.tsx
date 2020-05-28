@@ -38,6 +38,8 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
       fontSize: '1.15rem',
     },
     task: {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       width: '100%',
     },
     submitButton: {

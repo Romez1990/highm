@@ -44,6 +44,8 @@ function LessonsTable({ title, group, lessons }: Props): JSX.Element {
         title={title}
         columns={[
           { title: '#', field: 'numberStr' },
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           { title: 'Title', field: 'title', width: '100%' },
         ]}
         data={rows}
