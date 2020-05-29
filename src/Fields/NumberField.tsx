@@ -1,9 +1,7 @@
 import React from 'react';
-import { TextFieldProps } from '@material-ui/core/TextField';
-import RegexTextField from './RegexTextField';
+import RegexTextField, { RegexTextFieldProps } from './RegexTextField';
 
-type NumberFieldProps = TextFieldProps;
-// type NumberFieldProps = Omit<TextFieldProps, 'regex'>;
+type NumberFieldProps = Omit<RegexTextFieldProps, 'regex'>;
 
 export const numberRegex = /^-?[0-9]*$/;
 
