@@ -3,7 +3,7 @@ import RegexTextField, { RegexTextFieldProps } from './RegexTextField';
 
 type NumberFieldProps = Omit<RegexTextFieldProps, 'regex'>;
 
-export const numberRegex = /^-?[0-9]*$/;
+export const numberRegex = /^-?\d*$/;
 
 function NumberField(props: NumberFieldProps): JSX.Element {
   return <RegexTextField regex={numberRegex} {...props} />;
