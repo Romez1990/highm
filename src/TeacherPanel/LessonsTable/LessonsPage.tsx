@@ -38,7 +38,7 @@ function fetchLessons(
 ): Task<Lesson[]> {
   return pipe(
     HttpService.get(
-      `teacher-panel/group/${group}/lesson/`,
+      `teacher-panel/group/${encodeURIComponent(group)}/lesson/`,
       array(TLesson),
       req,
     ),
