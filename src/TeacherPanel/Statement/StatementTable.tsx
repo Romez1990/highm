@@ -99,7 +99,9 @@ function StatementTable({
     if (!oldData.passed) return Promise.resolve();
     return pipe(
       HttpService.delete(
-        `/teacher-panel/group/${group}/lesson/${lesson}/result/${oldData.resultId}/`,
+        `/teacher-panel/group/${encodeURIComponent(
+          group,
+        )}/lesson/${lesson}/result/${oldData.resultId}/`,
       ),
       fold(
         err => {
