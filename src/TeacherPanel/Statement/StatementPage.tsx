@@ -60,7 +60,9 @@ function fetchLessonResult(
 ): Task<LessonResult[]> {
   return pipe(
     HttpService.get(
-      `/teacher-panel/group/${group}/lesson/${lesson}/result/`,
+      `/teacher-panel/group/${encodeURIComponent(
+        group,
+      )}/lesson/${lesson}/result/`,
       array(TLessonResult),
       req,
     ),
