@@ -188,7 +188,13 @@ function StatementTable({
             disabled: !rowData.passed,
             render: (): JSX.Element | null => {
               if (!rowData.passed) return null;
-              return <StatementDetailPanel lessonResult={rowData} />;
+              return (
+                <StatementDetailPanel
+                  group={group}
+                  lesson={lesson}
+                  lessonResult={rowData}
+                />
+              );
             },
           }),
         ]}
