@@ -140,9 +140,16 @@ function StatementTable({
       // @ts-ignore
       width: '100%',
     },
-    { title: 'Passed', field: 'passed', type: 'boolean' },
     { title: 'Grade', field: 'grade', type: 'numeric' },
   ];
+
+  if (rows.some(row => !row.passed)) {
+    columns.splice(1, 0, {
+      title: 'Passed',
+      field: 'passed',
+      type: 'boolean',
+    });
+  }
 
   if (rows.some(row => !row.registered)) {
     columns.splice(1, 0, {
