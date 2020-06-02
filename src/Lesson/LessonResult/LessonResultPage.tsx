@@ -5,9 +5,11 @@ import {
   Theme,
   Container,
   Card,
+  Button,
   Typography,
 } from '@material-ui/core';
 import { LessonResult } from '../Lesson';
+import Link from '../../Link';
 
 interface Props {
   number: number;
@@ -21,6 +23,13 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
     },
     card: {
       padding: spacing(2),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'stretch',
+    },
+    tryAgainButton: {
+      alignSelf: 'center',
+      marginTop: spacing(1),
     },
   }),
 );
@@ -53,6 +62,18 @@ function LessonResultPage({ number, lessonResult }: Props): JSX.Element {
             </Typography>
           );
         })}
+        {lessonResult.grade === 2 && (
+          <Button
+            className={classes.tryAgainButton}
+            variant="contained"
+            color="primary"
+            component={Link}
+            href={`/lesson/${number}`}
+            underline="none"
+          >
+            Try again
+          </Button>
+        )}
       </Card>
     </Container>
   );
