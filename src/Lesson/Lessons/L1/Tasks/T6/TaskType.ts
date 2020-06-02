@@ -1,11 +1,5 @@
-import { type, number, intersection, TypeOf } from 'io-ts';
-import { matrix } from '../../../../../Utils/io-ts';
-import { TTaskBase } from '../../../../Task';
+import { TypeOf } from 'io-ts';
+import { TTask3Type } from '../T3/TaskType';
 
-export const TTask6Type = intersection([
-  TTaskBase,
-  type({
-    matrixA: matrix(number),
-  }),
-]);
+export const TTask6Type = TTask3Type;
 export declare type Task6Type = TypeOf<typeof TTask6Type>;
