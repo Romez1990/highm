@@ -6,10 +6,12 @@ import { Task, of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
 import { MainLayout } from '../../Layout';
 import LessonResultPage from './LessonResultPage';
-import HttpService from '../../HttpService';
+import HttpService, { HttpError } from '../../HttpService';
 import { Permission } from '../../AuthenticationService';
 import getLesson from '../getLesson';
 import { TLessonResult, LessonResult } from '../Lesson';
+import { LessonResultError, LessonNotPassedError } from '../Errors';
+import { redirectTo } from '../../Redirect';
 
 interface Props {
   number: number;
@@ -40,7 +42,15 @@ function fetchLessonResult(
     HttpService.get(`/lesson/${number}/result/`, TLessonResult, req),
     fold(
       err => {
-        throw err;
+        if (!(err instanceof HttpError)) throw err;
+        const error = LessonResultError.identify(err);
+        if (error instanceof LessonNotPassedError) {
+          return ((): Promise<void> =>
+            redirectTo(`/lesson/${number}`, res)) as Task<
+            LessonResult | undefined
+          >;
+        }
+        throw error;
       },
       lesson => of(lesson),
     ),
