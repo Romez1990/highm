@@ -10,8 +10,7 @@ import { LessonBase } from '../Lesson';
 import { MainLayout } from '../../Layout';
 import LessonPage from './LessonPage';
 import { TLessonTypeC, LessonPageData } from './LessonPageData';
-import { LessonError } from '../Errors';
-import LessonPassedError from '../Errors/LessonErrors/LessonPassedError';
+import { LessonError, LessonPassedError } from '../Errors';
 import { redirectTo } from '../../Redirect';
 
 export interface LessonPageProps {
