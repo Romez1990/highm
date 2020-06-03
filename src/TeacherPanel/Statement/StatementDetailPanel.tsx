@@ -26,7 +26,7 @@ interface Props {
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
     root: {
-      padding: `${spacing(1)}px ${spacing(3)}px`,
+      padding: spacing(1, 3),
     },
   }),
 );
