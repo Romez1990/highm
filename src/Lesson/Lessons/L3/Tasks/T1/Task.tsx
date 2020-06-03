@@ -1,19 +1,19 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import Formula from '../../../../../Math/Formula';
 import { TaskProps } from '../../../../Task';
 import { Task1Type } from './TaskType';
 
-const useStyles = makeStyles(
+const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
-    root: {
+    task: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 12,
+      marginTop: spacing(1.5),
     },
     span: {
-      margin: '0 12px',
+      margin: spacing(0, 1.5),
     },
   }),
 );
