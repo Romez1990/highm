@@ -1,13 +1,18 @@
 import React, { Fragment, useState, useRef, ChangeEvent } from 'react';
 import clsx from 'clsx';
 import { FieldProps } from 'formik';
-import { makeStyles, createStyles, FormHelperText } from '@material-ui/core';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  FormHelperText,
+} from '@material-ui/core';
 import { NumberField } from '../Fields';
 import { Matrix } from '../Utils/math';
 
 export declare type MatrixInputsProps = FieldProps;
 
-const useStyles = makeStyles(
+const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
     input: {
       width: 60,
@@ -16,7 +21,7 @@ const useStyles = makeStyles(
       opacity: 0.4,
     },
     helperText: {
-      margin: '0 0 3px 14px',
+      margin: spacing(0, 0, 3, 14),
     },
   }),
 );
