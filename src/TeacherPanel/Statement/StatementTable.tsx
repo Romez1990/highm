@@ -139,6 +139,7 @@ function StatementTable({
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       width: '100%',
+      filtering: false,
     },
     { title: 'Grade', field: 'grade', type: 'numeric' },
   ];
@@ -167,6 +168,7 @@ function StatementTable({
         data={rows}
         options={{
           selection: true,
+          filtering: true,
           paging: false,
         }}
         actions={[
