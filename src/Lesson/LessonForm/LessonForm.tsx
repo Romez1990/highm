@@ -42,7 +42,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
     },
     submitButton: {
       display: 'block',
-      margin: `${spacing(2)}px auto`,
+      margin: spacing(2, 'auto'),
     },
   }),
 );
