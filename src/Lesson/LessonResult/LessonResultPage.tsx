@@ -63,16 +63,15 @@ function LessonResultPage({ number, lessonResult }: Props): JSX.Element {
           );
         })}
         {lessonResult.grade === 2 && (
-          <Button
+          <Link
             className={classes.tryAgainButton}
-            variant="contained"
-            color="primary"
-            component={Link}
             href={`/lesson/${number}`}
             underline="none"
           >
-            Try again
-          </Button>
+            <Button variant="contained" color="primary">
+              Try again
+            </Button>
+          </Link>
         )}
       </Card>
     </Container>
