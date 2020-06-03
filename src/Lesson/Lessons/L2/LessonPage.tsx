@@ -1,6 +1,6 @@
 import { createLessonPageComponent } from '../../LessonForm/LessonPageWrapper';
 import { TLessonType, lessonPageData } from './Lesson';
 
-const Lesson1Page = createLessonPageComponent(2, TLessonType, lessonPageData);
+const Lesson2Page = createLessonPageComponent(2, TLessonType, lessonPageData);
 
-export default Lesson1Page;
+export default Lesson2Page;
