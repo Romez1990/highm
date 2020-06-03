@@ -4,7 +4,8 @@ import grey from '@material-ui/core/colors/grey';
 const lightTheme = createMuiTheme({
   palette: {
     primary: {
-      main: '#1976d2',
+      main: '#64C51E',
+      contrastText: '#FFF',
     },
   },
 });
