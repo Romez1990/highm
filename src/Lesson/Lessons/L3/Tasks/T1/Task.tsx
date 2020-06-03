@@ -11,6 +11,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: spacing(1.5),
+      fontSize: `${16 / 14}em`,
     },
     span: {
       margin: spacing(0, 1.5),
@@ -34,9 +35,9 @@ function Task1({ children }: TaskProps): JSX.Element {
     <Fragment>
       <div className={classes.task}>
         <Formula>{task.equation}</Formula>
-        <span className={classes.span}>на отрезке</span>
+        <Typography className={classes.span}>на отрезке</Typography>
         <Formula>{segment}</Formula>
-        <span className={classes.span}>с погрешностью</span>
+        <Typography className={classes.span}>с погрешностью</Typography>
         <Formula>{epsilon}</Formula>
       </div>
       <Typography className={classes.note} variant="body2">
