@@ -34,7 +34,7 @@ RegistrationPageWrapper.getInitialProps = async ({
   res,
   query,
 }: NextPageContext): Promise<Props> => {
-  const redirectUrl = '/';
+  const redirectUrl = '/login';
 
   const { profile } = store.profileStore;
   if (isSome(profile)) await redirectTo(redirectUrl, res);
