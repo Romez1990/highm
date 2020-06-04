@@ -13,10 +13,17 @@ const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#333',
+      main: '#90caf9',
     },
     background: {
       default: grey[900],
+    },
+  },
+  overrides: {
+    MuiAppBar: {
+      root: {
+        background: '#333',
+      },
     },
   },
 });
