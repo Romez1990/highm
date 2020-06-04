@@ -27,15 +27,15 @@ interface Props {
   lessonPageData: LessonPageData;
 }
 
-const useStyles = makeStyles(({ spacing }: Theme) =>
+const useStyles = makeStyles(({ spacing, typography: { pxToRem } }: Theme) =>
   createStyles({
     tasksTitle: {
       marginBottom: spacing(2),
-      fontSize: '1.3rem',
+      fontSize: pxToRem(24),
       textAlign: 'center',
     },
     taskTitle: {
-      fontSize: '1.15rem',
+      fontSize: pxToRem(18),
     },
     task: {
       width: '100%',
