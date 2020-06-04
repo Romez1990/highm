@@ -9,7 +9,7 @@ import LessonError from '../LessonError';
 class LessonPassedError extends LessonError {
   public static identifySubError(err: HttpError): Option<LessonPassedError> {
     const TResponse = type({
-      detail: literal('This lesson has been passed.'),
+      detail: literal('Lesson has been passed.'),
     });
 
     return pipe(
