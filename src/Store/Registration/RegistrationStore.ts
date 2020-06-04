@@ -5,6 +5,7 @@ import AuthenticationService, {
   RegistrationError,
   RegistrationCodeCheckParams,
 } from '../../AuthenticationService';
+import { BaseRootStore } from '../BaseRoot';
 import RegistrationBeforeCheckingError from './RegistrationBeforeCheckingError';
 
 export interface RegisterParams {
@@ -12,7 +13,7 @@ export interface RegisterParams {
   password: string;
 }
 
-class RegistrationStore {
+class RegistrationStore extends BaseRootStore {
   @observable
   public registrationCodeValid: boolean | undefined = undefined;
 
@@ -72,7 +73,7 @@ class RegistrationStore {
     });
   }
 
-  public hydrate(store: RegistrationStore): void {
+  protected internalHydrate(store: RegistrationStore): void {
     this.setRegistrationCodeValid(store.registrationCodeValid);
     this.registrationCode = store.registrationCode;
     this.firstName = store.firstName;

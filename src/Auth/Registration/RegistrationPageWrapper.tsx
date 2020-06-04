@@ -1,5 +1,5 @@
 import { ParsedUrlQuery } from 'querystring';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NextPageContext } from 'next';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { sequenceT } from 'fp-ts/lib/Apply';
@@ -111,13 +111,7 @@ function parseQuery(
 function RegistrationPageWrapper({
   registrationStore: preloadedState,
 }: Props): JSX.Element {
-  const [firstRender, setFirstRender] = useState(true);
-
-  useEffect((): void => {
-    setFirstRender(false);
-  }, []);
-
-  if (firstRender && process.browser) {
+  if (process.browser) {
     registrationStore.hydrate(preloadedState);
   }
 
