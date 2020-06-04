@@ -64,14 +64,6 @@ function Drawer({ width, open }: Props): JSX.Element {
       },
     },
     {
-      href: '/about',
-      text: 'About',
-      icon: <InfoIcon />,
-      isActive({ pathname }): boolean {
-        return pathname === '/about';
-      },
-    },
-    {
       href: '/lessons',
       text: 'Lessons',
       icon: <DescriptionIcon />,
@@ -105,6 +97,14 @@ function Drawer({ width, open }: Props): JSX.Element {
       permission: 'IsAdmin',
       isActive({ pathname }): boolean {
         return pathname === '/teachers';
+      },
+    },
+    {
+      href: '/about',
+      text: 'About',
+      icon: <InfoIcon />,
+      isActive({ pathname }): boolean {
+        return pathname === '/about';
       },
     },
   ];
