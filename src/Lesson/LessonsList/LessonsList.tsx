@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Container,
-  Paper,
+  Card,
   List,
   ListSubheader,
   ListItem,
@@ -17,10 +17,7 @@ interface Props {
 function LessonsList({ lessons }: Props): JSX.Element {
   return (
     <Container maxWidth="sm">
-      <List
-        component={Paper}
-        subheader={<ListSubheader>Lessons</ListSubheader>}
-      >
+      <List component={Card} subheader={<ListSubheader>Lessons</ListSubheader>}>
         {lessons.map((lesson, index) => {
           const lessonNumber = index + 1;
           const link = !lesson.passed
