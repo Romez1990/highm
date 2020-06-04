@@ -5,6 +5,7 @@ import {
   makeStyles,
   createStyles,
   Theme,
+  useTheme,
   AppBar as MuiAppBar,
   Toolbar,
   Typography,
@@ -46,10 +47,18 @@ function AppBar({ drawerOpen, toggleDrawerOpen }: Props): JSX.Element {
 
   const loginPath = resolveLoginPath(router.asPath);
 
+  const theme = useTheme();
+
+  const lightTheme = theme.palette.type === 'light';
+
   const classes = useStyles();
 
   return (
-    <MuiAppBar position="fixed" className={classes.appBar}>
+    <MuiAppBar
+      position="fixed"
+      className={classes.appBar}
+      color={lightTheme ? 'primary' : 'inherit'}
+    >
       <Toolbar>
         <Tooltip title={drawerOpen ? 'Hide drawer' : 'Show drawer'}>
           <IconButton
