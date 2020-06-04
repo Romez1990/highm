@@ -1,8 +1,10 @@
 import React from 'react';
+import { absurd } from 'fp-ts/lib/function';
 import { isNone } from 'fp-ts/lib/Option';
+import { Container, Card, CardContent, Typography } from '@material-ui/core';
 import { MainLayout } from '../Layout';
 import store from '../Store';
-import { Profile } from '../Profile';
+import { Profile, ProfileType } from '../Profile';
 import { PermissionError, Permission } from '../AuthenticationService';
 
 interface Props {
@@ -21,9 +23,25 @@ ProfilePage.getInitialProps = async (): Promise<Props> => {
 };
 
 function ProfilePage({ profile }: Props): JSX.Element {
+  function displayType(type: ProfileType): string {
+    if (type === 'admin') return 'Administrator';
+    if (type === 'teacher') return 'Teacher';
+    if (type === 'student') return 'Student';
+    return absurd(type);
+  }
+
   return (
     <MainLayout title="Profile">
-      <pre>{JSON.stringify(profile, null, 2)}</pre>
+      <Container maxWidth="sm">
+        <Card>
+          <CardContent>
+            <Typography>
+              {displayType(profile.type)} {profile.firstName} {profile.lastName}
+            </Typography>
+            <Typography>Email: {profile.email}</Typography>
+          </CardContent>
+        </Card>
+      </Container>
     </MainLayout>
   );
 }
