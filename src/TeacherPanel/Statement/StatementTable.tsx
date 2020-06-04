@@ -178,7 +178,7 @@ function StatementTable({
             onClick: deleteResults,
           },
         ]}
-        onRowClick={(event, rowData, togglePanel): void => {
+        onRowClick={(_, rowData, togglePanel): void => {
           if (typeof togglePanel === 'undefined') {
             throw new Error('Toggle panel is undefined');
           }
