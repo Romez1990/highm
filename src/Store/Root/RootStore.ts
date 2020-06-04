@@ -1,9 +1,10 @@
+import { BaseRootStore } from '../BaseRoot';
 import ProfileStore from '../Profile';
 
-class RootStore {
+class RootStore extends BaseRootStore {
   public profileStore: ProfileStore = new ProfileStore();
 
-  public hydrate(store: RootStore): void {
+  protected internalHydrate(store: RootStore): void {
     this.profileStore.hydrate(store.profileStore);
   }
 }

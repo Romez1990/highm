@@ -1,11 +1,10 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { AppContext } from 'next/app';
 import {
   NextComponentType,
   NextPageContext,
 } from 'next/dist/next-server/lib/utils';
-import { flow } from 'fp-ts/lib/function';
 import { Option, fromNullable, isNone } from 'fp-ts/lib/Option';
 import AppWrapper from './AppWrapper';
 import store, { Store } from '../Store';
@@ -99,16 +98,10 @@ function App({
   store: preloadedState,
   hasPermission,
 }: Props): JSX.Element {
-  useEffect(flow(load, removeStyles), []);
+  useEffect(removeStyles, []);
 
-  const [firstRender, setFirstRender] = useState(true);
-
-  if (firstRender && process.browser) {
+  if (process.browser) {
     store.hydrate(preloadedState);
-  }
-
-  function load(): void {
-    setFirstRender(false);
   }
 
   function removeStyles(): void {
