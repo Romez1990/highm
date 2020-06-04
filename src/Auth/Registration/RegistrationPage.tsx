@@ -5,11 +5,7 @@ import RegistrationCodeCheckForm from './RegistrationCodeCheckForm';
 import RegistrationCodeInvalid from './RegistrationCodeInvalid';
 import RegistrationForm from './RegistrationForm';
 
-interface Props {
-  redirectUrl: string;
-}
-
-function RegistrationPage({ redirectUrl }: Props): JSX.Element {
+function RegistrationPage(): JSX.Element {
   const { registrationCodeValid } = useRegistrationStore();
 
   if (typeof registrationCodeValid === 'undefined') {
@@ -20,7 +16,7 @@ function RegistrationPage({ redirectUrl }: Props): JSX.Element {
     return <RegistrationCodeInvalid />;
   }
 
-  return <RegistrationForm redirectUrl={redirectUrl} />;
+  return <RegistrationForm />;
 }
 
 export default observer(RegistrationPage);
