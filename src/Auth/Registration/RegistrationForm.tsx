@@ -26,10 +26,6 @@ import { foldErrors } from '../../Error';
 import { redirectTo } from '../../Redirect';
 import { runWithErrorThrowing } from '../../Utils/fp-ts/task';
 
-interface Props {
-  redirectUrl: string;
-}
-
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
     submit: {
@@ -51,9 +47,11 @@ const validationSchema = object().shape({
     .required(),
 });
 
-function RegistrationForm({ redirectUrl }: Props): JSX.Element {
+function RegistrationForm(): JSX.Element {
   const registrationCodeInputRef = useRef<HTMLInputElement>();
   const router = useRouter();
+
+  const redirectUrl = '/login';
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions

@@ -27,23 +27,19 @@ import {
 
 interface Props {
   registrationStore: RegistrationStore;
-  redirectUrl: string;
 }
 
 RegistrationPageWrapper.getInitialProps = async ({
   res,
   query,
 }: NextPageContext): Promise<Props> => {
-  const redirectUrl = '/login';
-
   const { profile } = store.profileStore;
-  if (isSome(profile)) await redirectTo(redirectUrl, res);
+  if (isSome(profile)) await redirectTo('/', res);
 
   await setQueryToStore(query)();
 
   return {
     registrationStore,
-    redirectUrl,
   };
 };
 
@@ -114,7 +110,6 @@ function parseQuery(
 
 function RegistrationPageWrapper({
   registrationStore: preloadedState,
-  redirectUrl,
 }: Props): JSX.Element {
   const [firstRender, setFirstRender] = useState(true);
 
@@ -129,7 +124,7 @@ function RegistrationPageWrapper({
   return (
     <FormLayout title="RegistrationPage">
       <RegistrationStoreProvider>
-        <RegistrationPage redirectUrl={redirectUrl} />
+        <RegistrationPage />
       </RegistrationStoreProvider>
     </FormLayout>
   );
