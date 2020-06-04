@@ -25,17 +25,18 @@ interface Props {
   toggleDrawerOpen(): void;
 }
 
-const useStyles = makeStyles(({ spacing, zIndex }: Theme) =>
-  createStyles({
-    appBar: {
-      zIndex: zIndex.drawer + 1,
-    },
-    title: {
-      marginLeft: spacing(2),
-      flexGrow: 1,
-      fontSize: '1.5rem',
-    },
-  }),
+const useStyles = makeStyles(
+  ({ spacing, typography: { pxToRem }, zIndex }: Theme) =>
+    createStyles({
+      appBar: {
+        zIndex: zIndex.drawer + 1,
+      },
+      title: {
+        marginLeft: spacing(2),
+        flexGrow: 1,
+        fontSize: pxToRem(24),
+      },
+    }),
 );
 
 function AppBar({ drawerOpen, toggleDrawerOpen }: Props): JSX.Element {

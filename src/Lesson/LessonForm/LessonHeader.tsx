@@ -7,13 +7,13 @@ interface Props {
   lesson: LessonBase;
 }
 
-const useStyles = makeStyles(({ spacing }: Theme) =>
+const useStyles = makeStyles(({ spacing, typography: { pxToRem } }: Theme) =>
   createStyles({
     title: {
       marginBottom: spacing(2),
     },
     goalsTitle: {
-      fontSize: '1.3rem',
+      fontSize: pxToRem(24),
     },
   }),
 );

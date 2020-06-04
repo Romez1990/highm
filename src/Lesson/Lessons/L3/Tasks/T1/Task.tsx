@@ -4,14 +4,14 @@ import Formula from '../../../../../Math/Formula';
 import { TaskProps } from '../../../../Task';
 import { Task1Type } from './TaskType';
 
-const useStyles = makeStyles(({ spacing }: Theme) =>
+const useStyles = makeStyles(({ spacing, typography: { pxToRem } }: Theme) =>
   createStyles({
     task: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: spacing(1.5),
-      fontSize: `${16 / 14}em`,
+      fontSize: pxToRem(16),
     },
     span: {
       margin: spacing(0, 1.5),

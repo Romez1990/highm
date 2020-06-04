@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { MainLayout } from '../Layout';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   text?: string;
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles(({ typography: { pxToRem } }: Theme) =>
   createStyles({
     error: {
       fontFamily:
@@ -19,7 +19,7 @@ const useStyles = makeStyles(
       justifyContent: 'center',
     },
     title: {
-      fontSize: 30,
+      fontSize: pxToRem(30),
       fontWeight: 700,
     },
   }),
