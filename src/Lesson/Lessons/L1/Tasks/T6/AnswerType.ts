@@ -8,6 +8,6 @@ export declare type Answer6Type = Answer3Type;
 
 const validationSchema6 = validationSchema3;
 
-const initialValues6: Answer6Type = initialValues3;
+const initialValues6: Answer6Type = { ...initialValues3 };
 
 export { validationSchema6, initialValues6 };
