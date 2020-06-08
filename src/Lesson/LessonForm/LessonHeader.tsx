@@ -1,5 +1,11 @@
 import React, { Fragment } from 'react';
-import { makeStyles, createStyles, Theme, Typography } from '@material-ui/core';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  Typography,
+  Link,
+} from '@material-ui/core';
 import { LessonBase } from '../Lesson';
 
 interface Props {
@@ -15,10 +21,15 @@ const useStyles = makeStyles(({ spacing, typography: { pxToRem } }: Theme) =>
     goalsTitle: {
       fontSize: pxToRem(24),
     },
+    theoryLink: {
+      fontSize: pxToRem(16),
+    },
   }),
 );
 
 function LessonHeader({ lesson, number }: Props): JSX.Element {
+  const theoryLink = `/lesson-${number}.pdf`;
+
   const classes = useStyles();
 
   return (
@@ -55,6 +66,14 @@ function LessonHeader({ lesson, number }: Props): JSX.Element {
           );
         })}
       </ul>
+      <Link
+        className={classes.theoryLink}
+        href={theoryLink}
+        target="_blank"
+        underline="none"
+      >
+        View theoretical information
+      </Link>
     </Fragment>
   );
 }
