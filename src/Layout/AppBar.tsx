@@ -16,6 +16,7 @@ import {
 import { Menu as MenuIcon } from '@material-ui/icons';
 import ProfileMenu from './ProfileMenu';
 import ThemeChanger from './ThemeChanger';
+import VersionForVisuallyImpaired from './VersionForVisuallyImpaired';
 import Link from '../Link';
 import { useProfileStore } from '../Store';
 import { resolveLoginPath } from '../Redirect';
@@ -96,6 +97,7 @@ function AppBar({ drawerOpen, toggleDrawerOpen }: Props): JSX.Element {
           </Fragment>
         )}
         <ThemeChanger />
+        <VersionForVisuallyImpaired />
       </Toolbar>
     </MuiAppBar>
   );
