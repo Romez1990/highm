@@ -43,3 +43,14 @@ Linting code finds and fixes problems in the code
 ```shell script
 yarn lint
 ```
+
+## Deploying
+To build for production
+```shell script
+yarn build
+```
+
+To run production server
+```shell script
+yarn start
+```
