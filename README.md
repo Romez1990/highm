@@ -54,3 +54,15 @@ To run production server
 ```shell script
 yarn start
 ```
+
+## Built With
+- [React](https://reactjs.org) - Library for building user interfaces
+- [Next.js](https://nextjs.org) - Framework for React server side rendering
+- [MobX](https://mobx.js.org) - Library for state management
+- [Axios](https://github.com/axios/axios) - Promise based HTTP client for the
+  browser and Node.js
+- [MaterialUI](https://material-ui.com) - React component library with
+  Material Design.
+- [Formik](https://jaredpalmer.com/formik) - Library for building forms in React
+- [fp-ts](https://gcanti.github.io/fp-ts/) - Functional programming in
+  TypeScript
