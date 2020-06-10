@@ -31,3 +31,15 @@ Run development server.
 ```shell script
 yarn dev
 ```
+
+## Automated testing
+To run all the automated tests
+```shell script
+yarn test
+```
+
+### Linting
+Linting code finds and fixes problems in the code
+```shell script
+yarn lint
+```
