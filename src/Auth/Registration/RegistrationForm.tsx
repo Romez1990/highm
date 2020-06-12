@@ -122,7 +122,7 @@ function RegistrationForm(): JSX.Element {
   return (
     <Card raised>
       <CardContent>
-        <Typography component="h1" variant="h5" align="center">
+        <Typography component="h2" variant="h5" align="center">
           Register
         </Typography>
         <Formik<Values>
