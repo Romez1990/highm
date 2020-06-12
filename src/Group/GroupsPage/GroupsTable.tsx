@@ -2,14 +2,14 @@ import React, { ChangeEvent, MouseEvent } from 'react';
 import { useRouter } from 'next/router';
 import { Container } from '@material-ui/core';
 import { Delete as DeleteIcon } from '@material-ui/icons';
-import Table, { useEditable } from '../Table';
-import { RegexTextField } from '../Fields';
+import Table, { useEditable } from '../../Table';
+import { RegexTextField } from '../../Fields';
 import {
   TGroupBasic,
   GroupBasic,
   groupNameRegexPartial,
   groupCompare,
-} from './Group';
+} from '../Group';
 
 interface Props {
   groups: GroupBasic[];

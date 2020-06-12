@@ -1,12 +1,12 @@
 import React from 'react';
 import { NextPageContext } from 'next';
 import { Option, isNone } from 'fp-ts/lib/Option';
-import { ErrorPage } from '../ErrorPage';
-import { MainLayout } from '../Layout';
+import { ErrorPage } from '../../ErrorPage';
+import { MainLayout } from '../../Layout';
 import GroupTable from './GroupTable';
-import { Permission } from '../AuthenticationService';
+import { Permission } from '../../AuthenticationService';
 import { getGroup, fetchGroup } from './fetchGroup';
-import { Group } from './Group';
+import { Group } from '../Group';
 
 interface Props {
   group: Option<Group>;

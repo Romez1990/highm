@@ -5,8 +5,8 @@ import { some, none } from 'fp-ts/lib/Option';
 import { TaskOption } from 'fp-ts-contrib/lib/TaskOption';
 import { of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
-import HttpService, { NotFoundError } from '../HttpService';
-import { TGroup, Group } from './Group';
+import HttpService, { NotFoundError } from '../../HttpService';
+import { TGroup, Group } from '../Group';
 
 function getGroup(query: ParsedUrlQuery): string {
   const { group } = query;

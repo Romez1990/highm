@@ -1,9 +1,9 @@
 import React from 'react';
 import { NextPageContext } from 'next';
-import { MainLayout } from '../Layout';
+import { MainLayout } from '../../Layout';
 import GroupsTable from './GroupsTable';
-import { Permission } from '../AuthenticationService';
-import { GroupBasic } from './Group';
+import { Permission } from '../../AuthenticationService';
+import { GroupBasic } from '../Group';
 import fetchGroups from './fetchGroups';
 
 interface Props {

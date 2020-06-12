@@ -4,17 +4,17 @@ import {
   Delete as DeleteIcon,
   Assignment as AssignmentIcon,
 } from '@material-ui/icons';
-import Table, { useEditable } from '../Table';
-import { RegistrationCodesDialog } from '../RegistrationCodes';
-import { userCompare } from '../User';
+import Table, { useEditable } from '../../Table';
+import { RegistrationCodesDialog } from '../../RegistrationCodes';
+import { userCompare } from '../../User';
 import {
   TStudent,
   Student,
   UnregisteredStudentNew,
   UnregisteredStudentNewWithGroup,
   UnregisteredStudent,
-} from '../Student';
-import { Group } from './Group';
+} from '../../Student';
+import { Group } from '../Group';
 
 interface Props {
   group: Group;
