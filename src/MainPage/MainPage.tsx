@@ -21,9 +21,6 @@ import { Profile, ProfileType } from '../Profile';
 
 const useStyles = makeStyles(({ spacing }: Theme) =>
   createStyles({
-    title: {
-      marginBottom: spacing(2),
-    },
     instructionParagraph: {
       '&:not(:last-child)': {
         marginBottom: spacing(2),
@@ -255,16 +252,6 @@ function MainPage(): JSX.Element {
   return (
     <MainLayout title="Main page">
       <Container maxWidth="sm">
-        {/*
-        <Typography
-          className={classes.title}
-          component="h2"
-          variant="h4"
-          align="center"
-        >
-          Заголовок
-        </Typography>
-        */}
         {panels
           .filter(panel => panel.displaysFor.includes(type))
           .map(panel => (
