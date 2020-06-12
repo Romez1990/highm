@@ -33,7 +33,7 @@ function ErrorPage({ title, text }: Props): JSX.Element {
   return (
     <MainLayout title={title}>
       <div className={classes.error}>
-        <h1 className={classes.title}>{displayText}</h1>
+        <h2 className={classes.title}>{displayText}</h2>
       </div>
     </MainLayout>
   );
