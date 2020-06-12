@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, Typography } from '@material-ui/core';
 import { MainLayout } from '../Layout';
 
 interface Props {
@@ -10,9 +10,6 @@ interface Props {
 const useStyles = makeStyles(({ typography: { pxToRem } }: Theme) =>
   createStyles({
     error: {
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", "Fira Sans", ' +
-        'Avenir, "Helvetica Neue", "Lucida Grande", sans-serif',
       height: '100%',
       display: 'flex',
       alignItems: 'center',
@@ -33,7 +30,9 @@ function ErrorPage({ title, text }: Props): JSX.Element {
   return (
     <MainLayout title={title}>
       <div className={classes.error}>
-        <h2 className={classes.title}>{displayText}</h2>
+        <Typography className={classes.title} component="h2" variant="h6">
+          {displayText}
+        </Typography>
       </div>
     </MainLayout>
   );
