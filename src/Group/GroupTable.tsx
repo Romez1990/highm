@@ -83,13 +83,13 @@ function GroupTable({ group }: Props): JSX.Element {
         }}
         actions={[
           {
-            icon: (): JSX.Element => <DeleteIcon />,
+            icon: DeleteIcon,
             tooltip: 'Delete',
             position: 'toolbarOnSelect',
             onClick: deleteRows,
           },
           {
-            icon: (): JSX.Element => <AssignmentIcon />,
+            icon: AssignmentIcon,
             tooltip: 'Registration codes',
             position: 'toolbar',
             onClick: openRegistrationCodes,

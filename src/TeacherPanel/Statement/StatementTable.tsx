@@ -173,7 +173,7 @@ function StatementTable({
         }}
         actions={[
           {
-            icon: (): JSX.Element => <DeleteIcon />,
+            icon: DeleteIcon,
             tooltip: 'Delete',
             onClick: deleteResults,
           },

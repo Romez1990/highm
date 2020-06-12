@@ -30,12 +30,16 @@ function LessonsTable({ title, group, lessons }: Props): JSX.Element {
 
   const router = useRouter();
 
-  async function goToStatement(
+  async function goToLessonStatement(
     _: MouseEvent,
     lesson: TableLesson | TableLesson[],
   ): Promise<void> {
     if (Array.isArray(lesson)) throw new Error('...');
     await router.push(`/teacher-panel/group/${group}/lesson/${lesson.number}`);
+  }
+
+  async function goToGroupStatement(): Promise<void> {
+    await router.push(`/teacher-panel/group/${group}/statement`);
   }
 
   return (
@@ -56,9 +60,15 @@ function LessonsTable({ title, group, lessons }: Props): JSX.Element {
         actions={[
           {
             tooltip: 'Statement',
-            icon: (): JSX.Element => <AssignmentIcon />,
-            onClick: goToStatement,
+            icon: AssignmentIcon,
+            onClick: goToLessonStatement,
             position: 'row',
+          },
+          {
+            tooltip: 'Statement',
+            icon: AssignmentIcon,
+            onClick: goToGroupStatement,
+            position: 'toolbar',
           },
         ]}
       />
