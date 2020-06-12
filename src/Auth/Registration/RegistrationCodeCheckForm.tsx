@@ -49,11 +49,11 @@ const validationSchema = object().shape({
 });
 
 function RegistrationCodeCheckForm(): JSX.Element {
-  const codeInputRef = useRef<HTMLInputElement>();
+  const registrationCodeInputRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
-    codeInputRef.current?.focus();
+    registrationCodeInputRef.current?.focus();
   }, []);
 
   const initialValues: Values = {
@@ -135,7 +135,7 @@ function RegistrationCodeCheckForm(): JSX.Element {
                 label="Registration code"
                 margin="normal"
                 fullWidth
-                inputRef={codeInputRef}
+                inputRef={registrationCodeInputRef}
               />
               <Field
                 name="firstName"
