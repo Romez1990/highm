@@ -1,7 +1,7 @@
 import React, { ChangeEvent, MouseEvent } from 'react';
 import { useRouter } from 'next/router';
 import { Container } from '@material-ui/core';
-import { Delete as DeleteIcon } from '@material-ui/icons';
+import { Delete as DeleteIcon, AddBox as AddBoxIcon } from '@material-ui/icons';
 import Table, { useEditable } from '../../Table';
 import { RegexTextField } from '../../Fields';
 import {
@@ -31,6 +31,10 @@ function GroupsTable({ groups }: Props): JSX.Element {
 
   async function goToGroup(_?: MouseEvent, group?: GroupBasic): Promise<void> {
     if (typeof group !== 'undefined') await router.push(`/group/${group.name}`);
+  }
+
+  async function goToAddGroup(): Promise<void> {
+    await router.push(`/group/add`);
   }
 
   return (
@@ -86,6 +90,12 @@ function GroupsTable({ groups }: Props): JSX.Element {
             tooltip: 'Delete',
             position: 'toolbarOnSelect',
             onClick: deleteRows,
+          },
+          {
+            icon: AddBoxIcon,
+            tooltip: 'Add',
+            position: 'toolbar',
+            onClick: goToAddGroup,
           },
         ]}
       />
