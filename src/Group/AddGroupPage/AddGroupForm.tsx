@@ -79,7 +79,10 @@ function AddGroupForm(): JSX.Element {
 
   const router = useRouter();
 
-  function submit(values: Values): Promise<void> {
+  function submit(
+    values: Values,
+    { setErrors }: FormikHelpers<Values>,
+  ): Promise<void> {
     const students = prepareStudents(values.students);
     return pipe(
       HttpService.post('/group/', unknown, {
@@ -88,7 +91,12 @@ function AddGroupForm(): JSX.Element {
       }),
       fold(
         err => {
-          throw err;
+          setErrors({
+            name: 'This group is already exists',
+          });
+          // eslint-disable-next-line no-console
+          console.log(err);
+          return of(undefined);
         },
         () => async (): Promise<void> => {
           await router.push('/groups');
