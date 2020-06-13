@@ -17,8 +17,9 @@ function getGroup(query: ParsedUrlQuery): string {
 }
 
 function fetchGroup(group: string, req?: IncomingMessage): TaskOption<Group> {
+  const encodedGroup = encodeURIComponent(group);
   return pipe(
-    HttpService.get(`/group/${encodeURIComponent(group)}/`, TGroup, req),
+    HttpService.get(`/group/${encodedGroup}/`, TGroup, req),
     fold(
       err => {
         if (!(err instanceof NotFoundError)) throw err;

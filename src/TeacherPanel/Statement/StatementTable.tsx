@@ -23,7 +23,7 @@ interface Props {
   lessonResult: LessonResult[];
 }
 
-interface UnregisteredStudent {
+interface UnregisteredStudent extends Record<string, unknown> {
   studentName: string;
   registered: false;
   passed: false;
@@ -97,11 +97,10 @@ function StatementTable({
 
   function deleteResult(oldData: RowData): Promise<void> {
     if (!oldData.passed) return Promise.resolve();
+    const encodedGroup = encodeURIComponent(group);
     return pipe(
       HttpService.delete(
-        `/teacher-panel/group/${encodeURIComponent(
-          group,
-        )}/lesson/${lesson}/result/${oldData.resultId}/`,
+        `/teacher-panel/group/${encodedGroup}/lesson/${lesson}/result/${oldData.resultId}/`,
       ),
       fold(
         err => {

@@ -58,11 +58,10 @@ function fetchLessonResult(
   lesson: number,
   req: IncomingMessage | undefined,
 ): Task<LessonResult[]> {
+  const encodedGroup = encodeURIComponent(group);
   return pipe(
     HttpService.get(
-      `/teacher-panel/group/${encodeURIComponent(
-        group,
-      )}/lesson/${lesson}/result/`,
+      `/teacher-panel/group/${encodedGroup}/lesson/${lesson}/result/`,
       array(TLessonResult),
       req,
     ),

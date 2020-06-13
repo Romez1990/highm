@@ -36,9 +36,10 @@ function fetchLessons(
   group: string,
   req: IncomingMessage | undefined,
 ): Task<Lesson[]> {
+  const encodedGroup = encodeURIComponent(group);
   return pipe(
     HttpService.get(
-      `teacher-panel/group/${encodeURIComponent(group)}/lesson/`,
+      `teacher-panel/group/${encodedGroup}/lesson/`,
       array(TLesson),
       req,
     ),

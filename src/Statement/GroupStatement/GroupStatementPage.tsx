@@ -35,9 +35,10 @@ function fetchGroupStatement(
   req: IncomingMessage | undefined,
   group: string,
 ): Task<GroupStatement> {
+  const encodedGroup = encodeURIComponent(group);
   return pipe(
     HttpService.get(
-      `/teacher-panel/group/${encodeURIComponent(group)}/statement/`,
+      `/teacher-panel/group/${encodedGroup}/statement/`,
       TGroupStatement,
       req,
     ),
