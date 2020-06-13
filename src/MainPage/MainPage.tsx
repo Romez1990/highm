@@ -259,7 +259,7 @@ function MainPage(): JSX.Element {
   });
 
   const handlePanelToggle = (panelId: number) => (
-    _: ChangeEvent<{}>,
+    _: ChangeEvent<unknown>,
     isExpanded: boolean,
   ): void => {
     setActivePanel(isExpanded ? panelId : undefined);
