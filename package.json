@@ -32,7 +32,7 @@
     "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-to-print": "^2.8.0",
+    "react-to-print": "2.8.0",
     "yup": "^0.28.5"
   },
   "devDependencies": {
