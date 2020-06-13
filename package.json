@@ -1,8 +1,5 @@
 {
-  "name": "highm",
-  "version": "0.1.0",
   "private": true,
-  "license": "MIT",
   "scripts": {
     "dev": "node script patch-formik && next",
     "build": "node script patch-formik && next build",
