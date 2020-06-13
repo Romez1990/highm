@@ -7,7 +7,7 @@ import HttpService from '../HttpService';
 import { run } from '../Utils/fp-ts/task';
 import ActionError from './ActionError';
 
-interface Params<RowData extends object> {
+interface Params<RowData extends Record<string, unknown>> {
   initData: RowData[] | (() => RowData[]);
   type: Type<RowData>;
   url: string;
@@ -15,7 +15,10 @@ interface Params<RowData extends object> {
   getLookupField(data: RowData): string;
 }
 
-interface Editable<RowData extends object, RowDataAdd = RowData> {
+interface Editable<
+  RowData extends Record<string, unknown>,
+  RowDataAdd = RowData
+> {
   addRow(newData: RowDataAdd): Promise<void>;
 
   updateRow(newData: RowData, oldData?: RowData): Promise<void>;
@@ -26,8 +29,8 @@ interface Editable<RowData extends object, RowDataAdd = RowData> {
 }
 
 function useEditable<
-  RowData extends object,
-  RowDataAdd extends object = RowData
+  RowData extends Record<string, unknown>,
+  RowDataAdd extends Record<string, unknown> = RowData
 >({
   initData,
   type,

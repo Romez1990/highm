@@ -15,7 +15,7 @@ import { run } from '../Utils/fp-ts/task';
 import { Profile } from '../Profile';
 
 interface InitialProps {
-  pageProps: object;
+  pageProps: Record<string, unknown>;
   store: Store;
   hasPermission: boolean;
 }
@@ -86,7 +86,7 @@ function getPageProps(
   Component: ComponentType,
   ctx: NextPageContext,
   shouldLoadPage: boolean,
-): object | Promise<object> {
+): Record<string, unknown> | Promise<Record<string, unknown>> {
   return shouldLoadPage && typeof Component.getInitialProps !== 'undefined'
     ? Component.getInitialProps(ctx)
     : {};

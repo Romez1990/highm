@@ -41,26 +41,26 @@ function get<T>(
 function post<T>(
   url: string,
   type: Type<T>,
-  data?: object,
+  data?: Record<string, unknown>,
   req?: IncomingMessage,
 ): TaskEither<NetworkError, T>;
 function post<T>(
   url: string,
   type: Type<T>,
-  data?: object,
+  data?: Record<string, unknown>,
   token?: string,
 ): TaskEither<NetworkError, T>;
 function post<T>(
   url: string,
   type: Type<T>,
-  data?: object,
+  data?: Record<string, unknown>,
   auth?: false,
 ): TaskEither<NetworkError, T>;
 
 function post<T>(
   url: string,
   type: Type<T>,
-  data?: object,
+  data?: Record<string, unknown>,
   auth?: IncomingMessage | string | false,
 ): TaskEither<NetworkError, T | void> {
   return requestHelper<T>({ method: 'post', url, data }, type, auth);
@@ -69,31 +69,31 @@ function post<T>(
 function put<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
 ): TaskEither<NetworkError, T>;
 function put<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
   req: IncomingMessage | undefined,
 ): TaskEither<NetworkError, T>;
 function put<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
   token?: string,
 ): TaskEither<NetworkError, T>;
 function put<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
   auth?: false,
 ): TaskEither<NetworkError, T>;
 
 function put<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
   auth?: IncomingMessage | string | false,
 ): TaskEither<NetworkError, T | void> {
   return requestHelper<T>({ method: 'put', url, data }, type, auth);
@@ -102,31 +102,31 @@ function put<T>(
 function patch<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
 ): TaskEither<NetworkError, T>;
 function patch<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
   req: IncomingMessage | undefined,
 ): TaskEither<NetworkError, T>;
 function patch<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
   token: string,
 ): TaskEither<NetworkError, T>;
 function patch<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
   auth: false,
 ): TaskEither<NetworkError, T>;
 
 function patch<T>(
   url: string,
   type: Type<T>,
-  data: object,
+  data: Record<string, unknown>,
   auth?: IncomingMessage | string | false,
 ): TaskEither<NetworkError, T | void> {
   return requestHelper<T>({ method: 'patch', url, data }, type, auth);

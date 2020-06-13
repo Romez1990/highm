@@ -1,4 +1,4 @@
-export type AnswerBase = object;
+export type AnswerBase = Record<string, unknown>;
 
 export interface AnswerProps {
   name: string;

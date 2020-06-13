@@ -36,7 +36,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
   }),
 );
 
-interface Values {
+interface Values extends Record<string, unknown> {
   email: string;
   password: string;
   nonFieldError?: undefined;

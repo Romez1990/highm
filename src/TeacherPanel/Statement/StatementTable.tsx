@@ -29,20 +29,21 @@ interface UnregisteredStudent {
   passed: false;
 }
 
-interface StudentDidNotPass {
+interface StudentDidNotPass extends Record<string, unknown> {
   studentId: number;
   studentName: string;
   registered: true;
   passed: false;
 }
 
-interface StudentPassed extends TableLessonResult {
-  studentId: number;
-  studentName: string;
-  registered: true;
-  passed: true;
-  resultId: number;
-}
+type StudentPassed = TableLessonResult &
+  Record<string, unknown> & {
+    studentId: number;
+    studentName: string;
+    registered: true;
+    passed: true;
+    resultId: number;
+  };
 
 type RowData = UnregisteredStudent | StudentDidNotPass | StudentPassed;
 

@@ -5,7 +5,7 @@ import { TLessonBase } from '../Lesson';
 import { TaskProps } from '../Task';
 import { AnswerBase, AnswerProps } from '../Answer';
 
-export interface Values {
+export interface Values extends Record<string, unknown> {
   answers: Record<string, AnswerBase>;
 }
 

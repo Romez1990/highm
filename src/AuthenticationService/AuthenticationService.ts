@@ -88,7 +88,7 @@ function hasPermission(
   );
 }
 
-export interface LoginParams {
+export interface LoginParams extends Record<string, unknown> {
   email: string;
   password: string;
 }
@@ -148,7 +148,7 @@ function logout(
   );
 }
 
-export interface RegistrationCodeCheckParams {
+export interface RegistrationCodeCheckParams extends Record<string, unknown> {
   registrationCode: string;
   firstName: string;
   lastName: string;

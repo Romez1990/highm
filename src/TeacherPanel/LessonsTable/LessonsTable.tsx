@@ -11,7 +11,7 @@ interface Props {
   lessons: Lesson[];
 }
 
-interface TableLesson {
+interface TableLesson extends Record<string, unknown> {
   number: number;
   numberStr: string;
   title: string;

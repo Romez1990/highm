@@ -70,7 +70,7 @@ function setQueryToStore(query: ParsedUrlQuery): Task<void> {
   );
 }
 
-interface Query {
+interface Query extends Record<string, unknown> {
   registrationCode: string;
   firstName: string;
   lastName: string;
