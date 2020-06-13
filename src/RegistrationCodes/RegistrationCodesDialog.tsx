@@ -55,7 +55,7 @@ function RegistrationCodesDialog({ open, close, users }: Props): JSX.Element {
     <Fragment>
       <Dialog open={open} onClose={close}>
         <DialogTitle className={classes.title} disableTypography>
-          <Typography className={classes.titleText} variant="h6">
+          <Typography className={classes.titleText} component="h3" variant="h6">
             Registration codes
           </Typography>
           <Tooltip title="Print registration codes">
