@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { createStyles, makeStyles, Container } from '@material-ui/core';
 import MainLayout from './MainLayout';
 import { LayoutProps } from './BaseLayout';
@@ -18,7 +18,7 @@ function FormLayout({ title, children }: LayoutProps): JSX.Element {
   return (
     <MainLayout title={title}>
       <Container className={classes.container} maxWidth="xs">
-        {children}
+        <Fragment>{children}</Fragment>
       </Container>
     </MainLayout>
   );
