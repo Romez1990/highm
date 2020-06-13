@@ -38,7 +38,7 @@
         "tsx": "never"
       }
     ],
-    "@typescript-eslint/no-use-before-define": "off",
+    "no-use-before-define": "off",
     "@typescript-eslint/explicit-member-accessibility": "error",
     "react/jsx-filename-extension": [
       "error",
