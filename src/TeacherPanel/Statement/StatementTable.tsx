@@ -137,7 +137,7 @@ function StatementTable({
       title: 'Name',
       field: 'studentName',
       defaultSort: 'asc',
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       width: '100%',
       filtering: false,
