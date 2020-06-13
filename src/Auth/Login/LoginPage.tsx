@@ -2,6 +2,7 @@ import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
 import { NextPageContext } from 'next';
 import {
+  map,
   chain,
   some,
   none,
@@ -37,6 +38,7 @@ function getRedirectUrl(query: ParsedUrlQuery): string {
   return pipe(
     fromNullable(query['redirect-to']),
     chain(url => (typeof url === 'string' ? some(url) : none)),
+    map(encodeURI),
     getOrElse(() => '/'),
   );
 }
