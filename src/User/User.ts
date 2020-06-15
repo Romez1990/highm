@@ -39,8 +39,8 @@ export const TUser = union([TRegisteredUser, TUnregisteredUser]);
 export declare type User = TypeOf<typeof TUser>;
 
 export function userCompare(a: User, b: User): number {
-  if (a.lastName < b.lastName) return 1;
-  if (a.lastName > b.lastName) return -1;
+  if (a.lastName < b.lastName) return -1;
+  if (a.lastName > b.lastName) return 1;
   return a.firstName.localeCompare(b.firstName);
 }
 
