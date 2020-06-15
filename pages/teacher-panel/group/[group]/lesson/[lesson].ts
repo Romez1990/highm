@@ -1,1 +1,1 @@
-export { StatementsPage as default } from '../../../../../src/TeacherPanel';
+export { LessonStatementPage as default } from '../../../../../src/Statement';

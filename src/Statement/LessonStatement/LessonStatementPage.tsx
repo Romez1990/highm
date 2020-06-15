@@ -7,7 +7,7 @@ import { Task, of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
 import { TaskOption, map } from 'fp-ts-contrib/lib/TaskOption';
 import { array } from 'io-ts';
-import StatementTable from './StatementTable';
+import LessonStatementTable from './LessonStatementTable';
 import { MainLayout } from '../../Layout';
 import { Permission } from '../../AuthenticationService';
 import HttpService from '../../HttpService';
@@ -25,9 +25,9 @@ interface Props {
   lessonResult: LessonResult[];
 }
 
-StatementPage.permission = 'IsTeacher' as Permission;
+LessonStatementPage.permission = 'IsTeacher' as Permission;
 
-StatementPage.getInitialProps = async ({
+LessonStatementPage.getInitialProps = async ({
   req,
   query,
 }: NextPageContext): Promise<Props> => {
@@ -74,7 +74,7 @@ function fetchLessonResult(
   );
 }
 
-function StatementPage({
+function LessonStatementPage({
   group,
   lesson,
   students,
@@ -88,7 +88,7 @@ function StatementPage({
 
   return (
     <MainLayout title={title}>
-      <StatementTable
+      <LessonStatementTable
         group={group}
         title={title}
         lesson={lesson}
@@ -99,4 +99,4 @@ function StatementPage({
   );
 }
 
-export default StatementPage;
+export default LessonStatementPage;

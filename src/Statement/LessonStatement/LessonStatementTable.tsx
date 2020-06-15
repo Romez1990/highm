@@ -8,7 +8,7 @@ import { of } from 'fp-ts/lib/Task';
 import { fold } from 'fp-ts/lib/TaskEither';
 import { Column, DetailPanel } from 'material-table';
 import Table from '../../Table';
-import StatementDetailPanel from './StatementDetailPanel';
+import LessonStatementDetailPanel from './LessonStatementDetailPanel';
 import { Student } from '../../Student';
 import { run } from '../../Utils/fp-ts/task';
 import { LessonResult, TableLessonResult } from './LessonResult';
@@ -46,7 +46,7 @@ interface StudentPassed extends TableLessonResult {
 
 type RowData = UnregisteredStudent | StudentDidNotPass | StudentPassed;
 
-function StatementTable({
+function LessonStatementTable({
   group,
   title,
   lesson,
@@ -190,7 +190,7 @@ function StatementTable({
             render: (): JSX.Element | null => {
               if (!rowData.passed) return null;
               return (
-                <StatementDetailPanel
+                <LessonStatementDetailPanel
                   group={group}
                   lesson={lesson}
                   lessonResult={rowData}
@@ -204,4 +204,4 @@ function StatementTable({
   );
 }
 
-export default StatementTable;
+export default LessonStatementTable;

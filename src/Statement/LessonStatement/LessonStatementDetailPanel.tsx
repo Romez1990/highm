@@ -31,7 +31,7 @@ const useStyles = makeStyles(({ spacing }: Theme) =>
   }),
 );
 
-function StatementDetailPanel({
+function LessonStatementDetailPanel({
   group,
   lesson,
   lessonResult,
@@ -88,4 +88,4 @@ function StatementDetailPanel({
   );
 }
 
-export default StatementDetailPanel;
+export default LessonStatementDetailPanel;
