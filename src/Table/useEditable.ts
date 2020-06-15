@@ -67,7 +67,7 @@ function useEditable<
     const pk = getLookupField(oldData);
     try {
       await pipe(
-        HttpService.put(`${url}${pk}/`, type, newData),
+        HttpService.patch(`${url}${pk}/`, type, newData),
         fold(
           err => {
             throw err;
