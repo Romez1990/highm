@@ -7,6 +7,9 @@
     "test": "yarn lint",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx --fix ."
   },
+  "cacheDirectories": [
+    ".next/cache"
+  ],
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@matejmazur/react-katex": "^3.0.2",
