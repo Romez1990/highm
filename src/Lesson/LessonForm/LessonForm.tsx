@@ -80,7 +80,7 @@ function LessonForm({
       onSubmit={submit}
     >
       {({ errors, isSubmitting }): JSX.Element => (
-        <Form>
+        <Form autoComplete="off">
           <Typography
             component="h3"
             variant="h3"
