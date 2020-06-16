@@ -130,7 +130,7 @@ function GroupStatementTable({
                 <TableRow key={key}>
                   <TableCell>{student.number}.</TableCell>
                   <TableCell>
-                    {student.firstName} {student.lastName}
+                    {student.lastName} {student.firstName}
                   </TableCell>
                   {student.registered
                     ? student.grades.map((grade, gradeIndex) => (
