@@ -1,4 +1,3 @@
-/* eslint-disable */
 const EnvError = require('./EnvError');
 
 function env(name) {

@@ -1,4 +1,3 @@
-/* eslint-disable */
 const { pipe } = require('ramda');
 const withImages = require('next-images');
 const { env, envBool } = require('./src/EnvConfig');
