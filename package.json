@@ -5,7 +5,7 @@
     "build": "node script patch-formik && next build",
     "start": "next start -p $PORT",
     "test": "yarn lint",
-    "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx --fix ."
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx --fix ."
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.3",

@@ -1,5 +1,4 @@
 {
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
@@ -12,15 +11,12 @@
   },
   "extends": [
     "airbnb",
-    "plugin:@typescript-eslint/recommended",
     "prettier",
-    "prettier/@typescript-eslint",
     "prettier/react"
   ],
   "plugins": [
     "import",
     "prettier",
-    "@typescript-eslint",
     "react",
     "react-hooks",
     "jsx-a11y"
@@ -38,8 +34,6 @@
         "tsx": "never"
       }
     ],
-    "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/explicit-member-accessibility": "error",
     "react/jsx-filename-extension": [
       "error",
       {
@@ -73,5 +67,25 @@
       ".ts",
       ".tsx"
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint"
+      ],
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "rules": {
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/explicit-member-accessibility": "error"
+      }
+    }
+  ]
 }
