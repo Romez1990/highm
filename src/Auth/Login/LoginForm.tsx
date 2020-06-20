@@ -44,7 +44,10 @@ interface Values {
 
 const validationSchema = object().shape({
   email: string().email().required(),
-  password: string().matches(/^\S*$/, 'Password cannot be blank').required(),
+  password: string()
+    .min(8)
+    .matches(/^\S*$/, 'Password cannot be blank')
+    .required(),
 });
 
 function LoginForm({ redirectUrl }: Props): JSX.Element {
