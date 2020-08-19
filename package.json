@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "node script patch-formik && next",
-    "build": "node script patch-formik && next build",
+    "dev": "next",
+    "build": "next build",
     "start": "next start -p $PORT",
     "test": "yarn lint",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx --fix ."
